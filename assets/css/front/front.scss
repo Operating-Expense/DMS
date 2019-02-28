@@ -1,10 +1,15 @@
-// import bootstrap functions
+// import bootstrap functions 
 @import "~bootstrap/scss/functions";
+// functions 
+@import "functions";
 
 // rewrite bootstrap variables
 @import 'variables';
 
-@import "~bootstrap/scss/bootstrap";
+//@import "bootstrap-reboot"; // only reboot
+//@import "bootstrap-grid";   // only grid
+@import "bootstrap";        // all bootstrap
+//@import "~bootstrap/scss/bootstrap";  // all bootstrap from node_modules 
 
 // custom theme styles here
 @import 'partials/global';
@@ -16,3 +21,5 @@
 @import 'partials/shortcodes';
 @import 'partials/widgets';
 @import 'partials/js_composer';
+
+@import 'custom';

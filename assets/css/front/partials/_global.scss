@@ -3,83 +3,126 @@
 /*------------------------------------------------------------------
 [Global styles]
 -------------------------------------------------------------------*/
-.align-center {
-  text-align: center;
+body {
+	font-family: Roboto, sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.59;
+	letter-spacing: normal;
+	color: $color-dms-text;
 }
 
-.alignleft {
-  float: left;
-  margin: 0 10px 10px 0;
+
+h1, h2 {
+	font-family: $font-dms-MullerLight;
+	font-size: 60px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.37;
+	letter-spacing: -1.7px;
+	color: #43484d;
 }
 
-.alignright {
-  float: right;
-  margin: 0 0 10px 10px;
+h3, h4, h5, h6 {
+	font-family: $font-dms-MullerBold;
+	font-size: 40px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.35;
+	letter-spacing: -1.8px;
 }
 
-.aligncenter {
-  display: block;
-  margin: 0 auto 10px auto;
+p {
+	margin-bottom: 50px;
 }
 
-.screen-reader-text {
-  visibility: hidden;
-  position: absolute;
-}
-
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-  color: inherit;
+strong, b {
+	font-weight: bold;
 }
 
 a {
-  color: $primary;
-  &:hover {
-    color: darken( $primary, 10% );
-  }
+	color: $color-dms-text-a;
+	text-decoration: none;
+}
+
+a:hover, a:focus, a:active {
+	color: $color-dms-text-a;
+	text-decoration: none;
+}
+
+// ------------------
+
+
+.align-center {
+	text-align: center;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+
+.aligncenter {
+	display: block;
+	margin: 0 auto 10px auto;
+}
+
+.screen-reader-text {
+	visibility: hidden;
+	position: absolute;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: inherit;
 }
 
 table {
-  width: 100%;
+	width: 100%;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	height: auto;
 }
 
-select {
-  @extend .custom-select;
-}
-
-input{
-  &[type="text"],
-  &[type="number"],
-  &[type="password"],
-  &[type="date"],
-  &[type="url"],
-  &[type="search"] {
-    @extend .form-control;
-  }
+input {
+	&[type="text"],
+	&[type="number"],
+	&[type="password"],
+	&[type="date"],
+	&[type="url"],
+	&[type="search"] {
+		@extend .form-control;
+	}
 }
 
 textarea {
-  @extend .form-control;
+	@extend .form-control;
 }
 
 button, input[type="submit"] {
-  @extend .btn;
+	@extend .btn;
 }
 
 input[type="submit"] {
-  @extend .btn-primary;
+	@extend .btn-primary;
 }
 
-  /** By Envato requirements */
+/** By Envato requirements */
 .wp-caption,
 .wp-caption-text,
 .screen-reader-text,
 .gallery-caption,
 .bypostauthor {
-  border: 0;
+	border: 0;
 }
 

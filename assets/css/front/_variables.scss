@@ -1,4 +1,42 @@
-// Variables
+// variables
+
+$color-dms-ac-blue: #4c76b9;
+$color-dms-ac-yellow: #fab900;
+$color-dms-ac-green: #40be65;
+
+$color-dms-text-a: #43484d;
+$color-dms-text-h: #43484d;
+$color-dms-text: #9b9b9b;
+$color-dms-text-dark: #202020;
+$color-dms-text-inv: #ffffff;
+$color-dms-text-inv-op5: rgba(#ffffff, 0.5);
+
+$color-dms-line-op2: rgba(#eaeaea, 0.2);
+$color-dms-line-dark-op2: rgba(#000000, 0.2);
+$color-dms-line-inv-op2: rgba(#202020, 0.2);
+
+$color-dms-bg-white: #ffffff;
+$color-dms-bg-grey: #f9f9f9;
+
+
+$font-dms-AvenirNext: AvenirNext, sans-serif;
+$font-dms-Roboto: Roboto, sans-serif;
+
+$font-dms-MullerRegular: MullerRegular, sans-serif;
+$font-dms-MullerBold: MullerBold, sans-serif;
+$font-dms-MullerLight: MullerLight, sans-serif;
+
+$font-dms-MontserratRegular: Montserrat, sans-serif;
+
+
+
+// Bootstrap Variables
+//----------------------------
+
+$input-btn-focus-box-shadow: none;
+
+//----------------------------
+
 //
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.

@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'MullerRegular';
+    font-weight: normal;
+	src: url('MullerRegular.otf') format('opentype'); 
+} 
+@font-face {
+	font-family: 'MullerBold';
+    font-weight: bold;
+	src: url('MullerBold.otf') format('opentype'); 
+} 
+@font-face {
+	font-family: 'MullerLight';
+    font-weight: 300;
+	src: url('MullerLight.otf') format('opentype'); 
+} 

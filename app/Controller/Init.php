@@ -63,7 +63,7 @@ class Init {
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
 		) );
-		
+		/*
 		register_sidebar( array(
 			'name'          => esc_html__( 'Shop Sidebar', 'dms' ),
 			'id'            => 'sidebar-shop',
@@ -108,7 +108,7 @@ class Init {
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
 		) );
-		
+		*/
 	}
 	
 }

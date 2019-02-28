@@ -34,7 +34,8 @@ class Menu {
 
 		register_nav_menus( array(
 			'header_menu'     => esc_html__( 'Header Menu', 'dms' ),
-			'bottom_bar_menu' => esc_html__( 'Bottom Bar Menu', 'dms' ),
+			'bottom_bar_menu1' => esc_html__( 'Bottom Bar Menu 1', 'dms' ),
+			'bottom_bar_menu2' => esc_html__( 'Bottom Bar Menu 2', 'dms' ),
 		) );
 
 	}

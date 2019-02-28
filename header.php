@@ -12,21 +12,73 @@
 	
 	<header id="top">
 		
-		<div class="container">
+		<div class="container-fluid">
 			
 			<nav class="navbar">
 				
-				<div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2">
+				<div class="navbar-collapse">
 					
-					<div class="navbar-brand">
-						
-						<h1 class="text-primary">
-							<a href="<?php echo site_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a>
+					<?php
+					$img      = \DMS\Helper\Utils::get_option( 'logo_img', 0 );
+					$img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" alt="DM Solutions">' : '';
+					
+					if ( is_front_page() || is_home() ) :
+						?>
+						<!-- Your site title as branding in the menu -->
+						<h1 class="navbar-brand mb-0">
+							<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"
+							   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" itemprop="url">
+								<?php echo $img_html; ?>
+								<?php bloginfo( 'name' ); ?>
+							</a>
 						</h1>
-						
-						<small><?php bloginfo( 'description' ); ?></small>
 					
+					<?php else : ?>
+						<div class="navbar-brand">
+							<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
+							   itemprop="url">
+								<?php echo $img_html; ?>
+								<?php bloginfo( 'name' ); ?>
+							</a>
+						</div>
+					
+					<?php endif; ?>
+					
+					<div class="dms-header-info dms-header-info_desktop">
+						<div class="dms-header-info__text1">
+							<?php echo \DMS\Helper\Utils::get_option( 'header_text1', '' ) ?>
+						</div>
+						<div class="dms-header-info__text2">
+							<?php echo \DMS\Helper\Utils::get_option( 'header_text2', '' ) ?>
+						</div>
+						<div class="dms-header-info__text3">
+							<?php echo \DMS\Helper\Utils::get_option( 'header_text3', '' ) ?>
+						</div>
 					</div>
+				
+				</div>
+				
+				<div class="navbar-funcs">
+					
+					<div class="lang-selector">
+						<select name="lang-select" id="lang-select" class="lang-select">
+							<option value="RU" selected>RU</option>
+							<option value="UA">UA</option>
+							<option value="EN">EN</option>
+						</select>
+					</div>
+					
+					<a href="#" class="callback-link">Обратный звонок</a>
+					
+					<a href="#" class="btn-arrow">Личный кабинет
+						<div class="arrow-box">
+							<i class="arrow-right"></i>
+						</div>
+					</a>
+					
+					<button class="menu-button" type="button">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 				
 				</div>
 			
@@ -36,42 +88,76 @@
 	
 	</header>
 	
-	<section class="bg-light">
+	<section class="main-nav-section">
+		
+		<button class="menu-button" type="button">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		
+		<div class="main-nav-brand">
+			<?php echo $img_html; ?>
+		</div>
+		
+		<div class="menu-avatar-box"
+			 style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/userpic.jpg' ?>);">
+		</div>
 		
 		<?php if ( has_nav_menu( 'header_menu' ) ) : ?>
 			
-			<div class="container">
+			<nav id="main-nav" class="navigation-menu">
 				
-				<nav id="main-nav" class="navigation-menu">
-					
-					<div class="d-md-block d-lg-none order-3">
-						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'header_menu',
-								'menu_class'     => 'mobile-menu'
-							)
-						);
-						?>
-					</div>
-					
-					<div class="w-100 order-3">
-						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'header_menu',
-								'menu_class'     => 'desktop-menu'
-							)
-						);
-						?>
-					</div>
-					
-					<button class="menu-button" type="button">
-						<span class="navbar-toggler-icon"></span>
-					</button>
 				
-				</nav>
+				<!--					<div class="d-md-block d-lg-block order-3">-->
+				
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'header_menu',
+						'menu_class'     => 'mobile-menu'
+					)
+				);
+				?>
+				
+				<!--					</div>-->
+				
+				<!--<div class="w-100 order-3">
+						<?php
+				/*						wp_nav_menu(
+											array(
+												'theme_location' => 'header_menu',
+												'menu_class'     => 'desktop-menu'
+											)
+										);
+										*/ ?>
+					</div>-->
 			
+			
+			</nav>
+			
+			<div class="navbar-funcs2">
+				<a href="#" class="callback-link">Обратный звонок</a>
+				<div class="lang-selector-list" >
+					<ul class="lang-list">
+						<li><span>RU</span></li>
+						<li><a href="#">UA</a></li>
+						<li><a href="#">EN</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="dms-menu-info-box">
+				<div class="dms-menu-info">
+					<div class="dms-menu-info__text1">
+						<?php echo \DMS\Helper\Utils::get_option( 'header_text1', '' ) ?>
+					</div>
+					<div class="dms-menu-info__text2">
+						<?php echo \DMS\Helper\Utils::get_option( 'header_text2', '' ) ?>
+					</div>
+					<div class="dms-menu-info__text3">
+						<?php echo \DMS\Helper\Utils::get_option( 'header_text3', '' ) ?>
+					</div>
+				</div>
 			</div>
 		
 		<?php endif; ?>

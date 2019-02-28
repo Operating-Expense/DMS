@@ -121,6 +121,13 @@ class Front {
 				DMS()->config['cache_time'], true
 			);
 		}
+		
+		wp_enqueue_style(
+			'fonts-muller',
+			get_theme_file_uri( '/assets/fonts/Muller/stylesheet.css' ),
+			false,
+			false
+		);
 
 
 		// CSS styles

@@ -4,22 +4,81 @@
 [Footer styles]
 -------------------------------------------------------------------*/
 #footer {
-  margin-top: 35px;
-  @include list-padding(15px);
-
-  .list-inline li {
-    @extend .list-inline-item;
-  }
-
-  .widget-content * {
-    max-width: 100%;
-  }
+	
+	min-height: 338px;
+	padding: 70px 0 0 0;
+	background-color: #faf;
+	
+	* {
+		word-break: break-word;
+	}
+	
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		
+		li {
+			line-height: 20px;
+			padding-bottom: 20px;
+			
+			a {
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	
+	nav {
+		
+		li {
+			
+			a {
+				font-family: $font-dms-Roboto;
+				font-size: 16px;
+				font-weight: normal;
+				line-height: 20px;
+				color: $color-dms-text;
+			}
+		}
+	}
+	
+	.footer_box1 {
+		li {
+			
+		}
+		
+		&, a {
+			font-family: $font-dms-Roboto;
+			font-size: 16px;
+			font-weight: normal;
+			line-height: 20px;
+			color: $color-dms-text;
+		}
+	}
+	
+	.footer_box2 {
+		padding-left: 60px;
+		
+		li {
+			//text-align: right;
+		}
+		
+		&, a {
+			font-family: $font-dms-Roboto;
+			font-size: 16px;
+			font-weight: bold;
+			color: $color-dms-text-a;
+			text-decoration: underline;
+		}
+	}
 }
 
 #bottom-bar {
-  padding: 25px 0;
-
-  @include media-breakpoint-down(sm) {
-	text-align: center;
-  }
+	min-height: 138px;
+	
+	@include media-breakpoint-down(sm) {
+		text-align: center;
+	}
 }
