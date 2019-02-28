@@ -4,10 +4,13 @@
 [Footer styles]
 -------------------------------------------------------------------*/
 #footer {
-	
 	min-height: 338px;
 	padding: 70px 0 0 0;
-	background-color: #faf;
+	background-color: #f2f2f2;
+	background-image: url("../../images/bg_footer.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
 	
 	* {
 		word-break: break-word;
@@ -72,13 +75,143 @@
 			color: $color-dms-text-a;
 			text-decoration: underline;
 		}
+		
+		
 	}
-}
-
-#bottom-bar {
-	min-height: 138px;
+	
+	.footer-brand {
+		margin: 20px 0 80px;
+		
+		img {
+			width: 200px;
+			height: 70px;
+			object-fit: cover;
+		}
+	}
+	
+	
+	@include media-breakpoint-down(md) {
+		.footer_box2 {
+			padding-left: 0;
+			margin-top: 60px;
+		}
+	}
 	
 	@include media-breakpoint-down(sm) {
+		
 		text-align: center;
+		
+		ul {
+			li {
+				padding-bottom: 30px;
+				
+				a {
+					font-size: 28px;
+				}
+			}
+		}
+		
+		.footer_box1 {
+			
+			&, a {
+				font-size: 28px;
+			}
+		}
+		
+		.footer_box2 {
+			
+			&, a {
+				font-size: 28px;
+			}
+		}
+	}
+	
+	@include media-breakpoint-down(xs) {
+		
+		nav {
+			li {
+				padding-bottom: 50px;
+				
+				a {
+					font-size: 20px;
+				}
+			}
+		}
+		
+		.footer_box1 {
+			
+			&, a {
+				font-size: 20px;
+			}
+		}
+		
+		.footer_box2 {
+			
+			&, a {
+				font-size: 20px;
+			}
+		}
+	}
+	
+}
+
+// ----------------------
+
+#bottom-bar {
+	min-height: 130px;
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+	align-content: center;
+	
+	
+	.copyright {
+		height: 100%;
+		text-align: left;
+		font-family: $font-dms-Roboto;
+		font-size: 14px;
+		line-height: 18px;
+		color: $color-dms-text-dark;
+	}
+	
+	.dev-logo {
+		height: 100%;
+		text-align: right;
+		
+		img {
+			display: inline-block;
+			width: 103px;
+			height: 39px;
+			object-fit: cover;
+		}
+	}
+	
+	@include media-breakpoint-down(sm) {
+		 margin-top: 200px;
+		
+		.copyright, .dev-logo {
+			text-align: center;
+			margin: 0 auto;
+		}
+		
+		.copyright {
+			font-size: 28px;
+			line-height: 28px;
+			margin-top: 25px;
+		}
+		
+		.dev-logo {
+			img {
+				width: 140px;
+				height: 53px;
+			}
+		}
+	}
+	
+	@include media-breakpoint-down(xs) {
+		.copyright {
+			font-size: 20px;
+			line-height: 28px;
+		}
 	}
 }

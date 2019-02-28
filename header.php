@@ -107,9 +107,6 @@
 			
 			<nav id="main-nav" class="navigation-menu">
 				
-				
-				<!--					<div class="d-md-block d-lg-block order-3">-->
-				
 				<?php
 				wp_nav_menu(
 					array(
@@ -119,20 +116,6 @@
 				);
 				?>
 				
-				<!--					</div>-->
-				
-				<!--<div class="w-100 order-3">
-						<?php
-				/*						wp_nav_menu(
-											array(
-												'theme_location' => 'header_menu',
-												'menu_class'     => 'desktop-menu'
-											)
-										);
-										*/ ?>
-					</div>-->
-			
-			
 			</nav>
 			
 			<div class="navbar-funcs2">

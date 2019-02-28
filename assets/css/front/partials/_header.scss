@@ -163,7 +163,7 @@
 		margin: 20px 0 20px 30px;
 	}
 	
-	@media screen and (max-width: 750px) {
+	@include media-breakpoint-down(sm) {
 		& {
 			//display: none;
 		}
