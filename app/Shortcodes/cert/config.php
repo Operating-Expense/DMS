@@ -44,12 +44,14 @@ return array(
 					'param_name' => 'item_title',
 					'heading'    => esc_html__( 'Item title', 'dms' ),
 					'value'      => '',
+					//'admin_label' => true
 				),
 				array(
-					'type'       => 'textarea_raw_html',
+					'type'       => 'textarea',
 					'param_name' => 'item_text',
 					'heading'    => esc_html__( 'Item text', 'dms' ),
 					'value'      => '',
+					'admin_label' => true
 				),
 				array(
 					'type'       => 'attach_image',

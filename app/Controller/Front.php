@@ -1,4 +1,5 @@
 <?php
+
 namespace DMS\Controller;
 
 use DMS\Helper\Assets;
@@ -18,58 +19,58 @@ use DMS\Helper\Utils;
  * @since      Class available since Release 1.0.0
  */
 class Front {
-
+	
 	/**
 	 * Constructor - add all needed actions
 	 *
 	 * @return void
 	 **/
 	public function __construct() {
-
+		
 		// add site icon
 		add_action( 'wp_head', array( $this, 'add_site_icon' ) );
-
+		
 		// load assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'load_assets' ) );
 		// remove default styles for Unyson Breadcrummbs
 		add_action( 'wp_enqueue_scripts', array( $this, 'remove_assets' ), 99, 1 );
 		add_action( 'wp_footer', array( $this, 'remove_assets' ) );
-
+		
 		// Change excerpt dots
 		add_filter( 'excerpt_more', array( $this, 'change_excerpt_more' ) );
-
+		
 		// remove jquery migrate for optimization reasons
 		add_filter( 'wp_default_scripts', array( $this, 'dequeue_jquery_migrate' ) );
-
+		
 		// Anti-spam
 		add_action( 'phpmailer_init', array( $this, 'antispam_form' ) );
-
+		
 		// add GTM
 		add_action( 'wp_head', array( $this, 'add_gtm_head' ) );
 		add_action( 'wp_footer', array( $this, 'add_gtm_body' ) );
-
+		
 	}
-
+	
 	/**
 	 * Add site icon from customizer
 	 *
 	 * @return void
 	 **/
 	public function add_site_icon() {
-
+		
 		if ( function_exists( 'has_site_icon' ) && has_site_icon() ) {
 			wp_site_icon();
 		}
-
+		
 	}
-
+	
 	/**
 	 * Load JavaScript and CSS files in a front-end
 	 *
 	 * @return void
 	 **/
 	public function load_assets() {
-
+		
 		// add support for visual composer animations, row stretching, parallax etc
 		if ( function_exists( 'vc_asset_url' ) ) {
 			wp_enqueue_script(
@@ -87,9 +88,22 @@ class Front {
 				true
 			);
 		}
-
-		// JS scripts
-		Assets::enqueue_script('jquery');
+		
+		// Assets 
+		
+		// lity
+		
+		Assets::register_script( 'lity', get_theme_file_uri( '/assets/libs/lity/lity.min.js' ), [ 'jquery' ], DMS()->config['cache_time'], true );
+		Assets::register_style( 'lity', get_theme_file_uri( '/assets/libs/lity/lity.min.css' ), false, DMS()->config['cache_time'] );
+		
+		// slick
+		
+		Assets::register_script( 'slick', get_theme_file_uri( '/assets/libs/slick/slick.js' ), [ 'jquery' ], DMS()->config['cache_time'], true );
+		Assets::register_style( 'slick', get_theme_file_uri( '/assets/libs/slick/slick.css' ), false, DMS()->config['cache_time'] );
+		Assets::register_style( 'slick-theme', get_theme_file_uri( '/assets/libs/slick/slick-theme.css' ), false, DMS()->config['cache_time'] );
+		
+		
+		Assets::enqueue_script( 'jquery' );
 		Assets::enqueue_script(
 			'google-fonts',
 			'/assets/libs/google-fonts/webfont.js',
@@ -97,20 +111,20 @@ class Front {
 			false,
 			true
 		);
-		Assets::enqueue_script_dist('dms-front', 'app.min.js', array( 'jquery', 'google-fonts' ));
-
+		Assets::enqueue_script_dist( 'dms-front', 'app.min.js', array( 'jquery', 'google-fonts' ) );
+		
 		$js_vars = array(
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'assetsPath' => get_template_directory_uri() . '/assets',
 		);
-
+		
 		Assets::enqueue_script( 'dms-front' );
 		wp_localize_script( 'dms-front', 'themeJsVars', $js_vars );
-
+		
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			Assets::enqueue_script( 'comment-reply' );
 		}
-
+		
 		if ( $this->antispam_enabled() === 1 ) {
 			Assets::enqueue_script(
 				'dms-antispam',
@@ -128,14 +142,14 @@ class Front {
 			false,
 			false
 		);
-
-
+		
+		
 		// CSS styles
-		Assets::enqueue_style_dist('dms-libs', 'libs.css');
-		Assets::enqueue_style_dist('dms-front', 'front.css');
-
+		Assets::enqueue_style_dist( 'dms-libs', 'libs.css' );
+		Assets::enqueue_style_dist( 'dms-front', 'front.css' );
+		
 	}
-
+	
 	/**
 	 * Check if anti-spam enabled in theme options
 	 *
@@ -144,21 +158,21 @@ class Front {
 	public function antispam_enabled() {
 		return (int) Utils::get_option( 'forms_antispam', 0 );
 	}
-
+	
 	/**
 	 * Remove no needed default js and styles
 	 *
 	 * @return void
 	 */
 	public function remove_assets() {
-
+		
 		// disable huge default JS composer styles
 		wp_dequeue_style( 'js_composer_front' );
 		wp_dequeue_style( 'animate-css' );
 		//wp_dequeue_style( 'fw-ext-breadcrumbs-add-css' );
-
+		
 	}
-
+	
 	/**
 	 * Change excerpt More text
 	 *
@@ -169,7 +183,7 @@ class Front {
 	public function change_excerpt_more( $more ) {
 		return '…';
 	}
-
+	
 	/**
 	 * Remove jquery migrate for optimization reasons
 	 *
@@ -181,54 +195,54 @@ class Front {
 			$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.10.2' );
 		}
 	}
-
+	
 	/**
 	 * @param \PHPMailer $phpmailer
 	 *
 	 * @return null|\PHPMailer
 	 */
 	public function antispam_form( \PHPMailer $phpmailer ) {
-
+		
 		if ( $this->antispam_enabled() !== 1 ) {
 			return null;
 		}
-
+		
 		if ( ! empty( $_POST ) && empty( $_POST['as_code'] ) ) {
 			$phpmailer->clearAllRecipients();
 		}
-
+		
 		return $phpmailer;
 	}
-
-
+	
+	
 	/**
 	 * Load Google Tag Manager
 	 **/
 	public function add_gtm_head() {
 		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
-
+		
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
-
+			
 			DMS()->View->load( '/template-parts/gtm',
 				array( 'head' => true, 'tag_manager_code' => $tag_manager_code ) );
-
+			
 		}
 	}
-
+	
 	/**
 	 * add GTM after open <body> tag
 	 */
 	public function add_gtm_body() {
 		$tag_manager_code = Utils::get_option( 'tag_manager_code', '' );
 		$site_url         = get_site_url();
-
+		
 		if ( ! empty( $tag_manager_code ) && strpos( $site_url, 'wpengine.com' ) === false ) {
-
+			
 			DMS()->View->load( '/template-parts/gtm',
 				array( 'head' => false, 'tag_manager_code' => $tag_manager_code ) );
-
+			
 		}
 	}
-
+	
 }

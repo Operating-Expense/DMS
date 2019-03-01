@@ -35,10 +35,11 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 			<?php
 			foreach ( $atts['items_arr'] as $item ) {
 				
-				$item_title     = ! empty( $item['item_title'] ) ? esc_html( $item['item_title'] ) : '';
-				$item_text      = ! empty( $item['item_text'] )
-					? rawurldecode( base64_decode( $item['item_text'] ) )
-					: '';
+				$item_title = ! empty( $item['item_title'] ) ? esc_html( $item['item_title'] ) : '';
+//				$item_text      = ! empty( $item['item_text'] )
+//					? rawurldecode( base64_decode( $item['item_text'] ) )
+//					: '';
+				$item_text      = ! empty( $item['item_text'] ) ? esc_html( $item['item_text'] ) : '';
 				$item_image_id  = (int) $item['item_image'];
 				$item_image_url = wp_get_attachment_url( $item_image_id );
 				$item_url       = ! empty( $item['item_url'] ) ? ' ' . esc_url( $item['item_url'] ) : '#';
