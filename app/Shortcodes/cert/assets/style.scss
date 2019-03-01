@@ -1,0 +1,111 @@
+// import global variables
+@import '../../../../assets/css/front/bootstrap_dependencies';
+
+
+.shortcode-cert {
+	
+	padding: 80px 0 20px;
+	text-align: center;
+	background-color: #99ddffff;
+	
+	.s-cert-title {
+		margin-bottom: 60px;
+		text-align: left;
+	}
+	
+	.s-cert {
+		
+	}
+	
+	.s-cert__img {
+		width: 100%;
+	}
+	
+	.s-cert__body {
+		margin: 20px 0 60px;
+	}
+	
+	.s-cert__title {
+		
+		
+		&, a {
+			font-family: $font-dms-Roboto;
+			font-size: 16px;
+			font-weight: bold;
+			color: $color-dms-text-a;
+		}
+	}
+	
+	.s-cert__text {
+		margin-top: 2px;
+		
+		&, a {
+			font-family: $font-dms-Roboto;
+			font-size: 16px;
+			line-height: 20px;
+			color: $color-dms-text;
+		}
+	}
+	
+	
+	// MEDIA
+	
+	@include media-breakpoint-down(md) {
+		
+		
+		.s-cert-title {
+			
+		}
+		
+		.s-cert {
+			
+		}
+		
+		.s-cert__img {
+			
+		}
+		
+		.s-cert__body {
+			
+		}
+		
+		.s-cert__title {
+			
+		}
+		
+		.s-cert__text {
+			
+		}
+	}
+	
+	
+	@include media-breakpoint-down(sm) {
+		
+		
+		.s-cert-title {
+			margin-bottom: 40px;
+		}
+		
+		.s-cert {
+			
+		}
+		
+		.s-cert__img {
+			width: 70%;
+		}
+		
+		.s-cert__body {
+			
+		}
+		
+		.s-cert__title {
+			
+		}
+		
+		.s-cert__text {
+			
+		}
+	}
+	
+} 
+                                                            

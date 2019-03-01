@@ -82,7 +82,8 @@ module.exports = function () {
 								sourceMap: false,
 							}
 						},
-						{loader: 'sass-loader', options: {sourceMap: false}},
+						'postcss-loader',
+						{loader: 'sass-loader', options: {sourceMap: false}}
 					]
 				},
 				//babel
@@ -103,6 +104,7 @@ module.exports = function () {
 		],
 	};
 	
+	/*
 	const fs = require('fs');
 	
 	if (process.env.SYNC === "true" && fs.existsSync('./build/browser-sync.config.js') && !process.isBrowserSyncAdded) {
@@ -112,6 +114,7 @@ module.exports = function () {
 		baseConf.plugins.push(new BrowserSyncPlugin(config));
 		process.isBrowserSyncAdded = true;
 	}
+	*/
 	
 	
 	return baseConf;
