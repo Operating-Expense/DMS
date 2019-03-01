@@ -4,12 +4,11 @@
 
 .shortcode-cert {
 	
-	padding: 80px 0 20px;
+	padding: 100px 0 20px;
 	text-align: center;
-	background-color: #99ddffff;
 	
 	.s-cert-title {
-		margin-bottom: 60px;
+		margin-bottom: 80px;
 		text-align: left;
 	}
 	
@@ -22,7 +21,7 @@
 	}
 	
 	.s-cert__body {
-		margin: 20px 0 60px;
+		margin: 14px 0 80px;
 	}
 	
 	.s-cert__title {
@@ -31,8 +30,9 @@
 		&, a {
 			font-family: $font-dms-Roboto;
 			font-size: 16px;
+			line-height: 25px;
 			font-weight: bold;
-			color: $color-dms-text-a;
+			color: $color-dms-text-dark;
 		}
 	}
 	
@@ -41,8 +41,8 @@
 		
 		&, a {
 			font-family: $font-dms-Roboto;
-			font-size: 16px;
-			line-height: 20px;
+			font-size: 18px;
+			line-height: 25px;
 			color: $color-dms-text;
 		}
 	}
@@ -51,10 +51,10 @@
 	// MEDIA
 	
 	@include media-breakpoint-down(md) {
-		
+		padding: 80px 0 20px;
 		
 		.s-cert-title {
-			
+			margin-bottom: 60px;
 		}
 		
 		.s-cert {
@@ -66,20 +66,24 @@
 		}
 		
 		.s-cert__body {
-			
+			margin: 30px 0 80px;
 		}
 		
 		.s-cert__title {
-			
+			font-size: 30px;
+			line-height: 38px;
 		}
 		
 		.s-cert__text {
-			
+			font-size: 20px;
+			line-height: 24px;
 		}
 	}
 	
 	
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(xs) {
+		
+		padding: 60px 0 20px;
 		
 		
 		.s-cert-title {
@@ -95,7 +99,7 @@
 		}
 		
 		.s-cert__body {
-			
+			margin: 20px 0 80px;
 		}
 		
 		.s-cert__title {

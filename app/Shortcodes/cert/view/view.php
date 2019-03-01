@@ -48,7 +48,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 				?>
 				
 				
-				<div class="col-sm-6 col-md-3">
+				<div class="col-sm-6 col-md-6 col-lg-3">
 					
 					<div class="s-cert <?php echo $item_class ?>">
 						<?php
@@ -60,7 +60,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 							
 							<?php
 							Media::the_img(
-								array( 'data-width' => 255, 'data-height' => 382, 'class' => 's-cert__img' ),
+								array( 'data-width' => 263, 'data-height' => 372, 'class' => 's-cert__img' ),
 								array( 'attachment_id' => $item_image_id )
 							);
 							?>

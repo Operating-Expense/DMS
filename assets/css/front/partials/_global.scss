@@ -26,7 +26,15 @@ h1, h2 {
 	color: #43484d;
 	
 	@include media-breakpoint-down(sm) {
+		font-size: 48px;
+		font-weight: 300;
+		line-height: 1.71;
+		letter-spacing: -1.3px;
+	}
+	
+	@include media-breakpoint-down(xs) {
 		font-size: 40px;
+		word-break: break-all;
 	}
 }
 

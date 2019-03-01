@@ -42,9 +42,9 @@ baseConfig.output = {
 
 
 const fs = require('fs');
-console.log('@@@@@@@@@@@@@@@@@@@@1111');	
+	
 if (process.env.SYNC === "true" && fs.existsSync('./build/browser-sync.config.js') && !process.isBrowserSyncAdded) {
-	console.log('@@@@@@@@@@@@@@@@@@@@2222');
+	
 	const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 	const config = require('./browser-sync.config');
 	
