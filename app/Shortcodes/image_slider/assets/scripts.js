@@ -5,38 +5,39 @@
 	$(document).ready(function () {
 		$('.shortcode-image_slider').each(function () {
 			let $shortcode = $(this);
+			let $elSlick = $shortcode.find('.s-is-carousel');
 			
-			$shortcode.on('init', function (event, slick) {
+			$elSlick.on('init', function (event, slick) {
 				setTimeout(function () {
-					$shortcode.css({'visibility': 'visible'});
-					$shortcode.off('init');
+					$elSlick.css({'visibility': 'visible'});
+					$elSlick.off('init');
 				}, 50);
 				
 			});
 			
-			$shortcode.slick({
+			$elSlick.slick({
 				variableWidth: true,
 				dots: false,
 				infinite: true,
 				//adaptiveHeight: true,
 				cssEase: 'linear',
-				slidesToShow: $shortcode.data('num') || 3,
+				slidesToShow: $elSlick.data('num') || 3,
 				lazyLoad: 'ondemand',
-				autoplay: $shortcode.data('autoplay') !== 'off',
-				autoplaySpeed: $shortcode.data('autoplay-speed') || 3000,
+				autoplay: $elSlick.data('autoplay') !== 'off',
+				autoplaySpeed: $elSlick.data('autoplay-speed') || 3000,
 				centerMode: true,
 				focusOnSelect: true,
 				responsive: [
 					{
 						breakpoint: 992,
 						settings: {
-							slidesToShow: $shortcode.data('num-medium') || 2
+							slidesToShow: $elSlick.data('num-medium') || 2
 						}
 					},
 					{
 						breakpoint: 576,
 						settings: {
-							slidesToShow: $shortcode.data('num-small') || 1
+							slidesToShow: $elSlick.data('num-small') || 1
 						}
 					}
 				]

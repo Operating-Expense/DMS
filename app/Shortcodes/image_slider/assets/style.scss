@@ -3,15 +3,24 @@
 
 .shortcode-image_slider {
 	
-	visibility: hidden; // show in js
-	position: relative;
 	padding: 100px 0;
 	background-color: $color-dms-bg-grey;
+	
+	.s-is-title {
+		margin-bottom: 80px;
+	}
+	
+	.s-is-carousel {
+		margin: 0 auto;
+		position: relative;
+		visibility: hidden; // show in js
+		width: 80%;
+	}
 	
 	// equal height trick
 	.slick-track {
 		display: flex;
-		background-color: #fdf59a;
+		//background-color: #fdf59a;
 		
 		.slick-slide {
 			display: flex;
@@ -68,7 +77,54 @@
 	
 	
 	.slick-prev, .slick-next {
-		background-color: #ddd;
+		display: block;
+		cursor: pointer;
+		//background-color: #0eb5d6;
+		background-color: transparent;
+		border-radius: 0;
+		width: 61px;
+		height: 36px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: black;
+		opacity: 1;
+		z-index: 7;
+		
+		&:before {
+			content: none;
+		}
+		
+		&.slick-disabled {
+			opacity: 0.4;
+			cursor: initial;
+		}
 	}
+	
+	
+	.slick-prev {
+		left: -100px;
+		background-image: url('arrow-l.png');
+	}
+	
+	
+	.slick-next {
+		right: -100px;
+		background-image: url('arrow-r.png');
+	}
+	
+	
+	@include media-breakpoint-down(md) {
+		
+		.slick-prev, .slick-next {
+			display: none !important;
+		}
+		
+		.s-is-carousel {
+			width: auto;
+		}
+	}
+	
+	
 }
 
