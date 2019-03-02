@@ -1,0 +1,108 @@
+// import global variables
+@import '../../../../assets/css/front/bootstrap_dependencies';
+
+
+.shortcode-stat {
+	
+	padding: 100px 0 20px;
+	text-align: center;
+	
+	.s-stat-title {
+		margin-bottom: 80px;
+		text-align: left;
+	}
+	
+	.s-stat {
+		
+	}
+	
+	.s-stat__body {
+		margin: 0 0 80px;
+	}
+	
+	.s-stat__title {
+		
+		
+		&, a {
+			font-family: $font-dms-MontserratRegular;
+			font-size: 40px;
+			line-height: 1;
+			font-weight: 300;
+			letter-spacing: 1px;
+			text-align: center;
+			color: $color-dms-ac-blue;
+		}
+	}
+	
+	.s-stat__text {
+		margin-top: 20px;
+		
+		&, a {
+			text-align: center;
+			font-family: $font-dms-Roboto;
+			font-size: 18px;
+			line-height: 1.4;
+			color: $color-dms-text-h;
+		}
+	}
+	
+	
+	// MEDIA
+	
+	@include media-breakpoint-down(md) {
+		padding: 80px 0 20px;
+		
+		.s-stat-title {
+			margin-bottom: 60px;
+		}
+		
+		.s-stat {
+			
+		}
+		
+		.s-stat__body {
+			margin: 30px 0 80px;
+		}
+		
+		.s-stat__title {
+			font-size: 48px;
+			line-height: 1;
+			letter-spacing: 1.4px;
+		}
+		
+		.s-stat__text {
+			margin-top: 30px;
+			font-size: 24px;
+			line-height: 1.4;
+		}
+	}
+	
+	
+	@include media-breakpoint-down(xs) {
+		
+		padding: 80px 0 20px;
+		
+		
+		.s-stat-title {
+			margin-bottom: 40px;
+		}
+		
+		.s-stat {
+			
+		}
+		
+		.s-stat__body {
+			margin: 0 0 80px;
+		}
+		
+		.s-stat__title {
+			
+		}
+		
+		.s-stat__text {
+			margin-top: 20px;
+		}
+	}
+	
+} 
+                                                            
