@@ -1,0 +1,106 @@
+// import global variables
+@import '../../../../assets/css/front/bootstrap_dependencies';
+
+
+.shortcode-about {
+	
+	.s-about__left {
+		padding: 0;
+		margin: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $color-dms-ac-blue;
+		background-image: url("bg_about.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+	}
+	
+	.s-about__right {
+		text-align: left;
+		padding: 140px 132px 120px;
+		background-color: $color-dms-bg-grey;
+	}
+	
+	.s-about__title {
+		margin-bottom: 55px;
+	}
+	
+	.s-about__text {
+		
+		&, a {
+			font-family: $font-dms-Roboto;
+			font-size: 22px;
+			line-height: 1.59;
+			color: $color-dms-text;
+			
+		}
+	}
+	
+	.s-about__brand_r {
+		margin-bottom: 60px;
+	}
+	
+	
+	// MEDIA
+	
+	
+	@media screen and (max-width: 1440px) {
+		.s-about__right {
+			padding: 140px 80px 120px;
+		}
+		
+	}
+	
+	@include media-breakpoint-down(lg) {
+		.s-about__right {
+			padding: 80px 30px 40px;
+		}
+		
+	}
+	
+	@include media-breakpoint-down(md) {
+		.s-about__right {
+			
+		}
+	}
+	
+	@include media-breakpoint-down(sm) {
+		.s-about__right {
+			padding: 80px 50px 40px;
+			background-color: $color-dms-ac-blue;
+			background-image: url("bg_about.jpg");
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		.s-about__title {
+			color: $color-dms-text-inv;
+		}
+		
+		
+		.s-about__text {
+			
+			&, a {
+				font-family: $font-dms-Roboto;
+				font-size: 36px;
+				line-height: 1.5;
+				color: $color-dms-text-inv;
+			}
+		}
+	}
+	
+	
+	@include media-breakpoint-down(xs) {
+		.s-about__text {
+			
+			&, a {
+				font-size: 24px;
+			}
+		}
+		
+	}
+	
+} 
+                                                            

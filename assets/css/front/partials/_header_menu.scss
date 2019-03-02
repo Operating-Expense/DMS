@@ -27,7 +27,7 @@
 	flex-direction: column;
 	align-content: flex-end;
 	align-items: flex-end;
-	
+	box-shadow: rgb(170, 170, 170) 1px 1px 7px;
 	
 	@include media-breakpoint-down(sm) {
 		& {
