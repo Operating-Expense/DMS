@@ -38,7 +38,7 @@ h1, h2 {
 	}
 }
 
-h3, h4, h5, h6 {
+h3 {
 	font-family: $font-dms-MullerBold;
 	font-size: 40px;
 	font-weight: bold;
@@ -46,7 +46,32 @@ h3, h4, h5, h6 {
 	font-stretch: normal;
 	line-height: 1.35;
 	letter-spacing: -1.8px;
+	
 }
+
+h4, h5, h6 {
+	font-family: $font-dms-MullerLight;
+	font-size: 42px;
+	font-weight: 300;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.2;
+	letter-spacing: -1.2px;
+	
+	@include media-breakpoint-down(md) {
+		font-size: 52px;
+		letter-spacing: normal;
+	}
+	
+	@include media-breakpoint-down(sm) {
+		font-size: 42px;
+	}
+	
+	@include media-breakpoint-down(sm) {
+		font-size: 36px;
+	}
+}
+  
 
 p {
 	margin-bottom: 50px;
@@ -139,3 +164,26 @@ input[type="submit"] {
 	border: 0;
 }
 
+.dms-accent-text {
+	font-family: $font-dms-Roboto;
+	font-size: 18px;
+	font-weight: 500;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.33;
+	letter-spacing: normal;
+	color: $color-dms-ac-green;
+	
+	@include media-breakpoint-down(md) {
+		font-size: 28px;
+		letter-spacing: normal;
+	}
+	
+	@include media-breakpoint-down(sm) {
+		font-size: 28px;
+	}
+	
+	@include media-breakpoint-down(xs) {
+		font-size: 24px;
+	}
+}

@@ -1,0 +1,72 @@
+// import global variables
+@import '../../../../assets/css/front/bootstrap_dependencies';
+
+
+.shortcode-rprice {
+	//border-top:solid 1px rgba(155, 155, 155, 0.3);
+	padding: 70px 0 60px;
+	
+	
+	.s-rprice__title {
+		margin-bottom: 0;
+		color: $color-dms-text-h;
+	}
+	
+	.s-rprice__accent {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	
+	.s-rprice__text {
+		
+		&, a {
+			text-align: center;
+			font-family: $font-dms-Roboto;
+			font-size: 18px;
+			line-height: 1.11;
+			color: $color-dms-text;
+		}
+		
+		p {
+			margin-bottom: 10px;
+		}
+	}
+	
+	
+	// MEDIA
+	
+	
+	@include media-breakpoint-down(md) {
+		padding: 60px 0 50px;
+		
+		.s-rprice__title {
+			text-align: center;
+			margin-bottom: 30px;
+		}
+		.s-rprice__text {
+			&, a {
+				font-size: 28px;
+				line-height: 1.43;
+			}
+		}
+	}
+	
+	@include media-breakpoint-down(sm) {
+		.s-rprice__text {
+			&, a {
+				font-size: 28px;
+			}
+		}
+	}
+	
+	@include media-breakpoint-down(xs) {
+		.s-rprice__text {
+			&, a {
+				font-size: 20px;
+			}
+		}
+		
+	}
+	
+} 
+                                                            
