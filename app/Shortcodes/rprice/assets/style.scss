@@ -36,7 +36,7 @@
 	// MEDIA
 	
 	
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(sm) {
 		padding: 60px 0 50px;
 		
 		.s-rprice__title {
@@ -51,13 +51,14 @@
 		}
 	}
 	
+	/*
 	@include media-breakpoint-down(sm) {
 		.s-rprice__text {
 			&, a {
 				font-size: 28px;
 			}
 		}
-	}
+	}*/
 	
 	@include media-breakpoint-down(xs) {
 		.s-rprice__text {

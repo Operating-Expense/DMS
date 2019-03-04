@@ -34,7 +34,7 @@
 	
 	// MEDIA
 	
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(sm) {
 		padding: 80px 0 20px;
 		
 		.s-target-title {

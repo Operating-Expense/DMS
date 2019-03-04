@@ -126,39 +126,6 @@
 		}
 	}
 	
-	.btn-arrow {
-		display: block;
-		white-space: nowrap;
-		color: $color-dms-ac-blue;
-		font-family: $font-dms-Roboto;
-		font-size: 16px;
-		font-weight: 500;
-		text-decoration: none;
-		padding: 0 27px 0 30px;
-		line-height: 40px;
-		border: 1px solid $color-dms-ac-blue;
-		border-radius: 42px;
-		background-color: #fff;
-		
-		.arrow-box {
-			display: inline-block;
-			width: 9px;
-			height: 100%;
-			margin-left: 15px;
-			margin-right: 3px;
-			padding-left: 10px;
-			border-left: 1px solid rgba($color-dms-ac-blue, 0.5);
-		}
-		
-		.arrow-right {
-			border: solid $color-dms-ac-blue;
-			border-width: 0 2px 2px 0;
-			display: inline-block;
-			padding: 4px;
-			transform: rotate(-45deg);
-		}
-	}
-	
 	.menu-button {
 		margin: 20px 0 20px 30px;
 	}

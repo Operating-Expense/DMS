@@ -30,7 +30,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 	
 	<?php if ( ! empty( $atts['items_arr'] ) ) { ?>
 		
-		<div class="row">
+		<div class="row justify-content-center">
 			
 			<?php
 			foreach ( $atts['items_arr'] as $item ) {
@@ -42,7 +42,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 				$item_text      = ! empty( $item['item_text'] ) ? esc_html( $item['item_text'] ) : '';
 				$item_image_id  = (int) $item['item_image'];
 				$item_image_url = wp_get_attachment_url( $item_image_id );
-				$item_url       = ! empty( $item['item_url'] ) ? ' ' . esc_url( $item['item_url'] ) : '#';
+				$item_url       = ! empty( $item['item_url'] ) ? esc_url( $item['item_url'] ) : '#';
 				$item_class     = ! empty( $item['item_el_classes'] ) ? ' ' . esc_attr( $item['item_el_classes'] ) : '';
 				$item_class     .= ! $item_image_url ? ' s-cert-wo-img' : '';
 				

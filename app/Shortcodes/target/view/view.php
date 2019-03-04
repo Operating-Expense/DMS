@@ -44,7 +44,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 				?>
 				
 				
-				<div class="col-sm-6 col-md-6 col-lg-3">
+				<div class="col-sm-6 col-md-3">
 					
 					<div class="s-target <?php echo $item_class ?>">
 						

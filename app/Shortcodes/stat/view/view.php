@@ -30,7 +30,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 	
 	<?php if ( ! empty( $atts['items_arr'] ) ) { ?>
 		
-		<div class="row">
+		<div class="row justify-content-center">
 			
 			<?php
 			foreach ( $atts['items_arr'] as $item ) {

@@ -47,7 +47,7 @@ $attributes_carousel[] = 'data-autoplay-speed="' . $atts['autoplay_speed'] . '"'
 				
 				$item_image_id  = (int) $item['item_image'];
 				$item_image_url = wp_get_attachment_url( $item_image_id );
-				$item_url       = ! empty( $item['item_url'] ) ? ' ' . esc_url( $item['item_url'] ) : '';
+				$item_url       = ! empty( $item['item_url'] ) ? esc_url( $item['item_url'] ) : '';
 				$item_class     = ! empty( $item['item_el_classes'] ) ? ' ' . esc_attr( $item['item_el_classes'] ) : '';
 				
 				?>

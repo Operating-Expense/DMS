@@ -28,7 +28,7 @@ $text        = ! empty( $data['content'] )
 	
 	<div class="row justify-content-center">
 		
-		<div class="col-lg-6 d-lg-flex align-items-lg-center">
+		<div class="col-md-6 d-md-flex align-items-md-center">
 			<?php if ( $title ) { ?>
 				<h4 class="s-rprice__title">
 					<?php echo $title ?>
@@ -36,7 +36,7 @@ $text        = ! empty( $data['content'] )
 			<?php } ?>
 		</div>
 		
-		<div class="col-lg-6">
+		<div class="col-md-6">
 			
 			<?php if ( $accent_text ) { ?>
 				<div class="s-rprice__accent dms-accent-text">

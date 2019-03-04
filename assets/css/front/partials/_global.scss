@@ -58,20 +58,16 @@ h4, h5, h6 {
 	line-height: 1.2;
 	letter-spacing: -1.2px;
 	
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(sm) {
 		font-size: 52px;
 		letter-spacing: normal;
 	}
 	
-	@include media-breakpoint-down(sm) {
-		font-size: 42px;
-	}
-	
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(xs) {
 		font-size: 36px;
 	}
 }
-  
+
 
 p {
 	margin-bottom: 50px;
@@ -165,19 +161,15 @@ input[type="submit"] {
 }
 
 .dms-accent-text {
-	font-family: $font-dms-Roboto;
+	font-family: $font-dms-Roboto!important;
 	font-size: 18px;
 	font-weight: 500;
-	font-style: normal;
-	font-stretch: normal;
+	font-style: normal!important;
+	font-stretch: normal!important;
 	line-height: 1.33;
-	letter-spacing: normal;
-	color: $color-dms-ac-green;
+	letter-spacing: normal!important;
+	color: $color-dms-ac-green!important;
 	
-	@include media-breakpoint-down(md) {
-		font-size: 28px;
-		letter-spacing: normal;
-	}
 	
 	@include media-breakpoint-down(sm) {
 		font-size: 28px;
@@ -187,3 +179,41 @@ input[type="submit"] {
 		font-size: 24px;
 	}
 }
+
+.btn-arrow {
+	display: block;
+	white-space: nowrap;
+	color: $color-dms-ac-blue;
+	font-family: $font-dms-Roboto;
+	font-size: 16px;
+	font-weight: 500;
+	text-decoration: none;
+	padding: 0 27px 0 30px;
+	line-height: 40px;
+	border: 1px solid $color-dms-ac-blue;
+	border-radius: 42px;
+	background-color: #fff;
+	&:hover, &:focus, &:active {
+		color: $color-dms-ac-blue;
+	}
+}
+
+.arrow-box {
+	display: inline-block;
+	width: 9px;
+	height: 100%;
+	margin-left: 15px;
+	margin-right: 3px;
+	padding-left: 10px;
+	border-left: 1px solid rgba($color-dms-ac-blue, 0.5);
+	
+	.arrow-right {
+		border: solid $color-dms-ac-blue;
+		border-width: 0 2px 2px 0;
+		display: inline-block;
+		padding: 4px;
+		transform: rotate(-45deg);
+	}
+}
+
+
