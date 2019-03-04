@@ -24,8 +24,8 @@
 		setupFormsAntispam: function () {
 
 			$('body').find('form').each(function () {
-
-				if ($(this).attr('method').toUpperCase() === 'POST') {
+			 
+				if ($(this).attr('method') && $(this).attr('method').toUpperCase() === 'POST') {
 
 					$(this).find('input[type=submit], button[type=submit]').each(function () {
 						try {

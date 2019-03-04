@@ -16,7 +16,7 @@
 		padding: 0.5rem 0;
 		flex-wrap: nowrap;
 		min-height: 80px;
-		background-color: #ffa;
+		//background-color: #ffa;
 		padding-right: 30px;
 	}
 	
@@ -132,7 +132,7 @@
 	
 	@include media-breakpoint-down(sm) {
 		& {
-			//display: none;
+			display: none;
 		}
 		
 	}
