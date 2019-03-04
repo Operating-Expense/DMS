@@ -7,6 +7,30 @@ $options = array(
 			'type'    => 'tab',
 			'options' => array(
 				
+				'basic_box' => array(
+					'title'   => esc_html__( 'Basic', 'dms' ),
+					'type'    => 'box',
+					'attr'    => array(
+						'class' => 'prevent-auto-close'
+					),
+					'options' => array(
+						
+						'dms_phone' => array(
+							'type'  => 'text',
+							'label' => esc_html__( 'DMS Phone', 'dms' ),
+							'value' => ''
+						),
+						
+						'dms_email' => array(
+							'type'  => 'text',
+							'label' => esc_html__( 'DMS e-mail', 'dms' ),
+							'value' => ''
+						),
+					
+					),
+				
+				),
+				
 				'antispam_box' => array(
 					'title'   => esc_html__( 'Antispam', 'dms' ),
 					'type'    => 'box',

@@ -99,6 +99,12 @@ export default class Theme {
 			
 			$('.menu-button').on('click', function (e) {
 				e.stopPropagation();
+				if ($(this).hasClass('s-intro__menu_caller')) {
+					e.preventDefault();
+					$("html, body").animate({ scrollTop: 0 }, "slow");
+				}
+				
+				e.preventDefault();
 				
 				$('.menu-button').toggleClass('active');
 				

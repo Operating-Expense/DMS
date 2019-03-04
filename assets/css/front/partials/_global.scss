@@ -47,9 +47,18 @@ h3 {
 	line-height: 1.35;
 	letter-spacing: -1.8px;
 	
+	@include media-breakpoint-down(sm) {
+		font-size: 62px;
+		line-height: 1.11;
+		letter-spacing: normal;
+	}
+	
+	@include media-breakpoint-down(xs) {
+		font-size: 36px;
+	}
 }
 
-h4, h5, h6 {
+h4 {
 	font-family: $font-dms-MullerLight;
 	font-size: 42px;
 	font-weight: 300;
@@ -58,6 +67,15 @@ h4, h5, h6 {
 	line-height: 1.2;
 	letter-spacing: -1.2px;
 	
+	@include media-breakpoint-down(md) {
+		font-family: $font-dms-MullerRegular;
+		font-size: 28px;
+		font-weight: normal;
+		font-stretch: normal;
+		line-height: 0.75;
+		letter-spacing: 3.5px;
+	}
+	
 	@include media-breakpoint-down(sm) {
 		font-size: 52px;
 		letter-spacing: normal;
@@ -65,6 +83,30 @@ h4, h5, h6 {
 	
 	@include media-breakpoint-down(xs) {
 		font-size: 36px;
+	}
+}
+
+
+h5, h6 {
+	font-family: $font-dms-MullerRegular;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 1.31;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	
+	@include media-breakpoint-down(sm) {
+		font-size: 28px;
+		line-height: 0.75;
+		letter-spacing: 3.5px;
+	}
+	
+	@include media-breakpoint-down(xs) {
+		font-size: 24px;
+		line-height: 1;
+		letter-spacing: 2.5px;
 	}
 }
 
@@ -161,14 +203,14 @@ input[type="submit"] {
 }
 
 .dms-accent-text {
-	font-family: $font-dms-Roboto!important;
+	font-family: $font-dms-Roboto !important;
 	font-size: 18px;
 	font-weight: 500;
-	font-style: normal!important;
-	font-stretch: normal!important;
+	font-style: normal !important;
+	font-stretch: normal !important;
 	line-height: 1.33;
-	letter-spacing: normal!important;
-	color: $color-dms-ac-green!important;
+	letter-spacing: normal !important;
+	color: $color-dms-ac-green !important;
 	
 	
 	@include media-breakpoint-down(sm) {
@@ -193,6 +235,7 @@ input[type="submit"] {
 	border: 1px solid $color-dms-ac-blue;
 	border-radius: 42px;
 	background-color: #fff;
+	
 	&:hover, &:focus, &:active {
 		color: $color-dms-ac-blue;
 	}
@@ -213,6 +256,53 @@ input[type="submit"] {
 		display: inline-block;
 		padding: 4px;
 		transform: rotate(-45deg);
+	}
+}
+
+
+.form-color-inv {
+	::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		color: $color-dms-text-inv-op5;
+		font-family: $font-dms-MullerRegular;
+		font-size: 21px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1;
+		letter-spacing: normal;
+	}
+	
+	::-moz-placeholder { /* Firefox 19+ */
+		color: $color-dms-text-inv-op5;
+		font-family: $font-dms-MullerRegular;
+		font-size: 21px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1;
+		letter-spacing: normal;
+	}
+	
+	:-ms-input-placeholder { /* IE 10+ */
+		color: $color-dms-text-inv-op5;
+		font-family: $font-dms-MullerRegular;
+		font-size: 21px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1;
+		letter-spacing: normal;
+	}
+	
+	:-moz-placeholder { /* Firefox 18- */
+		color: $color-dms-text-inv-op5;
+		font-family: $font-dms-MullerRegular;
+		font-size: 21px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1;
+		letter-spacing: normal;
 	}
 }
 

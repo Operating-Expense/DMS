@@ -68,9 +68,9 @@
 						</select>
 					</div>
 					
-					<a href="#" class="callback-link">Обратный звонок</a>
+					<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
 					
-					<a href="#" class="btn-arrow">Личный кабинет
+					<a href="#" class="btn-arrow"><?php _e('Личный кабинет', 'dms') ?>
 						<div class="arrow-box">
 							<i class="arrow-right"></i>
 						</div>
@@ -119,7 +119,7 @@
 			</nav>
 			
 			<div class="navbar-funcs2">
-				<a href="#" class="callback-link">Обратный звонок</a>
+				<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
 				<div class="lang-selector-list" >
 					<ul class="lang-list">
 						<li><span>RU</span></li>
