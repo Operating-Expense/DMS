@@ -29,7 +29,7 @@ $text  = ! empty( $data['content'] )
 
 
 ?>
-<section <?php echo implode( $attributes ); ?>>
+<section <?php echo implode( ' ', $attributes ); ?>>
 	
 	
 	<div class="row">

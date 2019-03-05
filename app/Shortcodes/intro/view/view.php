@@ -34,7 +34,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 
 
 ?>
-<section <?php echo implode( $attributes ); ?>>
+<section <?php echo implode( ' ',$attributes ); ?>>
 	
 	
 	<div class="row">

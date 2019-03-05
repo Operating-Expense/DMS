@@ -27,7 +27,7 @@
 						<!-- Your site title as branding in the menu -->
 						<h1 class="navbar-brand mb-0">
 							<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>"
-							   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" itemprop="url">
+							   title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
 								<?php echo $img_html; ?>
 								<?php bloginfo( 'name' ); ?>
 							</a>
@@ -35,8 +35,7 @@
 					
 					<?php else : ?>
 						<div class="navbar-brand">
-							<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"
-							   itemprop="url">
+							<a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
 								<?php echo $img_html; ?>
 								<?php bloginfo( 'name' ); ?>
 							</a>

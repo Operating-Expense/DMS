@@ -15,7 +15,7 @@ $attributes[] = ! empty( $atts['el_id'] ) ? 'id="' . $atts['el_id'] . '"' : '';
 $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"' : '';
 
 ?>
-<section <?php echo implode( $attributes ); ?>>
+<section <?php echo implode( ' ', $attributes ); ?>>
 	
 	
 	<?php if ( ! empty( $atts['title'] ) ) { ?>

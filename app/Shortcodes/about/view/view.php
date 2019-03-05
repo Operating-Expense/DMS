@@ -25,7 +25,7 @@ $image_url = wp_get_attachment_url( $image_id );
 
 
 ?>
-<section <?php echo implode( $attributes ); ?>>
+<section <?php echo implode( ' ', $attributes ); ?>>
 	
 	
 	<div class="row">
