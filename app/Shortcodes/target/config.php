@@ -12,6 +12,7 @@ return array(
 			'heading'    => esc_html__( 'Title', 'dms' ),
 			'value'      => '',
 			'group'      => esc_html__( 'General', 'dms' ),
+			'admin_label' => true
 		),
 		array(
 			'type'       => 'textfield',
