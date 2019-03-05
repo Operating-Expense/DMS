@@ -5,5 +5,217 @@
 -------------------------------------------------------------------*/
 
 
+// contact form
 
-
+.contact-form-frontpage {
+	
+	.contact-form-frontpage-col {
+		padding: 0 100px;
+	}
+	
+	text-align: left;
+	color: $color-dms-text-inv;
+	
+	
+	.wpcf7-form {
+		
+		width: 80%;
+		
+		p:last-of-type {
+			text-align: right;
+		}
+		
+	}
+	
+	.wpcf7-form p {
+		margin-bottom: 35px;
+		
+	}
+	
+	.wpcf7-form p label {
+		
+		font-family: $font-dms-Roboto;
+		font-size: 16px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		line-height: 1;
+		letter-spacing: normal;
+		color: rgba($color-dms-text-inv, 0.5);
+		
+		margin: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		
+		width: 100%;
+		
+		& > span {
+			width: 20%;
+		}
+		
+		& > span.wpcf7-form-control-wrap {
+			width: 80%;
+		}
+	}
+	
+	
+	.wpcf7-form input[type=date], .wpcf7-form input[type=datetime], .wpcf7-form input[type=datetime-local], .wpcf7-form input[type=email], .wpcf7-form input[type=month], .wpcf7-form input[type=number], .wpcf7-form input[type=password], .wpcf7-form input[type=range], .wpcf7-form input[type=search], .wpcf7-form input[type=tel], .wpcf7-form input[type=text], .wpcf7-form input[type=time], .wpcf7-form input[type=url], .wpcf7-form input[type=week], .wpcf7-form select, .wpcf7-form textarea {
+		border: none;
+		border-bottom: 1px solid $color-dms-line-light-op2;
+		background-color: transparent;
+		outline: none;
+		color: $color-dms-text-inv;
+		font-family: $font-dms-MullerRegular;
+		font-size: 21px;
+		line-height: 1;
+		letter-spacing: normal;
+		padding-left: 20px;
+		padding-bottom: 16px;
+		font-weight: normal;
+		font-style: normal;
+		font-stretch: normal;
+		width: 100%;
+		
+		
+	}
+	
+	.wpcf7-form textarea {
+		max-height: 100px;
+	}
+	
+	.wpcf7-form {
+		::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+			color: $color-dms-text-inv-op5;
+			font-family: $font-dms-MullerRegular;
+			font-size: 21px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1;
+			letter-spacing: normal;
+		}
+		
+		::-moz-placeholder { /* Firefox 19+ */
+			color: $color-dms-text-inv-op5;
+			font-family: $font-dms-MullerRegular;
+			font-size: 21px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1;
+			letter-spacing: normal;
+		}
+		
+		:-ms-input-placeholder { /* IE 10+ */
+			color: $color-dms-text-inv-op5;
+			font-family: $font-dms-MullerRegular;
+			font-size: 21px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1;
+			letter-spacing: normal;
+		}
+		
+		:-moz-placeholder { /* Firefox 18- */
+			color: $color-dms-text-inv-op5;
+			font-family: $font-dms-MullerRegular;
+			font-size: 21px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: 1;
+			letter-spacing: normal;
+		}
+		
+	}
+	
+	
+	.wpcf7-form {
+		
+		input[type=submit] {
+			background-color: $color-dms-text-inv;
+			color: $color-dms-ac-blue;
+			padding: 14px 45px 10px;
+			text-transform: uppercase;
+			border-radius: 35px;
+			border: none !important;
+			font-size: 18px;
+			font-weight: 700;
+			outline: none;
+			margin-top: 50px;
+			box-shadow: none;
+			
+			
+		}
+		
+		input:not(:disabled):not(.disabled):active[type=submit] {
+			color: $color-dms-ac-blue !important;
+			background-color: $color-dms-text-inv !important;
+			border-color: $color-dms-text-inv !important;
+		}
+		
+		input:hover[type=submit] {
+			color: $color-dms-ac-blue !important;
+			background-color: $color-dms-text-inv !important;
+			border-color: $color-dms-text-inv !important;
+		}
+		
+		div.wpcf7-response-output {
+			margin: 10px;
+			padding: 4px;
+			border: 1px solid $color-dms-text-inv;
+			font-size: 14px;
+		}
+		
+		span.wpcf7-not-valid-tip {
+			position: absolute;
+			color: #ff8d00;
+			padding-top: 4px;
+			font-size: 14px;
+		}
+	}
+	
+	
+	@include media-breakpoint-down(lg) {
+		
+		.contact-form-frontpage-col {
+			padding: 0 80px;
+		}
+		
+		.wpcf7-form {
+			width: 100%;
+		}
+	}
+	
+	@include media-breakpoint-down(md) {
+		
+		.contact-form-frontpage-col {
+			margin-bottom: 80px;
+		}
+		
+	}
+	
+	@include media-breakpoint-down(sm) {
+		.contact-form-frontpage-col {
+			padding: 0 15px;
+		}
+		
+		.wpcf7-form p label {
+			
+			& > span {
+				width: 25%;
+			}
+			
+			& > span.wpcf7-form-control-wrap {
+				width: 75%;
+			}
+		}
+	}
+	
+	
+}
