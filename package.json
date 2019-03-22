@@ -4,12 +4,13 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cli": "^2.0.1",
     "gulp-sass": "^4.0.2"
   },
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "browser-sync": "^2.26.3",
     "gulp-clean-css": "^4.0.0",
     "gulp-rename": "^1.4.0"
   },

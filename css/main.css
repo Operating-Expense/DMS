@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'MullerLight';
+  src: url("../fonts/Fontfabric - MullerLight.otf");
+  font-weight: 300;
+  font-style: normal; }
+
+body {
+  background-color: blue; }
+
+.register-login-header {
+  margin-top: 120px;
+  text-align: center;
+  min-height: 196px; }
+  .register-login-header h1 {
+    font-family: 'MullerLight';
+    font-weight: 500;
+    font-size: 60px;
+    color: #fff; }
+
+.material-icons-outlined.orange {
+  color: #FB8C00;
+  font-size: 60px; }
+
+.main-login {
+  margin: 0 auto; }
+  .main-login form input {
+    display: block;
+    width: 100%;
+    height: 60px;
+    border-radius: 50px;
+    margin-bottom: 15px; }
+  .main-login form input[type="text"], .main-login form input[type="password"] {
+    background: transparent;
+    border: 1px solid white;
+    font-size: 17px;
+    padding-left: 25px;
+    color: #fff;
+    width: 430px; }
+    .main-login form input[type="text"]::placeholder, .main-login form input[type="password"]::placeholder {
+      color: #fff; }
+  .main-login form input[type="submit"] {
+    background-color: #fab900;
+    border: none;
+    color: #4c76b9;
+    font-size: 20px; }
+  .main-login .inner-main {
+    width: 455px;
+    margin: 0 auto; }
+  .main-login .links-login {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center; }
+    .main-login .links-login a {
+      color: #fff;
+      font-family: 'MullerLight';
+      font-size: 18px; }

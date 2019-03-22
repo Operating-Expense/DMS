@@ -1,3 +1,5 @@
+@import "modules/all";
+
 @font-face {
   font-family: 'MullerLight';
   src: url('../fonts/Fontfabric\ -\ MullerLight.otf');
@@ -19,13 +21,11 @@ body {
     font-size: 60px;
     color: #fff;
   }
-  // .orange {
-  //   color: #fab900 !important;
-  //   font-size: 55px;
-  // }
+  p{
+    color: #fab900 !important;
+    font-size: 60px;
+  }
 }
-
-.material-icons-outlined.orange { color: #FB8C00; font-size: 60px; }
 
 .main-login {
   margin: 0 auto;
@@ -39,11 +39,11 @@ body {
     }
     input[type="text"], input[type="password"]{
       background: transparent;
-      border: 1px solid white;
+      border: 1.5px solid white;
       font-size: 17px;
       padding-left: 25px;
       color: #fff;
-      width: 430px;
+      max-width: calc(100% - 29px);
       &::placeholder {
         color: #fff;
       }
@@ -58,6 +58,9 @@ body {
   .inner-main {
     width: 455px;
     margin: 0 auto;
+    @include breakpointMax($screen-mobile) {
+      width: 90%;
+    }
   }
   .links-login {
     margin-top: 30px;
