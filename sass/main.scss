@@ -71,7 +71,6 @@
   .inner-main {
     width: 455px;
     margin: 0 auto;
-
     @include breakpointMax($screen-mobile) {
       width: 90%;
     }
@@ -95,7 +94,9 @@
   form {
     margin: 0 auto;
     max-width: 945px;
-
+    @include breakpointMax($screen-mobile) {
+      width: 90%;
+    }
     .lower,
     .upper {
       @include breakpointMin($screen-desktop) {
