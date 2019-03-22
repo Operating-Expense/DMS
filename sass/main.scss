@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'MullerLight';
+  src: url('../fonts/Fontfabric\ -\ MullerLight.otf');
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+ background-color: #4c76b9;
+}
+
+.register-login-header {
+  margin-top: 120px;
+  text-align: center;
+  min-height: 196px;
+  h1 {
+    font-family: 'MullerLight';
+    font-weight: 500;
+    font-size: 60px;
+    color: #fff;
+  }
+  // .orange {
+  //   color: #fab900 !important;
+  //   font-size: 55px;
+  // }
+}
+
+.material-icons-outlined.orange { color: #FB8C00; }
+
+.main-login {
+  margin: 0 auto;
+  form {
+    input {
+      display: block;
+      width: 100%;
+      height: 60px;
+      border-radius: 50px;
+      margin-bottom: 15px;
+    }
+    input[type="text"], input[type="password"]{
+      background: transparent;
+      border: 1px solid white;
+      font-size: 17px;
+      padding-left: 25px;
+      color: #fff;
+      width: 430px;
+      &::placeholder {
+        color: #fff;
+      }
+    }
+    input[type="submit"] {
+      background-color: #fab900;
+      border: none;
+      color:#4c76b9;
+      font-size: 20px;
+    }
+  }
+  .inner-main {
+    width: 455px;
+    margin: 0 auto;
+  }
+  .links-login {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
+    a {
+      color: #fff;
+      font-family: 'MullerLight';
+      font-size: 18px;
+    }
+  }
+}
