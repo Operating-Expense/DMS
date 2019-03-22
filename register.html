@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.min.css" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body class="register">
+    <header class="register-login-header">
+        <i class="material-icons-outlined">
+            account_circle
+        </i>
+        <h1>Регистрация</h1>
+    </header>
+    <main class="register-main">
+        <form method="POST" action="">
+            <div class="upper">
+                <input type="text" name="email" placeholder="E-mail">
+                <input type="password" name="pass1" placeholder="Password">
+                <br />
+                <input type="password" name="pass2" placeholder="Повторите Password">
+            </div>
+            <hr />
+            <div class="lower">
+                <input type="text" name="fio" placeholder="ФИО">
+                <input type="text" name="egrpou" placeholder="ЕГРПОУ">
+                <input type="text" name="place" placeholder="Должность">
+                <input type="text" name="company_name" placeholder="Название компании">
+                <input type="tel" name="phone" placeholder="Телефон">
+                <input type="text" name="company_address" placeholder="Юр. адрес">
+            </div>
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <br />
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+    </main>
+</body>
+
+</html>
