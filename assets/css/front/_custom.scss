@@ -7,6 +7,22 @@
 
 // contact form
 
+/* CF7 structure
+================
+
+<label><span>Имя</span>[text* your-name]</label>
+
+<label><span>Телефон</span>[text* your-tel]</label>
+
+<label><span>E-mail</span>[email* your-email]</label>
+
+<label><span>Текст</span>[textarea your-message]</label>
+
+[submit "Отправить"]
+ 
+ */
+
+
 .contact-form-frontpage {
 	
 	text-align: left;
