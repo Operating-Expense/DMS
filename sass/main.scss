@@ -7,6 +7,10 @@
 //   font-style: normal;
 // }
 
+body {
+  margin: 0;
+}
+
 .login,
 .register {
   background-color: #4c76b9;
@@ -18,7 +22,7 @@
   min-height: 196px;
 
   h1 {
-    font-family: 'MullerLight';
+    font-family: "MullerLight";
     font-weight: 500;
     font-size: 57px;
     color: #fff;
@@ -85,7 +89,7 @@
 
     a {
       color: #fff;
-      font-family: 'MullerLight';
+      font-family: "MullerLight";
       font-size: 18px;
     }
   }
@@ -106,7 +110,6 @@
         display: grid;
         grid-template-columns: 49% 49%;
         grid-column-gap: 2%;
-
       }
 
       @include breakpointMax($screen-mobile) {
@@ -132,7 +135,7 @@
 
     input[type="password"]::after {
       // font-family: 'Material Icons';
-      content: '>';
+      content: ">";
       position: absolute;
       right: 0;
       color: green;
@@ -150,14 +153,15 @@
 //profile page
 .profile {
   width: 100%;
+  padding-bottom: 100px;
 
   .container-prof {
     margin: 0 auto;
     width: 1140px;
-    font-family: 'MullerRegular';
+    font-family: "MullerRegular";
 
     h3 {
-      font-family: 'MullerRegular';
+      font-family: "MullerRegular";
       font-size: 28px;
     }
 
@@ -185,7 +189,7 @@
         width: 138px;
         height: 138px;
         border-radius: 50%;
-        border: 1px solid hsla(0, 0%, 60.8%, .3);
+        border: 1px solid hsla(0, 0%, 60.8%, 0.3);
         background: #f8f9fa;
       }
 
@@ -204,13 +208,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: 3%;
-        border: 1px solid hsla(0, 0%, 60.8%, .3);
+        border: 1px solid hsla(0, 0%, 60.8%, 0.3);
+
         .profile-info-elem {
           // padding: 45px;
           margin-bottom: 6px;
+
           h4 {
             color: #9b9b9b;
           }
+
           p {
             font-size: 21px;
           }
@@ -226,6 +233,58 @@
     .green-link,
     .change-photo-link {
       color: #40be65;
+    }
+  }
+}
+
+.how_it_work {
+  width: 100%;
+  font-family: "MullerRegular";
+  background: #f8f9fa;
+  padding-top: 55px;
+
+  .how_it_work-wrapper {
+    margin: 0 auto;
+    width: 1140px;
+
+    h3 {
+      font-family: "MullerLight";
+      font-weight: 100;
+      font-size: 58px;
+    }
+
+    .how_it_work-grid {
+      display: grid;
+      grid-template-columns: 50% 50%;
+
+      form {
+        display: grid;
+        grid-template-columns: 26% 72%;
+        grid-column-gap: 1%;
+
+        input {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid hsla(0, 0%, 60.8%, 0.3);
+        }
+      }
+
+      .s-intro__btn_try {
+        display: block;
+        padding: 0 30px 0 40px;
+        margin-right: 40px;
+        font-family: Roboto, sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 3;
+        letter-spacing: normal;
+        color: #fff;
+        background-color: #4c76b9;
+        word-break: keep-all;
+        white-space: nowrap;
+      }
     }
   }
 }
