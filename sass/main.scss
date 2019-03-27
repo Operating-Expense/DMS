@@ -1,11 +1,11 @@
 @import "modules/all";
-
-@font-face {
-  font-family: 'MullerLight';
-  src: url('../fonts/Fontfabric\ -\ MullerLight.otf');
-  font-weight: 300;
-  font-style: normal;
-}
+@import "../fonts/Muller/stylesheet.scss";
+// @font-face {
+//   font-family: 'MullerLight';
+//   src: url('../fonts/Fontfabric\ -\ MullerLight.otf');
+//   font-weight: 300;
+//   font-style: normal;
+// }
 
 .login,
 .register {
@@ -71,6 +71,7 @@
   .inner-main {
     width: 455px;
     margin: 0 auto;
+
     @include breakpointMax($screen-mobile) {
       width: 90%;
     }
@@ -94,9 +95,11 @@
   form {
     margin: 0 auto;
     max-width: 945px;
+
     @include breakpointMax($screen-mobile) {
       width: 90%;
     }
+
     .lower,
     .upper {
       @include breakpointMin($screen-desktop) {
@@ -140,6 +143,89 @@
       border-top: 2px dashed #fff;
       margin-top: 20px;
       margin-bottom: 35px;
+    }
+  }
+}
+
+//profile page
+.profile {
+  width: 100%;
+
+  .container-prof {
+    margin: 0 auto;
+    width: 1140px;
+    font-family: 'MullerRegular';
+
+    h3 {
+      font-family: 'MullerRegular';
+      font-size: 28px;
+    }
+
+    .profile-balance {
+      span {
+        font-size: 18px;
+      }
+
+      .cont-prof {
+        margin-right: 35px;
+      }
+
+      .cont-prof-right {
+        float: right;
+      }
+    }
+
+    .profile-wrapper {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 12.5% 84.5%;
+      grid-column-gap: 3%;
+
+      .profile-photo {
+        width: 138px;
+        height: 138px;
+        border-radius: 50%;
+        border: 1px solid hsla(0, 0%, 60.8%, .3);
+        background: #f8f9fa;
+      }
+
+      .change-photo-link {
+        text-align: center;
+        margin-top: 19px;
+        display: block;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      .profile-main-info {
+        padding-top: 45px;
+        padding-bottom: 45px;
+        padding-left: 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 3%;
+        border: 1px solid hsla(0, 0%, 60.8%, .3);
+        .profile-info-elem {
+          // padding: 45px;
+          margin-bottom: 6px;
+          h4 {
+            color: #9b9b9b;
+          }
+          p {
+            font-size: 21px;
+          }
+        }
+      }
+    }
+
+    .blue-text,
+    .blue-link {
+      color: #4c76b9;
+    }
+
+    .green-link,
+    .change-photo-link {
+      color: #40be65;
     }
   }
 }
