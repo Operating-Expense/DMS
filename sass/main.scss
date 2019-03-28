@@ -305,8 +305,15 @@ body {
           margin-right: 60px;
           padding-top: 50px;
 
+          img {
+            height: 34px;
+            display: block;
+            margin: 35px auto;
+          }
+
           p {
-            margin-bottom: 50px;
+            margin-bottom: 35px;
+            line-height: 25px;
           }
         }
       }
@@ -331,6 +338,7 @@ body {
         margin: 0 auto;
         border: 1px solid #4c76b9;
         border-radius: 42px;
+        text-decoration: none;
       }
 
       .s-intro__btn_try .arrow-box {
