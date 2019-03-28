@@ -260,9 +260,21 @@ body {
       padding-top: 45px;
 
       form {
-        display: grid;
-        grid-template-columns: 26% 72%;
-        grid-column-gap: 1%;
+
+        .form-group {
+          display: grid;
+          grid-template-columns: 26% 72%;
+          grid-column-gap: 1%;
+          position: relative;
+
+          .suggestion {
+            position: absolute;
+            right: 10px;
+            top: -30px;
+            color: #4c76b9;
+            text-align: right;
+          }
+        }
 
         label {
           color: #9b9b9b;
