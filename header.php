@@ -69,7 +69,7 @@
 					
 					<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
 					
-					<a href="#" class="btn-arrow"><?php _e('Личный кабинет', 'dms') ?>
+					<a href="<?php echo site_url('/account') ?>" class="btn-arrow <?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>"><?php _e('Личный кабинет', 'dms') ?>
 						<div class="arrow-box">
 							<i class="arrow-right"></i>
 						</div>

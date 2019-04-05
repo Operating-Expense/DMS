@@ -1,0 +1,187 @@
+// import global variables
+@import '../../../../assets/css/front/bootstrap_dependencies';
+
+
+.shortcode-account {
+	padding: 0 0 100px;
+	
+	text-align: left;
+	
+	.header-group {
+		padding-top: 60px;
+		margin-bottom: 40px;
+	}
+	
+	[class*='col-'] {
+		//outline: 1px solid red;
+	}
+	
+	.header_row {
+		margin-bottom: 10px;
+	}
+	
+	.user_company_name {
+		font-family: $font-dms-MullerRegular;
+		font-size: 28px;
+		color: $color-dms-text-h;
+		font-weight: 300;
+		line-height: 1.37;
+		letter-spacing: 1px;
+	}
+	
+	.subheader_row {
+		& > div.d-flex {
+			div {
+				margin-right: 50px;
+				margin-bottom: 10px;
+				color: $color-dms-text;
+				font-family: $font-dms-Roboto;
+				font-size: 16px;
+				
+				span {
+					font-size: 18px;
+					color: $color-dms-ac-blue;
+					font-family: $font-dms-Roboto;
+				}
+				
+				a {
+					display: block;
+					font-family: $font-dms-Roboto;
+				}
+			}
+			
+			div:last-child {
+				margin-right: 0;
+				margin-left: auto;
+			}
+			
+			.link_to_replenish_box {
+				a, a:hover, a:focus, a:active {
+					color: $color-dms-ac-green;
+					text-decoration: underline;
+					font-size: 18px;
+					font-family: $font-dms-Roboto;
+				}
+			}
+			
+			.link_to_contact_box {
+				i {
+					margin-right: 6px;
+					color: $color-dms-ac-blue;
+					font-size: 18px;
+				}
+				
+				a, a:hover, a:focus, a:active {
+					display: inline-block;
+					color: $color-dms-ac-blue;
+					text-decoration: underline;
+					font-size: 18px;
+					font-family: $font-dms-Roboto;
+				}
+			}
+		}
+	}
+	
+	// AVA
+	.profile-ava-wrapper {
+		margin-top: 45px;
+	}
+	
+	.profile-ava {
+		width: 138px;
+		height: 138px;
+		border-radius: 50%;
+		border: 1px solid rgba(155, 155, 155, .3);
+		background: $color-dms-bg-grey;
+	}
+	
+	.change-ava-link {
+		text-align: center;
+		margin-top: 19px;
+		display: block;
+		text-decoration: none;
+		font-size: 18px;
+		font-family: $font-dms-Roboto;
+		color: $color-dms-ac-green;
+	}
+	
+	// USER TABLE
+	.user_table {
+		margin: 45px 0 45px 60px;
+		border: 1px solid rgba(155, 155, 155, .3);
+		
+	}
+	
+	.user_table_row {
+		padding: 25px 15px 0 35px;
+	}
+	
+	
+	.user_table_item {
+		margin-bottom: 26px;
+		
+		.item_title {
+			margin-bottom: 5px;
+			font-size: 16px;
+			font-family: $font-dms-Roboto;
+			color: $color-dms-text;
+		}
+		
+		.item_value {
+			font-size: 20px;
+			font-family: $font-dms-Roboto;
+			color: $color-dms-text-dark;
+		}
+	}
+	
+	
+	// MEDIA
+	
+	@include media-breakpoint-down(md) {
+		.user_table {
+			margin: 45px 0;
+		}
+	}
+	
+	@include media-breakpoint-down(sm) {
+		padding: 0 0 80px;
+		
+		.header-group {
+			padding: 40px 0 20px;
+			background-color: $color-dms-ac-blue;
+			color: $color-dms-text-inv;
+		}
+		
+		.user_company_name,
+		.link_to_home_box,
+		.mb_link_to_contact_box,
+		.user_balance,
+		.user_tariff_plan {
+			&, a, span {
+				color: $color-dms-text-inv !important;
+			}
+		}
+		
+		
+		.header_row {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		
+		.subheader_row {
+			& > div.d-flex {
+				div {
+					margin-right: 0;
+				}
+			}
+		}
+		
+	}
+	
+	
+	@include media-breakpoint-down(xs) {
+		padding: 0 0 60px;
+	}
+	
+}
+

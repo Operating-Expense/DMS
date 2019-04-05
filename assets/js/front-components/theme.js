@@ -6,7 +6,7 @@ export default class Theme {
 	 **/
 	constructor() {
 		this.build();
-		this.events()
+		this.events();
 	}
 	
 	/**
@@ -16,6 +16,7 @@ export default class Theme {
 		this.setupHeader();
 		this.loadGoogleFonts();
 		this.mobileMenuListener('.navigation-menu');
+		this.dmsPopups();
 	}
 	
 	/**
@@ -144,4 +145,36 @@ export default class Theme {
 		});
 		
 	}
+	
+	// POPUPS
+	
+	dmsPopups() {
+		this.dmsPopupClose();
+		this.dmsPopupTrigger('.js-dms-account', '#dms-login-popup-overlay');
+		this.dmsPopupTrigger('.js-dms-account-forgot-trigger', '#dms-forgot-popup-overlay');
+		this.dmsPopupTrigger('.js-dms-account-reg-trigger', '#dms-reg-popup-overlay');
+	}
+	
+	dmsPopupTrigger(selectorTrigger, selectorPopup) {
+		let $trigger = $(selectorTrigger);
+		let $anyPopupWrapper = $('.dms-popup-overlay');
+		let $popupWrapper = $(selectorPopup);
+		
+		$trigger.on('click', function (e) {
+			e.preventDefault();
+			$anyPopupWrapper.hide();
+			$popupWrapper.show();
+		});
+	}
+	
+	dmsPopupClose() {
+		let $overlay = $('.dms-popup-overlay');
+		let $close = $overlay.find('.dms-popup-close');
+		
+		$close.on('click', function (e) {
+			e.preventDefault();
+			$overlay.hide();
+		});
+	}
+	
 }

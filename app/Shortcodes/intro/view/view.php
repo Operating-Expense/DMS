@@ -191,7 +191,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 				</div>
 				
 				<div class="col-3 s-intro__footer_item">
-					<a href="#">
+					<a href="<?php echo site_url('/account') ?>" class="<?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>">
 						<i class="s-intro__footer_icon s-intro__footer_icon3"></i>
 					</a>
 				</div>
