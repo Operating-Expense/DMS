@@ -59,17 +59,28 @@
 				
 				<div class="navbar-funcs">
 					
-					<div class="lang-selector">
-						<select name="lang-select" id="lang-select" class="lang-select">
-							<option value="RU" selected>RU</option>
-							<option value="UA">UA</option>
-							<option value="EN">EN</option>
-						</select>
-					</div>
+					<?php \DMS\Helper\Front::the_lang_select();	?>
 					
 					<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
 					
-					<a href="<?php echo site_url('/account') ?>" class="btn-arrow <?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>"><?php _e('Личный кабинет', 'dms') ?>
+					
+					<?php
+					
+					$is_in_account_page = is_page('account');
+					
+					if ( ! is_user_logged_in() ) {
+						$account_url = site_url('/account');
+						$account_js_class = ' js-dms-account';
+						$account_btn_text = __('Личный кабинет', 'dms');
+					} else {
+						$account_url = $is_in_account_page ? wp_logout_url( site_url() ) : site_url('/account');
+						$account_js_class = ''; 
+						$account_btn_text =  $is_in_account_page ? __('Выйти', 'dms') : __('Личный кабинет', 'dms');
+					}
+					?>
+					
+					<a href="<?php echo $account_url ?>" class="btn-arrow <?php echo $account_js_class ?>">
+						<?php echo $account_btn_text ?>
 						<div class="arrow-box">
 							<i class="arrow-right"></i>
 						</div>
@@ -119,13 +130,7 @@
 			
 			<div class="navbar-funcs2">
 				<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
-				<div class="lang-selector-list" >
-					<ul class="lang-list">
-						<li><span>RU</span></li>
-						<li><a href="#">UA</a></li>
-						<li><a href="#">EN</a></li>
-					</ul>
-				</div>
+				<?php \DMS\Helper\Front::the_lang_list(); ?>
 			</div>
 			
 			<div class="dms-menu-info-box">

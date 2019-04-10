@@ -1,0 +1,1523 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: DMS Theme\n"
+"POT-Creation-Date: 2019-04-10 14:27+0300\n"
+"PO-Revision-Date: 2019-04-10 14:44+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: en_GB\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: vendor-custom\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+"X-Poedit-SearchPathExcluded-3: build\n"
+"X-Poedit-SearchPathExcluded-4: assets/libs\n"
+"X-Poedit-SearchPathExcluded-5: *.js\n"
+
+#: 404.php:7
+msgid "Unfortunately, we can not find requested page."
+msgstr ""
+
+#: 404.php:9
+msgid "Try to find something else using a form below."
+msgstr ""
+
+#: app/Controller/Account.php:75
+msgid "Ошибка аутентификации"
+msgstr ""
+
+#: app/Controller/Account.php:264
+msgid "Your account on "
+msgstr ""
+
+#: app/Controller/Backend.php:94 app/Controller/Backend.php:95
+msgid "Website Settings"
+msgstr ""
+
+#: app/Controller/Front.php:173
+msgid "Введите свой e-mail"
+msgstr "Enter your e-mail"
+
+#: app/Controller/Menu.php:36
+msgid "Header Menu"
+msgstr ""
+
+#: app/Controller/Menu.php:37
+msgid "Bottom Bar Menu 1"
+msgstr ""
+
+#: app/Controller/Menu.php:38
+msgid "Bottom Bar Menu 2"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:4
+msgid "About"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:6 app/Shortcodes/account/config.php:6
+#: app/Shortcodes/cert/config.php:6 app/Shortcodes/image_slider/config.php:6
+#: app/Shortcodes/intro/config.php:6 app/Shortcodes/problem/config.php:6
+#: app/Shortcodes/product/config.php:6 app/Shortcodes/rprice/config.php:6
+#: app/Shortcodes/stat/config.php:6 app/Shortcodes/target/config.php:6
+#: app/Shortcodes/tariff/config.php:6
+msgid "DMS"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:12 app/Shortcodes/cert/config.php:12
+#: app/Shortcodes/image_slider/config.php:14 app/Shortcodes/intro/config.php:26
+#: app/Shortcodes/pricing_table/config.php:23
+#: app/Shortcodes/problem/config.php:12 app/Shortcodes/product/config.php:13
+#: app/Shortcodes/rprice/config.php:12 app/Shortcodes/stat/config.php:12
+#: app/Shortcodes/target/config.php:12 app/Shortcodes/tariff/config.php:12
+msgid "Title"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:14 app/Shortcodes/about/config.php:22
+#: app/Shortcodes/about/config.php:29 app/Shortcodes/about/config.php:43
+#: app/Shortcodes/about/config.php:52 app/Shortcodes/account/config.php:14
+#: app/Shortcodes/account/config.php:23 app/Shortcodes/cert/config.php:14
+#: app/Shortcodes/cert/config.php:22 app/Shortcodes/cert/config.php:31
+#: app/Shortcodes/image_slider/config.php:16
+#: app/Shortcodes/image_slider/config.php:24
+#: app/Shortcodes/image_slider/config.php:33 app/Shortcodes/intro/config.php:14
+#: app/Shortcodes/intro/config.php:21 app/Shortcodes/intro/config.php:28
+#: app/Shortcodes/intro/config.php:36 app/Shortcodes/intro/config.php:45
+#: app/Shortcodes/intro/config.php:52 app/Shortcodes/intro/config.php:60
+#: app/Shortcodes/intro/config.php:67 app/Shortcodes/intro/config.php:75
+#: app/Shortcodes/intro/config.php:82 app/Shortcodes/intro/config.php:91
+#: app/Shortcodes/intro/config.php:100 app/Shortcodes/problem/config.php:14
+#: app/Shortcodes/problem/config.php:22 app/Shortcodes/problem/config.php:31
+#: app/Shortcodes/product/config.php:15 app/Shortcodes/product/config.php:23
+#: app/Shortcodes/product/config.php:33 app/Shortcodes/product/config.php:42
+#: app/Shortcodes/rprice/config.php:14 app/Shortcodes/rprice/config.php:22
+#: app/Shortcodes/rprice/config.php:30 app/Shortcodes/rprice/config.php:38
+#: app/Shortcodes/rprice/config.php:47 app/Shortcodes/stat/config.php:14
+#: app/Shortcodes/stat/config.php:22 app/Shortcodes/stat/config.php:31
+#: app/Shortcodes/target/config.php:14 app/Shortcodes/target/config.php:22
+#: app/Shortcodes/target/config.php:31 app/Shortcodes/tariff/config.php:14
+#: app/Shortcodes/tariff/config.php:22 app/Shortcodes/tariff/config.php:31
+msgid "General"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:20 app/Shortcodes/intro/config.php:34
+#: app/Shortcodes/product/config.php:21 app/Shortcodes/rprice/config.php:28
+msgid "Text"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:28
+msgid "Image"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:40 app/Shortcodes/account/config.php:11
+#: app/Shortcodes/cert/config.php:19 app/Shortcodes/heading/config.php:40
+#: app/Shortcodes/image_slider/config.php:21 app/Shortcodes/intro/config.php:88
+#: app/Shortcodes/problem/config.php:19 app/Shortcodes/product/config.php:30
+#: app/Shortcodes/rprice/config.php:35 app/Shortcodes/stat/config.php:19
+#: app/Shortcodes/target/config.php:19 app/Shortcodes/tariff/config.php:19
+msgid "CSS classes"
+msgstr ""
+
+#: app/Shortcodes/about/config.php:47 app/Shortcodes/account/config.php:18
+#: app/Shortcodes/cert/config.php:26 app/Shortcodes/image_slider/config.php:28
+#: app/Shortcodes/intro/config.php:95 app/Shortcodes/problem/config.php:26
+#: app/Shortcodes/product/config.php:37 app/Shortcodes/rprice/config.php:42
+#: app/Shortcodes/stat/config.php:26 app/Shortcodes/target/config.php:26
+#: app/Shortcodes/tariff/config.php:26
+msgid "CSS id"
+msgstr ""
+
+#: app/Shortcodes/account/config.php:4
+msgid "Account"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:21
+msgid "NO USER LOGGED IN"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:71
+msgid "Баланс:"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:77
+msgid "Тарифный план:"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:83
+msgid "Пополнить"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:88
+msgid "Написать нам"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:117 footer.php:102 footer.php:133
+#: footer.php:157
+msgid "E-mail"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:122 footer.php:164
+msgid "ФИО"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:127 footer.php:166
+msgid "Должность"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:132
+msgid "Юр. назв. предприятия"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:137 footer.php:169
+msgid "Юр. адрес"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:142
+msgid "УДРПОУ"
+msgstr ""
+
+#: app/Shortcodes/account/view/view.php:147 footer.php:168
+msgid "Телефон"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:4 app/Shortcodes/cert/config.php:38
+#: app/Shortcodes/cert/config.php:39
+msgid "Certificates"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:46 app/Shortcodes/product/config.php:57
+#: app/Shortcodes/stat/config.php:46 app/Shortcodes/target/config.php:46
+#: app/Shortcodes/tariff/config.php:47
+msgid "Item title"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:53 app/Shortcodes/problem/config.php:51
+#: app/Shortcodes/product/config.php:64 app/Shortcodes/stat/config.php:53
+msgid "Item text"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:60 app/Shortcodes/image_slider/config.php:48
+#: app/Shortcodes/problem/config.php:46 app/Shortcodes/product/config.php:71
+#: app/Shortcodes/target/config.php:53 app/Shortcodes/tariff/config.php:54
+msgid "Item image"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:65 app/Shortcodes/image_slider/config.php:55
+msgid "Item URL"
+msgstr ""
+
+#: app/Shortcodes/cert/config.php:71 app/Shortcodes/image_slider/config.php:63
+#: app/Shortcodes/problem/config.php:58 app/Shortcodes/product/config.php:76
+#: app/Shortcodes/stat/config.php:60 app/Shortcodes/target/config.php:58
+#: app/Shortcodes/tariff/config.php:135
+msgid " Item CSS classes"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:4
+msgid "Map"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:7 app/Shortcodes/heading/config.php:7
+#: app/Shortcodes/menu/config.php:13 app/Shortcodes/pricing_table/config.php:6
+#: app/Shortcodes/social_login/config.php:11
+msgid "Theme Elements"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:8
+msgid "Add Google Map"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:13
+msgid "Google API Key"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:14
+msgid ""
+"Insert here your Google API Key to avoid request limitations and JavaScript "
+"errors."
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:21
+msgid "Address"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:27
+msgid "Map Height"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:33
+msgid "Map zoom"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:58
+msgid "Pin Icon"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:63
+msgid "Label"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:68
+msgid "Label color"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:71
+msgid "Select color"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:75
+msgid "Font weight"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:87
+msgid "Label offset"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:89
+msgid "x,y"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:93
+msgid "Pin offset X"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:100
+msgid "Pin offset Y"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:107
+#: app/Shortcodes/heading/config.php:47 app/Shortcodes/menu/config.php:86
+msgid "Element ID"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:112
+#: app/Shortcodes/heading/config.php:53 app/Shortcodes/menu/config.php:92
+msgid "Unique identifier of this element"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:117
+msgid "Hue"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:120
+#: app/Shortcodes/google_map/config.php:127
+#: app/Shortcodes/google_map/config.php:134
+#: app/Shortcodes/google_map/config.php:141
+#: app/Shortcodes/heading/config.php:65 app/Shortcodes/heading/config.php:77
+#: app/Shortcodes/heading/config.php:88 app/Shortcodes/heading/config.php:99
+#: app/Shortcodes/heading/config.php:121 app/Shortcodes/heading/config.php:129
+#: app/Shortcodes/heading/config.php:137 app/Shortcodes/heading/config.php:145
+#: app/Shortcodes/heading/config.php:153 app/Shortcodes/heading/config.php:161
+msgid "Styling"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:124
+msgid "Saturation"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:131
+msgid "Lightness"
+msgstr ""
+
+#: app/Shortcodes/google_map/config.php:138
+msgid "Gamma"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:4
+msgid "Heading"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:8
+msgid "Add a heading"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:16
+msgid "Heading Title"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:17
+msgid "Write the heading title content."
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:21 app/Shortcodes/heading/config.php:36
+#: app/Shortcodes/heading/config.php:43 app/Shortcodes/heading/config.php:52
+msgid "Header Attributes"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:25
+msgid "Heading Size"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:62
+msgid "Header text color"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:69
+msgid "Text Align"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:72 app/Shortcodes/heading/config.php:84
+#: app/Shortcodes/heading/config.php:95 app/Shortcodes/heading/config.php:106
+msgid "- Default -"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:73
+msgid "Left"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:74
+msgid "Center"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:75
+msgid "Right"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:81
+msgid "Text Transform"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:85
+#: framework-customizations/theme/options/posts/page.php:11
+msgid "None"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:86
+msgid "Uppercase"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:92
+msgid "Font Style"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:96 app/Shortcodes/heading/config.php:108
+msgid "Normal"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:97
+msgid "Italic"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:103
+msgid "Font Weight"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:107
+msgid "Light"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:109
+msgid "Bold"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:110
+msgid "Bolder"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:125
+msgid "Letter spacing"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:126
+msgid "In pixels, for example: 10"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:133
+msgid "Font size"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:134 app/Shortcodes/heading/config.php:150
+msgid "In pixels, for example: 18"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:141
+msgid "Line height"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:142 app/Shortcodes/heading/config.php:158
+msgid "In pixels, for example: 24"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:149
+msgid "Font size (small screens)"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:157
+msgid "Line height (small screens)"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:165
+msgid "Css"
+msgstr ""
+
+#: app/Shortcodes/heading/config.php:167
+msgid "Design options"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:4
+msgid "Slider of Companies images"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:41
+#: app/Shortcodes/image_slider/config.php:42
+msgid "Slides"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:74
+#: app/Shortcodes/product/config.php:86
+msgid "Autoplay"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:75
+#: app/Shortcodes/image_slider/config.php:84
+#: app/Shortcodes/image_slider/config.php:93
+#: app/Shortcodes/image_slider/config.php:101
+#: app/Shortcodes/image_slider/config.php:109
+#: app/Shortcodes/product/config.php:87 app/Shortcodes/product/config.php:96
+msgid "Carousel"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:83
+#: app/Shortcodes/product/config.php:95
+msgid "Autoplay speed, ms"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:91
+#: app/Shortcodes/image_slider/config.php:99
+#: app/Shortcodes/image_slider/config.php:107
+msgid "Number of slides"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:92
+msgid "For wide screen"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:100
+msgid "For medium screen"
+msgstr ""
+
+#: app/Shortcodes/image_slider/config.php:108
+msgid "For small screen"
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:4
+msgid "Intro"
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:12
+msgid "Section Title left"
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:19
+msgid "Section Title right"
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:43
+msgid "Button Try text "
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:50
+msgid "Button Try url "
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:58
+msgid "Button About text "
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:65
+msgid "Button About url "
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:73
+msgid "Button How it works text "
+msgstr ""
+
+#: app/Shortcodes/intro/config.php:80
+msgid "Button How it works url "
+msgstr ""
+
+#: app/Shortcodes/intro/view/view.php:105
+msgid "Имя"
+msgstr ""
+
+#: app/Shortcodes/intro/view/view.php:118
+msgid "Отчество"
+msgstr ""
+
+#: app/Shortcodes/intro/view/view.php:131
+msgid "Населенный пункт"
+msgstr ""
+
+#: app/Shortcodes/intro/view/view.php:144
+msgid "Улица"
+msgstr ""
+
+#: app/Shortcodes/intro/view/view.php:157
+msgid "Дом"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:11 app/Shortcodes/menu/config.php:23
+msgid "Menu"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:14
+msgid "Add a menu"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:24
+msgid "Desired menu."
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:27 app/Shortcodes/menu/config.php:36
+#: app/Shortcodes/menu/config.php:45 app/Shortcodes/menu/config.php:54
+#: app/Shortcodes/menu/config.php:63 app/Shortcodes/menu/config.php:72
+#: app/Shortcodes/menu/config.php:81 app/Shortcodes/menu/config.php:91
+msgid "Menu Settings"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:32
+msgid "Menu ID"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:33
+msgid ""
+"The ID that is applied to the ul element which forms the menu. Default is "
+"the menu slug, incremented."
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:41
+msgid "Menu Classes"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:42
+msgid ""
+"CSS class to use for the ul element which forms the menu. Default 'menu'."
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:50
+msgid "Menu Container"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:51
+msgid "Whether to wrap the ul, and what to wrap it with. Default 'div'"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:59
+msgid "Menu Container Class"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:60
+msgid ""
+"Class that is applied to the container. Default 'menu-{menu slug}-container'"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:68
+msgid "Menu Container ID"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:69
+msgid "The ID that is applied to the container"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:77
+msgid "Menu Depth"
+msgstr ""
+
+#: app/Shortcodes/menu/config.php:78
+msgid ""
+"How many levels of the hierarchy are to be included. 0 means all. Default 0"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:4
+msgid "Pricing Table"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:7
+msgid "Param Group"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:16
+#: app/Shortcodes/pricing_table/config.php:19
+msgid "Columns"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:29
+msgid "Features"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:35
+msgid "Currency"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:41
+msgid "Price"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:47
+msgid "Period"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:59
+msgid "Button URL"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:65
+msgid "Button Title"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:135
+msgid "Border Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:138
+#: app/Shortcodes/pricing_table/config.php:145
+#: app/Shortcodes/pricing_table/config.php:152
+#: app/Shortcodes/pricing_table/config.php:159
+#: app/Shortcodes/pricing_table/config.php:166
+#: app/Shortcodes/pricing_table/config.php:173
+#: app/Shortcodes/pricing_table/config.php:181
+#: app/Shortcodes/pricing_table/config.php:188
+msgid "Colors"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:142
+msgid "Heading Background Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:149
+msgid "Heading Text Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:156
+msgid "Button Background Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:163
+msgid "Button Hover Background Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:170
+msgid "Button Text Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:178
+msgid "Button Hover Text Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:185
+msgid "Button Border Color"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:197
+msgid "Border Radius"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:200
+#: app/Shortcodes/pricing_table/config.php:207
+#: app/Shortcodes/pricing_table/config.php:214
+msgid "Borders"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:204
+msgid "Border Width"
+msgstr ""
+
+#: app/Shortcodes/pricing_table/config.php:211
+msgid "Button Border Width"
+msgstr ""
+
+#: app/Shortcodes/problem/config.php:4 app/Shortcodes/problem/config.php:38
+#: app/Shortcodes/problem/config.php:39
+msgid "Problems"
+msgstr ""
+
+#: app/Shortcodes/product/config.php:4
+msgid "About Product"
+msgstr ""
+
+#: app/Shortcodes/product/config.php:49 app/Shortcodes/product/config.php:50
+msgid "Possibilities"
+msgstr ""
+
+#: app/Shortcodes/rprice/config.php:4
+msgid "Price of request"
+msgstr ""
+
+#: app/Shortcodes/rprice/config.php:20
+msgid "Accent Text"
+msgstr ""
+
+#: app/Shortcodes/social_login/config.php:8
+msgid "Social Login Buttons"
+msgstr ""
+
+#: app/Shortcodes/social_login/config.php:12
+msgid "Add social login buttons"
+msgstr ""
+
+#: app/Shortcodes/stat/config.php:4 app/Shortcodes/stat/config.php:38
+#: app/Shortcodes/stat/config.php:39
+msgid "Statistic"
+msgstr ""
+
+#: app/Shortcodes/target/config.php:4 app/Shortcodes/target/config.php:38
+#: app/Shortcodes/target/config.php:39
+msgid "Targets"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:4 app/Shortcodes/tariff/config.php:38
+#: app/Shortcodes/tariff/config.php:39
+msgid "Tariffs"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:63
+msgid "Item text 1 prefix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:69
+msgid "Item text 1 value"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:75
+msgid "Item text 1 suffix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:82
+msgid "Item text 2 prefix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:88
+msgid "Item text 2 value"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:94
+msgid "Item text 2 suffix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:101
+msgid "Item text 3 prefix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:107
+msgid "Item text 3 value"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:113
+msgid "Item text 3 suffix"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:121
+msgid "Item link URL"
+msgstr ""
+
+#: app/Shortcodes/tariff/config.php:127
+msgid "Item link text"
+msgstr ""
+
+#: app/Widgets/social_icons/view/backend.php:9
+msgid "Widget title:"
+msgstr ""
+
+#: app/Widgets/social_icons/widget.php:14
+msgid "A widget that displays social icons"
+msgstr ""
+
+#: app/Widgets/social_icons/widget.php:25
+msgid "[STARTER KIT] Social Icons"
+msgstr ""
+
+#: app/config.php:25
+msgid "Facebook URL"
+msgstr ""
+
+#: app/config.php:26
+msgid "Twitter URL"
+msgstr ""
+
+#: app/config.php:27
+msgid "Instagram URL"
+msgstr ""
+
+#: app/config.php:28
+msgid "Google Plus URL"
+msgstr ""
+
+#: app/config.php:29
+msgid "Pinterest URL"
+msgstr ""
+
+#: app/config.php:30
+msgid "LinkedIn URL"
+msgstr ""
+
+#: app/config.php:31
+msgid "YouTube URL"
+msgstr ""
+
+#: app/config.php:32
+msgid "Vimeo URL"
+msgstr ""
+
+#: app/config.php:33
+msgid "Dribbble URL"
+msgstr ""
+
+#: app/config.php:34
+msgid "Behance URL"
+msgstr ""
+
+#: app/config.php:35
+msgid "Tumblr URL"
+msgstr ""
+
+#: app/config.php:36
+msgid "Flickr URL"
+msgstr ""
+
+#: app/config.php:37
+msgid "Medium URL"
+msgstr ""
+
+#: app/config.php:55
+msgid "Bounce"
+msgstr ""
+
+#: app/config.php:56
+msgid "Pulse"
+msgstr ""
+
+#: app/config.php:57
+msgid "Tada"
+msgstr ""
+
+#: app/config.php:58
+msgid "Wobble"
+msgstr ""
+
+#: app/config.php:59
+msgid "Jello"
+msgstr ""
+
+#: app/config.php:60
+msgid "Bounce In"
+msgstr ""
+
+#: app/config.php:61
+msgid "Bounce In Down"
+msgstr ""
+
+#: app/config.php:62
+msgid "Bounce In Left"
+msgstr ""
+
+#: app/config.php:63
+msgid "Bounce In Right"
+msgstr ""
+
+#: app/config.php:64
+msgid "Bounce In Up"
+msgstr ""
+
+#: app/config.php:65
+msgid "Fade In"
+msgstr ""
+
+#: app/config.php:66
+msgid "Fade In Down"
+msgstr ""
+
+#: app/config.php:67
+msgid "Fade In Down Big"
+msgstr ""
+
+#: app/config.php:68
+msgid "Fade In Left"
+msgstr ""
+
+#: app/config.php:69
+msgid "Fade In Left Big"
+msgstr ""
+
+#: app/config.php:70
+msgid "Fade In Right"
+msgstr ""
+
+#: app/config.php:71
+msgid "Fade In Right Big"
+msgstr ""
+
+#: app/config.php:72
+msgid "Fade In Up"
+msgstr ""
+
+#: app/config.php:73
+msgid "Fade In Up Big"
+msgstr ""
+
+#: app/config.php:74
+msgid "Flip"
+msgstr ""
+
+#: app/config.php:75
+msgid "Flip in X"
+msgstr ""
+
+#: app/config.php:76
+msgid "Flip in Y"
+msgstr ""
+
+#: app/config.php:77
+msgid "Flip out X"
+msgstr ""
+
+#: app/config.php:78
+msgid "Flip out Y"
+msgstr ""
+
+#: app/config.php:79
+msgid "Light Speed In"
+msgstr ""
+
+#: app/config.php:80
+msgid "Rotate In"
+msgstr ""
+
+#: app/config.php:81
+msgid "Rotate In Down Left"
+msgstr ""
+
+#: app/config.php:82
+msgid "Rotate In Down Right"
+msgstr ""
+
+#: app/config.php:83
+msgid "Rotate In Up Left"
+msgstr ""
+
+#: app/config.php:84
+msgid "Rotate In Up Right"
+msgstr ""
+
+#: app/config.php:85
+msgid "Slide In Up"
+msgstr ""
+
+#: app/config.php:86
+msgid "Slide In Down"
+msgstr ""
+
+#: app/config.php:87
+msgid "Slide In Left"
+msgstr ""
+
+#: app/config.php:88
+msgid "Slide In Right"
+msgstr ""
+
+#: app/config.php:89
+msgid "Zoom In"
+msgstr ""
+
+#: app/config.php:90
+msgid "Zoom In Down"
+msgstr ""
+
+#: app/config.php:91
+msgid "Zoom In Left"
+msgstr ""
+
+#: app/config.php:92
+msgid "Zoom In Right"
+msgstr ""
+
+#: app/config.php:93
+msgid "Zoom In Up"
+msgstr ""
+
+#: comments.php:28
+#, php-format
+msgctxt "comments title"
+msgid "<span>1</span> Comment"
+msgid_plural "<span>%1$s</span> Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:51
+msgid "There are not comments on this page."
+msgstr ""
+
+#: comments.php:55
+msgid "There are no comments on this post."
+msgstr ""
+
+#: comments.php:77
+msgid "Leave a reply"
+msgstr ""
+
+#: comments.php:79
+msgid "Your Comment *"
+msgstr ""
+
+#: comments.php:83
+msgid "Your Name *"
+msgstr ""
+
+#: comments.php:85
+msgid "Email Address *"
+msgstr ""
+
+#: comments.php:94
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: comments.php:100
+msgid "POST COMMENT"
+msgstr ""
+
+#: comments.php:164
+msgid "ago"
+msgstr ""
+
+#: comments.php:171
+msgid "Reply"
+msgstr ""
+
+#: footer.php:96
+msgid "Вход"
+msgstr ""
+
+#: footer.php:103 footer.php:158
+msgid "Password"
+msgstr ""
+
+#: footer.php:104
+msgid "Войти"
+msgstr ""
+
+#: footer.php:109
+msgid "Забыли пароль?"
+msgstr ""
+
+#: footer.php:110 footer.php:151
+msgid "Регистрация"
+msgstr ""
+
+#: footer.php:127
+msgid "Восстановить"
+msgstr ""
+
+#: footer.php:134
+msgid "Отправить"
+msgstr ""
+
+#: footer.php:160
+msgid "Повторите Password"
+msgstr ""
+
+#: footer.php:165
+msgid "ЕГРПОУ"
+msgstr ""
+
+#: footer.php:167
+msgid "Название компании"
+msgstr ""
+
+#: footer.php:173
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: framework-customizations/extensions/sidebars/views/frontend-no-widgets.php:7
+#, php-format
+msgid "The sidebar (%s) you added has no widgets. Please add some from the "
+msgstr ""
+
+#: framework-customizations/extensions/sidebars/views/frontend-no-widgets.php:9
+msgid "Widgets Page"
+msgstr ""
+
+#: framework-customizations/theme/options/analytics.php:6
+msgid "Analytics"
+msgstr ""
+
+#: framework-customizations/theme/options/analytics.php:11
+msgid "Google"
+msgstr ""
+
+#: framework-customizations/theme/options/analytics.php:20
+msgid "Tag Manager Code"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:6
+#: framework-customizations/theme/options/footer.php:11
+#: framework-customizations/theme/options/posts/composerlayout.php:48
+msgid "Footer"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:20
+msgid "Footer box 1"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:22
+msgid "Можно вписать адрес"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:32
+msgid "Footer box 2"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:34
+msgid "Можно вписать доп ссылки"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:45
+msgid "Bottom Bar"
+msgstr ""
+
+#: framework-customizations/theme/options/footer.php:54
+msgid "Bottom bar text"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:6
+msgid "Base Settings"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:11
+msgid "Basic"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:20
+msgid "DMS Phone"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:26
+msgid "DMS e-mail"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:35
+#: framework-customizations/theme/options/general.php:44
+msgid "Antispam"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:47
+#: framework-customizations/theme/options/general.php:74
+#: framework-customizations/theme/options/performance.php:23
+#: framework-customizations/theme/options/performance.php:53
+#: framework-customizations/theme/options/performance.php:79
+#: framework-customizations/theme/options/performance.php:93
+#: framework-customizations/theme/options/performance.php:116
+#: framework-customizations/theme/options/performance.php:139
+msgid "Yes"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:52
+#: framework-customizations/theme/options/general.php:79
+#: framework-customizations/theme/options/performance.php:28
+#: framework-customizations/theme/options/performance.php:58
+#: framework-customizations/theme/options/performance.php:84
+#: framework-customizations/theme/options/performance.php:98
+#: framework-customizations/theme/options/performance.php:121
+#: framework-customizations/theme/options/performance.php:144
+msgid "No"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:54
+msgid "Antispam for all Email Forms"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:62
+msgid "Ping Backs"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:71
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: framework-customizations/theme/options/general.php:81
+msgid "Disables trackbacks/pingbacks"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:6
+#: framework-customizations/theme/options/posts/composerlayout.php:47
+msgid "Header"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:12
+msgid "Main"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:22
+msgid "Logo image"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:30
+msgid "Header text 1"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:32
+msgid "display only on menu"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:42
+msgid "Header text 2"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:43
+msgid "phone link"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:54
+msgid "Header text 3"
+msgstr ""
+
+#: framework-customizations/theme/options/header.php:55
+msgid "e-mail link"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:6
+msgid "Performance Settings"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:11
+msgid "Lazy Load Options"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:20
+msgid "Lazy Load"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:30
+msgid "Lazy Load Images on/off"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:35
+msgid "Image min width (px)"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:40
+msgid "Image min height (px)"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:45
+msgid "Placeholder color"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:47
+msgid "Image preloader color"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:60
+msgid ""
+"Try to get image sizes with getimagesize() if there is no width and heght "
+"attributes.\n"
+"\t\t\t\t\t\t Attantion! php function getimagesize() can significantly slow "
+"down your site speed. Use neatly"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:68
+msgid "HTTP/2 Preload Options"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:76
+msgid "Enable/Disable HTTP/2 Preload for styles"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:86
+msgid "HTTP/2 Preload for styles on/off"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:90
+msgid "Enable/Disable HTTP/2 Preload for scripts"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:100
+msgid "HTTP/2 Preload for scripts on/off"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:105
+msgid "WP Head Options"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:113
+msgid "Clean Up WP head"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:123
+msgid ""
+"Remove unnecessary link's ,Remove inline CSS and JS from WP emoji support, "
+"Remove inline CSS used by Recent Comments widget, Remove inline CSS used by "
+"posts with galleries, Remove self-closing tag"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:128
+msgid "Js/Css additional"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:136
+msgid "Remove Versions"
+msgstr ""
+
+#: framework-customizations/theme/options/performance.php:146
+msgid ""
+"Resources with a \"?\" in the URL are not cached by some proxy caching "
+"servers."
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:24
+msgid "Default"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:25
+msgid "For manual select"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:26
+msgid "Blog page"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:27
+msgid "Search results page"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:28
+msgid "Archive page"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:29
+msgid "404 page"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:38
+msgid "Settings"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:43
+msgid "Layout type"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:57
+msgid "Placement"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/composerlayout.php:59
+msgid "Where this Header/Footer will be shown"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/page.php:10
+msgid "Inherit"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/page.php:24
+msgid "Header & Footer options"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/page.php:29
+msgid "Page Header"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/page.php:40
+msgid "Page Footer"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/portfolio.php:5
+msgid "Portfolio Details"
+msgstr ""
+
+#: framework-customizations/theme/options/posts/portfolio.php:10
+msgid "Gallery Images"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:6
+msgid "Social"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:11
+msgid "Social Login"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:20
+msgid "Facebook Application ID"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:25
+msgid "Facebook Application Secret"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:31
+msgid "Google Client ID"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:36
+msgid "Google Client Secret"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:42
+msgid "Twitter Consumer Key"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:47
+msgid "Twitter Consumer Secret"
+msgstr ""
+
+#: framework-customizations/theme/options/social.php:55
+msgid "Social Profiles"
+msgstr ""
+
+#: header.php:62
+msgid "Enter your e-mail"
+msgstr "Enter your email"
+
+#: header.php:66 header.php:134
+msgid "Обратный звонок"
+msgstr ""
+
+#: header.php:76 header.php:80
+msgid "Личный кабинет"
+msgstr ""
+
+#: header.php:80
+msgid "Выйти"
+msgstr ""
+
+#: index.php:90
+msgid "Read more"
+msgstr ""
+
+#: index.php:106
+msgid "We can not find any posts by your search criteria, sorry..."
+msgstr ""
+
+#: single.php:37
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/post-data.php:6
+msgid "By "
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "DMS Theme"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/SolidBunch/Starter-Kit"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "SolidBunch"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://solidbunch.com"
+msgstr ""

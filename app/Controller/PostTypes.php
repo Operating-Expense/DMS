@@ -30,6 +30,8 @@ class PostTypes {
 	 **/
 	public function register_custom_post_types() {
 
+
+/*
 		register_post_type( 'composerlayout', array(
 				'label'               => esc_html__( 'Header / Footer', 'dms' ),
 				'description'         => '',
@@ -315,6 +317,8 @@ class PostTypes {
 				)
 			)
 		);
+
+*/
 
 	}
 

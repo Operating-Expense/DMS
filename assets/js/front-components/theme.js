@@ -6,7 +6,6 @@ export default class Theme {
 	 **/
 	constructor() {
 		this.build();
-		this.events();
 	}
 	
 	/**
@@ -17,13 +16,6 @@ export default class Theme {
 		this.loadGoogleFonts();
 		this.mobileMenuListener('.navigation-menu');
 		this.dmsPopups();
-	}
-	
-	/**
-	 Set page events
-	 **/
-	events() {
-		
 	}
 	
 	/**
@@ -102,7 +94,7 @@ export default class Theme {
 				e.stopPropagation();
 				if ($(this).hasClass('s-intro__menu_caller')) {
 					e.preventDefault();
-					$("html, body").animate({ scrollTop: 0 }, "slow");
+					$("html, body").animate({scrollTop: 0}, "slow");
 				}
 				
 				e.preventDefault();
@@ -153,6 +145,9 @@ export default class Theme {
 		this.dmsPopupTrigger('.js-dms-account', '#dms-login-popup-overlay');
 		this.dmsPopupTrigger('.js-dms-account-forgot-trigger', '#dms-forgot-popup-overlay');
 		this.dmsPopupTrigger('.js-dms-account-reg-trigger', '#dms-reg-popup-overlay');
+		this.dmsLogin('#dms-login-popup-overlay');
+		this.dmsRegistration('#dms-reg-popup-overlay');
+		this.dmsForgot('#dms-forgot-popup-overlay');
 	}
 	
 	dmsPopupTrigger(selectorTrigger, selectorPopup) {
@@ -163,6 +158,7 @@ export default class Theme {
 		$trigger.on('click', function (e) {
 			e.preventDefault();
 			$anyPopupWrapper.hide();
+			$anyPopupWrapper.find('.error-box').html('');
 			$popupWrapper.show();
 		});
 	}
@@ -176,5 +172,160 @@ export default class Theme {
 			$overlay.hide();
 		});
 	}
+	
+	
+	dmsAccountAjaxHandler(form, action, errorBox) {
+		
+		if (!form.length || !action.length || !errorBox.length) {
+			return;
+		}
+		
+		form.off('submit');
+		form.on('submit', function (e) {
+			e.preventDefault();
+			
+			$.ajax({
+				type: "POST",
+				url: themeJsVars.ajaxurl,
+				data: {
+					action: action,
+					ajax_nonce: window.themeJsVars.ajax_nonce,
+					form_data: form.serialize(),
+				},
+				beforeSend: function () {
+					errorBox.html('');
+				},
+				success: function (response) {
+					//console.log('response>>', response);
+					if (response.success && response.data && response.data.redirect) {
+						window.location.href = response.data.redirect;
+					} else if (response.data) {
+						errorBox.html(response.data.error_html);
+					}
+				},
+				error: function (xhr, textStatus, thrownError) {
+					console.log('ajax ERROR');
+				},
+				complete: function () {
+					//console.log('ajax PROCESS  COMPLETED');
+				}
+			});
+			
+		});
+	}
+	
+	
+	dmsLogin(pupupWrapper) {
+		if (!pupupWrapper) {
+			return;
+		}
+		
+		let form = $(pupupWrapper).find('form');
+		let errorBox = $(pupupWrapper).find('.error-box');
+		
+		// set ajax submit handler
+		this.dmsAccountAjaxHandler(form, 'dms/account/user_signin', errorBox);
+	}
+	
+	
+	dmsRegistration(pupupWrapper) {
+		if (!pupupWrapper) {
+			return;
+		}
+		
+		let form = $(pupupWrapper).find('form');
+		let errorBox = $(pupupWrapper).find('.error-box');
+		
+		if (!form.length || !errorBox.length) {
+			return;
+		}
+		
+		let email = form.find('[name=email]');
+		let pass1 = form.find('[name=pass1]');
+		let pass2 = form.find('[name=pass2]');
+		
+		//let fio = form.find('[name=fio]');
+		//let reg_code = form.find('[name=reg_code]');
+		//let position = form.find('[name=position]');
+		//let phone = form.find('[name=phone]');
+		//let company_name = form.find('[name=company_name]');
+		//let company_address = form.find('[name=company_address]');
+		
+		
+		// =============  validation
+		
+		form.validate({
+			submitHandler: (formEl, event) => {
+				event.preventDefault();
+				// set ajax submit handler
+				this.dmsAccountAjaxHandler($(formEl), 'dms/account/user_registration', errorBox);
+				$(formEl).submit();
+			},
+		});
+		
+		email.rules("add", {
+			required: true,
+			email: true,
+			remote: {
+				url: themeJsVars.ajaxurl,
+				type: "post",
+				data: {
+					action: 'dms/account/is_user_email_exists',
+					ajax_nonce: window.themeJsVars.ajax_nonce,
+				}
+			},
+			messages: {
+				remote: themeJsVars.localize['registration/entered_email_exists'],
+			}
+		});
+		
+		pass1.rules("add", {
+			required: true,
+			minlength: 8,
+		});
+		
+		pass2.rules("add", {
+			required: true,
+			minlength: 8,
+			equalTo: '[name=pass1]',
+		});
+		
+		
+	}
+	
+	
+	dmsForgot(pupupWrapper) {
+		if (!pupupWrapper) {
+			return;
+		}
+		
+		let form = $(pupupWrapper).find('form');
+		let errorBox = $(pupupWrapper).find('.error-box');
+		
+		if (!form.length || !errorBox.length) {
+			return;
+		}
+		
+		let email = form.find('[name=email]');
+		
+		// =============  validation
+		
+		form.validate({
+			submitHandler: (formEl, event) => {
+				event.preventDefault();
+				// set ajax submit handler
+				this.dmsAccountAjaxHandler($(formEl), 'dms/account/user_forgot', errorBox);
+				$(formEl).submit();
+			},
+		});
+		
+		email.rules("add", {
+			required: true,
+			email: true,
+		});
+		
+		
+	}
+	
 	
 }

@@ -34,6 +34,9 @@ class Init {
 	 **/
 	public function add_theme_support() {
 		
+		// Translation support
+		load_theme_textdomain( 'dms', get_template_directory() . '/languages' );
+		
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
@@ -45,7 +48,7 @@ class Init {
 	 * Register theme sidebars
 	 **/
 	public function register_sidebars() {
-		
+		/*
 		register_sidebar( array(
 			'name'          => esc_html__( 'Left Sidebar', 'dms' ),
 			'id'            => 'sidebar-left',
@@ -63,7 +66,7 @@ class Init {
 			'before_title'  => '<h4 class="widget-title">',
 			'after_title'   => '</h4>'
 		) );
-		/*
+		
 		register_sidebar( array(
 			'name'          => esc_html__( 'Shop Sidebar', 'dms' ),
 			'id'            => 'sidebar-shop',

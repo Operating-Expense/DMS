@@ -255,6 +255,7 @@
 }
 
 .dms-popup {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -264,8 +265,8 @@
 	background: $color-dms-ac-blue;
 	width: 600px;
 	min-height: 400px;
-	position: relative;
-	overflow: hidden;
+	max-height: 100vh;
+	overflow: auto;
 }
 
 .dms-popup-close {
@@ -291,6 +292,14 @@
 .dms-popup-box {
 	width: 100%;
 	background-color: $color-dms-ac-blue;
+	
+	.error-box {
+		font-family: $font-dms-Roboto;
+		font-size: 16px;
+		color: #ff8300;
+		text-align: center;
+		margin-top: 15px;
+	}
 }
 
 .dms-popup-header {
@@ -334,18 +343,32 @@
 		flex-direction: column;
 		align-items: center;
 		
+		.field {
+			width: 100%;
+			max-width: calc(100% - 30px);
+			margin-bottom: 16px;
+			
+			label.error {
+				font-family: $font-dms-Roboto;
+				font-size: 16px;
+				line-height: 1.1;
+				color: #ff8300;
+				text-align: center;
+				display: block;
+				margin-top: 4px;
+			}
+		}
+		
 		input {
 			display: block;
 			width: 100%;
 			height: 60px;
 			border-radius: 50px;
-			margin-bottom: 16px;
 			background: transparent;
 			border: 1px solid $color-dms-text-inv;
 			font-size: 17px;
 			padding-left: 25px;
 			color: $color-dms-text-inv;
-			max-width: calc(100% - 30px);
 			position: relative;
 			outline: none;
 			box-shadow: none;
@@ -384,7 +407,7 @@
 }
 
 .dms-reg-popup {
-	width: 900px;
+	width: 920px;
 	
 	.dms-popup-main {
 		form {
@@ -397,7 +420,7 @@
 				justify-content: center;
 				flex-wrap: wrap;
 				
-				input, div {
+				div {
 					width: calc(49% - 100px);
 					margin-left: 25px;
 					margin-right: 25px;

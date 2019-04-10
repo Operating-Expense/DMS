@@ -275,4 +275,16 @@ class Utils {
 		return $is_attachment_svg_by_mime || $is_attachment_svg_by_ext;
 	}
 	
+	
+	public static function verify_post_ajax_nonce() {
+		if ( ! isset( $_POST['ajax_nonce'] ) || ! wp_verify_nonce( $_POST['ajax_nonce'], 'ajax_nonce_dmsecret' ) ) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	
+	
 }

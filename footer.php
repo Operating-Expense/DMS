@@ -93,19 +93,25 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 		<div class="dms-popup-box">
 			<header class="dms-popup-header">
 				<i class="fa fa-user-circle-o"></i>
-				<div class="h1"><?php _e('Вход', 'dms') ?></div>
+				<div class="h1"><?php _e( 'Вход', 'dms' ) ?></div>
 			</header>
 			<div class="dms-popup-main">
 				<div class="inner-main">
 					<form method="POST" action="">
-						<?php wp_nonce_field( 'dms_account_signin', 'account_nonce', true, true ) ?>
-						<input type="email" name="email" placeholder="<?php _e('E-mail', 'dms') ?>"/>
-						<input type="password" name="pass" placeholder="<?php _e('Password', 'dms') ?>"/>
-						<input type="submit" class="js-dms-account-login" value="<?php _e('Войти', 'dms') ?>"/>
+						<div class="field">
+							<input type="email" name="email" placeholder="<?php _e( 'E-mail', 'dms' ) ?>"/>
+						</div>
+						<div class="field">
+							<input type="password" name="pass" placeholder="<?php _e( 'Password', 'dms' ) ?>"/>
+						</div>
+						
+						<input type="submit" class="js-dms-account-login" value="<?php _e( 'Войти', 'dms' ) ?>"/>
 					</form>
+					<div class="error-box"></div>
+					
 					<div class="links-login">
-						<a href="#" class="js-dms-account-forgot-trigger"><?php _e('Забыли пароль?', 'dms') ?></a>
-						<a href="#" class="js-dms-account-reg-trigger"><?php _e('Регистрация', 'dms') ?></a>
+						<a href="#" class="js-dms-account-forgot-trigger"><?php _e( 'Забыли пароль?', 'dms' ) ?></a>
+						<a href="#" class="js-dms-account-reg-trigger"><?php _e( 'Регистрация', 'dms' ) ?></a>
 					</div>
 				</div>
 			</div>
@@ -122,15 +128,19 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 		<div class="dms-popup-box">
 			<header class="dms-popup-header">
 				<i class="fa fa-user-circle-o"></i>
-				<div class="h1"><?php _e('Восстановить', 'dms') ?></div>
+				<div class="h1"><?php _e( 'Восстановить', 'dms' ) ?></div>
 			</header>
 			<div class="dms-popup-main">
 				<div class="inner-main">
 					<form method="POST" action="">
-						<?php wp_nonce_field( 'dms_account_forgot', 'account_nonce', true, true ) ?>
-						<input type="text" name="email" required placeholder="<?php _e('E-mail', 'dms') ?>"/>
-						<input type="submit" class="js-dms-account-forgot" value="<?php _e('Отправить', 'dms') ?>"/>
+						<div class="field">
+							<input type="email" name="email" required placeholder="<?php _e( 'E-mail', 'dms' ) ?>"/>
+						</div>
+						
+						<input type="submit" class="js-dms-account-forgot" value="<?php _e( 'Отправить', 'dms' ) ?>"/>
+					
 					</form>
+					<div class="error-box"></div>
 				</div>
 			</div>
 		</div>
@@ -146,30 +156,48 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 		<div class="dms-popup-box">
 			<header class="dms-popup-header">
 				<i class="fa fa-user-circle-o"></i>
-				<div class="h1"><?php _e('Регистрация', 'dms') ?></div>
+				<div class="h1"><?php _e( 'Регистрация', 'dms' ) ?></div>
 			</header>
 			<div class="dms-popup-main">
 				<form method="POST" action="">
 					<div class="upper">
-						<?php wp_nonce_field( 'dms_account_reg', 'account_nonce', true, true ) ?>
-						<input type="email" name="email" required placeholder="<?php _e('E-mail', 'dms') ?>">
-						<input type="password" name="pass1" required placeholder="<?php _e('Password', 'dms') ?>">
+						<div class="field">
+							<input type="email" name="email" required placeholder="<?php _e( 'E-mail', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="password" name="pass1" required placeholder="<?php _e( 'Пароль', 'dms' ) ?>">
+						</div>
 						<div style="visibility: hidden"></div>
-						<input type="password" name="pass2" required placeholder="<?php _e('Повторите Password', 'dms') ?>">
+						<div class="field">
+							<input type="password" name="pass2" required placeholder="<?php _e( 'Повторите пароль', 'dms' ) ?>">
+						</div>
 					</div>
 					<hr/>
 					<div class="lower">
-						<input type="text" name="fio" required placeholder="<?php _e('ФИО', 'dms') ?>">
-						<input type="text" name="reg_code" required placeholder="<?php _e('ЕГРПОУ', 'dms') ?>">
-						<input type="text" name="position" required placeholder="<?php _e('Должность', 'dms') ?>">
-						<input type="text" name="company_name" required placeholder="<?php _e('Название компании', 'dms') ?>">
-						<input type="tel" name="phone" required placeholder="<?php _e('Телефон', 'dms') ?>">
-						<input type="text" name="company_address" required placeholder="<?php _e('Юр. адрес', 'dms') ?>">
+						<div class="field">
+							<input type="text" name="fio" required placeholder="<?php _e( 'ФИО', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="text" name="reg_code" required placeholder="<?php _e( 'ЕГРПОУ', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="text" name="position" required placeholder="<?php _e( 'Должность', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="text" name="company_name" required placeholder="<?php _e( 'Название компании', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="tel" name="phone" required placeholder="<?php _e( 'Телефон', 'dms' ) ?>">
+						</div>
+						<div class="field">
+							<input type="text" name="company_address" required placeholder="<?php _e( 'Юр. адрес', 'dms' ) ?>">
+						</div>
 					</div>
 					<div class="g-recaptcha" data-sitekey="your_site_key"></div>
 					<br/>
-					<input type="submit" class="js-dms-account-reg" value="<?php _e('Зарегистрироваться', 'dms') ?>">
+					<input type="submit" class="js-dms-account-reg" value="<?php _e( 'Зарегистрироваться', 'dms' ) ?>">
 				</form>
+				<div class="error-box"></div>
 			</div>
 		</div>
 	

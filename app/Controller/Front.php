@@ -116,6 +116,8 @@ class Front {
 		$js_vars = array(
 			'ajaxurl'    => esc_url( admin_url( 'admin-ajax.php' ) ),
 			'assetsPath' => get_template_directory_uri() . '/assets',
+			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_dmsecret' ),
+			'localize'   => self::get_js_localize_stings(),
 		);
 		
 		Assets::enqueue_script( 'dms-front' );
@@ -136,6 +138,21 @@ class Front {
 			);
 		}
 		
+		// jquery-validation
+		Assets::enqueue_script( 'jquery-validation', get_theme_file_uri( '/assets/libs/jquery-validation/jquery.validate.min.js' ), [ 'jquery' ], DMS()->config['cache_time'], true );
+		
+		if ( class_exists( '\WPGlobus' ) && ( $current_lang = \WPGlobus::Config()->language ) ) {
+			
+			$path_to_lang_file = get_theme_file_path( "assets/libs/jquery-validation/localization/messages_{$current_lang}.js" );
+			$uri_to_lang_file  = get_theme_file_uri( "assets/libs/jquery-validation/localization/messages_{$current_lang}.js" );
+			
+			if ( file_exists( $path_to_lang_file ) ) { 
+				Assets::enqueue_script( 'jquery-validation-lang-'.$current_lang , $uri_to_lang_file, [ 'jquery' ], DMS()->config['cache_time'], true );
+			}
+			
+		}
+		
+		
 		wp_enqueue_style(
 			'fonts-muller',
 			get_theme_file_uri( '/assets/fonts/Muller/stylesheet.css' ),
@@ -149,6 +166,15 @@ class Front {
 		Assets::enqueue_style_dist( 'dms-front', 'front.css' );
 		
 	}
+	
+	
+	public static function get_js_localize_stings() {
+		return [
+			'registration/entered_email_exists' => __( 'Введенный e-mail уже зарегистрирован','dms'),
+		];
+	}
+	
+	
 	
 	/**
 	 * Check if anti-spam enabled in theme options
