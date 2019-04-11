@@ -37,7 +37,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 <section <?php echo implode( ' ',$attributes ); ?>>
 	
 	
-	<div class="row">
+	<div class="row justify-content-center">
 		
 		<div class="col-sm-12 col-md-6 s-intro__left">
 			
@@ -105,7 +105,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Имя', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_first" placeholder="">
+						<input class="form-control" id="how_first" placeholder="" value="Сергей" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
@@ -118,7 +118,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Отчество', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_middle" placeholder="">
+						<input class="form-control" id="how_middle" placeholder="" value="Сергеевич" readonly>
 						<div class="s-intro__input_result">
 							<!--							<div class="result_row">♀</div>-->
 							<div class="result_row result_row_gender">♂</div>
@@ -131,7 +131,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Населенный пункт', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_city" placeholder="">
+						<input class="form-control" id="how_city" placeholder="" value="Киев" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row">Киевский район</div>
 							<div class="result_row">Киевская область</div>
@@ -144,7 +144,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Улица', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_street" placeholder="">
+						<input class="form-control" id="how_street" placeholder="" value="Строителей" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
@@ -157,7 +157,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Дом', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_house" placeholder="">
+						<input class="form-control" id="how_house" placeholder="" value="15/15" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row">55.193376, 61.347116</div>
 							<div class="result_row">04080</div>

@@ -153,7 +153,7 @@ $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"'
 						</div>
 						
 						<div class="s-tariff__footer">
-							<a href="<?php echo $item_link_url ?>" class="s-tariff__link" target="_blank">
+							<a href="<?php echo $item_link_url ?>" class="s-tariff__link">
 								<?php echo $item_link_text ?>
 							</a>
 							<div class="arrow-box">

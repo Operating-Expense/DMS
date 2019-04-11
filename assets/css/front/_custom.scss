@@ -359,7 +359,7 @@
 			}
 		}
 		
-		input {
+		input, input:focus, input:active {
 			display: block;
 			width: 100%;
 			height: 60px;

@@ -61,7 +61,7 @@
 					
 					<?php \DMS\Helper\Front::the_lang_select();	?>
 					
-					<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
+					<a href="#contact" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
 					
 					
 					<?php
