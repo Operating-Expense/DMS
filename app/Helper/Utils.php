@@ -29,6 +29,8 @@ class Utils {
 			? \fw_get_db_settings_option( $option_name, $default_value ) : $default_value;
 	}
 	
+	
+	
 	/**
 	 * Get Post Option
 	 *
@@ -42,6 +44,8 @@ class Utils {
 		return function_exists( '\fw_get_db_post_option' )
 			? \fw_get_db_post_option( $post_id, $option_name, $default_value ) : $default_value;
 	}
+	
+	
 	
 	/**
 	 * Get Term Option
@@ -57,6 +61,29 @@ class Utils {
 		return function_exists( '\fw_get_db_term_option' )
 			? \fw_get_db_term_option( $term_id, $taxonomy, $option_name, $default_value ) : $default_value;
 	}
+	
+	
+	
+	/**
+	 * Get user Meta
+	 *
+	 * @param $user_id
+	 * @param $field_name
+	 * @param null $default_value
+	 *
+	 * @return mixed
+	 */
+	public static function get_user_meta( $user_id, $field_name, $default_value = null ) {
+		
+		if ( function_exists( '\carbon_get_user_meta' ) ) {
+			$value = \carbon_get_user_meta( (int) $user_id, $field_name );
+		}
+		//$value = get_user_meta( $user_id, "_{$field_name}", true );
+		
+		return ! empty( $value ) ? $value : $default_value;
+	}
+	
+	
 	
 	/**
 	 * Autoload PHP files in directory
@@ -104,12 +131,16 @@ class Utils {
 		}
 	}
 	
+	
+	
 	/**
 	 * Make sure that Visual Composer is active
 	 **/
 	public static function is_vc() {
 		return in_array( 'js_composer/js_composer.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ), true );
 	}
+	
+	
 	
 	/**
 	 * Make sure that Unyson Framework plugin is active
@@ -118,12 +149,16 @@ class Utils {
 		return in_array( 'unyson/unyson.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ), true );
 	}
 	
+	
+	
 	/**
 	 * Make sure that WooCommerce plugin is active
 	 **/
 	public static function is_woocommerce() {
 		return in_array( 'woocommerce/woocommerce.php', \apply_filters( 'active_plugins', \get_option( 'active_plugins' ) ), true );
 	}
+	
+	
 	
 	/**
 	 * Returns shortcodes uri
@@ -137,6 +172,8 @@ class Utils {
 		return trailingslashit( \DMS()->config['shortcodes_uri'] ) . $shortcode_name . '/' . $path;
 	}
 	
+	
+	
 	/**
 	 * Returns shortcodes path
 	 *
@@ -148,6 +185,8 @@ class Utils {
 	public static function get_shortcodes_dir( $shortcode_name, $path = '' ) {
 		return trailingslashit( \DMS()->config['shortcodes_dir'] ) . $shortcode_name . '/' . $path;
 	}
+	
+	
 	
 	/**
 	 * Returns widgets uri
@@ -161,6 +200,8 @@ class Utils {
 		return trailingslashit( \DMS()->config['widgets_uri'] ) . $widget_name . '/' . $path;
 	}
 	
+	
+	
 	/**
 	 * Returns widgets path
 	 *
@@ -173,6 +214,8 @@ class Utils {
 		return trailingslashit( \DMS()->config['widgets_dir'] ) . $widget_name . '/' . $path;
 	}
 	
+	
+	
 	/**
 	 * Get Unyson Framework config for available social icons
 	 **/
@@ -184,13 +227,15 @@ class Utils {
 			$config[ $k ] = array(
 				'type'  => 'text',
 				'label' => $v,
-				'value' => ''
+				'value' => '',
 			);
 		}
 		
 		return $config;
 		
 	}
+	
+	
 	
 	/**
 	 * Sanitize text params from array
@@ -215,6 +260,8 @@ class Utils {
 		
 	}
 	
+	
+	
 	/**
 	 * Add protocol to URL
 	 *
@@ -232,6 +279,8 @@ class Utils {
 		return $url;
 	}
 	
+	
+	
 	/**
 	 * Determine whether this is an AMP response.
 	 *
@@ -243,6 +292,7 @@ class Utils {
 	public static function is_amp() {
 		return function_exists( '\is_amp_endpoint' ) && \is_amp_endpoint();
 	}
+	
 	
 	
 	/**
@@ -274,6 +324,7 @@ class Utils {
 		
 		return $is_attachment_svg_by_mime || $is_attachment_svg_by_ext;
 	}
+	
 	
 	
 	public static function verify_post_ajax_nonce() {

@@ -3,10 +3,23 @@
 namespace DMS\Controller;
 
 use DMS\Helper\Utils;
+use DMS\Helper\Logger;
 
 
 
 class Account {
+	
+	
+	public static $err_codes = [
+		'ERR_REG__CURL_ERROR'       => 777100,
+		'ERR_REG__ALREADY_EXISTS'   => 777210,
+		'ERR_REG__INVALID_EMAIL'    => 777220,
+		'ERR_REG__INVALID_PASSWORD' => 777230,
+		'ERR_REG__UNKNOWN'          => 777240,
+		'ERR_REG__EMPTY_RESPONSE'   => 777300,
+	];
+	
+	
 	
 	/**
 	 * Constructor - add all needed actions
@@ -143,7 +156,7 @@ class Account {
 		$user_reg_code        = ! empty( trim( $form_data['reg_code'] ) ) ? (int) trim( $form_data['reg_code'] ) : '';
 		
 		
-		// checks
+		// checks for wp
 		if ( ! is_email( $user_email ) ) {
 			self::_user_reg__send_valid_error( __( 'Ошибка регистрации : некорректный e-mail', 'dms' ) );
 		}
@@ -176,6 +189,17 @@ class Account {
 			self::_user_reg__send_valid_error( __( 'Ошибка регистрации : пустое поле "ЕГРПОУ"', 'dms' ) );
 		}
 		
+		// try to register via API
+		$registered_in_api = self::api__register_user( $user_email, $user_pass1 );
+		
+		exit;
+		
+		if ( ! $registered_in_api['success'] ) {
+			self::_user_reg__send_valid_error(
+				__( 'Ошибка регистрации', 'dms' ) . ' : ' . $registered_in_api['message'],
+				$registered_in_api['message']
+			);
+		}
 		
 		// fill data
 		$user_data               = [];
@@ -193,11 +217,12 @@ class Account {
 		}
 		
 		// update user meta
-		update_user_meta( $user_id, 'dms/user_position', $user_position );
-		update_user_meta( $user_id, 'dms/user_company_name', $user_company_name );
-		update_user_meta( $user_id, 'dms/user_company_address', $user_company_address );
-		update_user_meta( $user_id, 'dms/user_phone', $user_phone );
-		update_user_meta( $user_id, 'dms/user_reg_code', $user_reg_code );
+		update_user_meta( $user_id, 'dms--user_position', $user_position );
+		update_user_meta( $user_id, 'dms--user_company_name', $user_company_name );
+		update_user_meta( $user_id, 'dms--user_company_address', $user_company_address );
+		update_user_meta( $user_id, 'dms--user_phone', $user_phone );
+		update_user_meta( $user_id, 'dms--user_reg_code', $user_reg_code );
+		update_user_meta( $user_id, 'dms--user_ap', base64_encode( 'dmss' . $user_pass1 ) );
 		
 		self::user_signin_process( get_user_by( 'id', $user_id ) );
 		
@@ -212,6 +237,107 @@ class Account {
 			'redirect'   => $redirect_url,
 			'_REQUEST'   => $_REQUEST,
 		] );
+	}
+	
+	
+	
+	private static function api__register_user( $user_email, $user_pass ) {
+		
+		try {
+			// ------------------------------------------------------------------
+			$request = new \DMS\Helper\DMS_API_Request();
+			
+			$options = [
+				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Account/Register',
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS    => "{\n\"Email\": \"{$user_email}\",\n\"Password\": \"{$user_pass}\",\n\"ConfirmPassword\": \"{$user_pass}\"\n}",
+			];
+			
+			$request->init( $options );
+			$res = $request->exec();
+			
+			
+			// error cURL
+			if ( $res['curl_error'] ) {
+				throw new \Exception( $res['curl_error'], self::$err_codes['ERR_REG__CURL_ERROR'] );
+			}
+			
+			// error e-mail already taken
+			if (
+				$res['http_code'] === 400
+				&&
+				! empty( $res['body']['ModelState'][''][1] )
+				&&
+				strpos( $res['body']['ModelState'][''][1], 'Email' ) !== false
+				&&
+				strpos( $res['body']['ModelState'][''][1], 'already taken' ) !== false
+			) {
+				throw new \Exception(
+					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][1]}",
+					self::$err_codes['ERR_REG__ALREADY_EXISTS']
+				);
+			}
+			
+			
+			// error e-mail invalid
+			if (
+				$res['http_code'] === 400
+				&&
+				! empty( $res['body']['ModelState'][''][0] )
+				&&
+				strpos( $res['body']['ModelState'][''][0], 'Email' ) !== false
+				&&
+				strpos( $res['body']['ModelState'][''][0], 'is invalid' ) !== false
+			) {
+				throw new \Exception(
+					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][0]}",
+					self::$err_codes['ERR_REG__INVALID_EMAIL']
+				);
+			}
+			
+			
+			// error pass
+			if (
+				$res['http_code'] === 400
+				&&
+				! empty( $res['body']['ModelState'][''][0] )
+				&&
+				strpos( $res['body']['ModelState'][''][0], 'Password' ) !== false
+			) {
+				throw new \Exception(
+					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][1]}",
+					self::$err_codes['ERR_REG__INVALID_PASSWORD']
+				);
+			}
+			
+			// error unknown error by http code not 200
+			if ( $res['http_code'] !== 200 ) {
+				throw new \Exception( "HTTP Code = {$res['http_code']}", self::$err_codes['ERR_REG__UNKNOWN'] );
+			}
+			
+			// error empty body
+			if ( ! $res['body'] ) {
+				throw new \Exception( 'Body of file is empty', self::$err_codes['ERR_REG__EMPTY_RESPONSE'] );
+			}
+			// ------------------------------------------------------------------
+			
+		} catch ( \Exception $e ) {
+			
+			$err = array_search( $e->getCode(), self::$err_codes, true );
+			Logger::log( "ERROR [{$err}] : {$e->getMessage()}", '', 'user_registration' );
+			
+			return [
+				'success' => false,
+				'message' => "ERROR [{$e->getCode()}] : {$e->getMessage()}",
+			];
+		}
+		
+		Logger::log( "SUCCESS [email({$user_email})]", '', 'user_registration' );
+		
+		return [
+			'success' => false,
+			'message' => '',
+		];
 	}
 	
 	

@@ -169,15 +169,19 @@
 		width: 80px;
 		height: 80px;
 		border-radius: 40px;
-		padding: 40px;
+		overflow: hidden;
+		//padding: 40px;
 		//margin: 40px 0;
-		background-repeat: repeat;
-		background-size: cover;
-		background-position: center center;
+		justify-content: center;
+		justify-items: center;
+		img {
+			display: block;
+			object-fit: cover;
+		}
 		
 		@include media-breakpoint-down(sm) {
 			& {
-				display: block;
+				display: flex;
 			}
 		}
 		@include media-breakpoint-down(xs) {
@@ -250,6 +254,7 @@
 				.callback-link {
 					margin: 50px 0 0 0;
 				}
+				
 				.lang-list {
 					margin: 40px 0 50px;
 				}

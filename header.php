@@ -1,3 +1,7 @@
+<?php
+$current_user = wp_get_current_user();
+$user_id      = $current_user->ID;
+?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
@@ -59,23 +63,23 @@
 				
 				<div class="navbar-funcs">
 					
-					<?php \DMS\Helper\Front::the_lang_select();	?>
+					<?php \DMS\Helper\Front::the_lang_select(); ?>
 					
-					<a href="#contact" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
+					<a href="#contact" class="callback-link"><?php _e( 'Обратный звонок', 'dms' ) ?></a>
 					
 					
 					<?php
 					
-					$is_in_account_page = is_page('account');
+					$is_in_account_page = is_page( 'account' );
 					
 					if ( ! is_user_logged_in() ) {
-						$account_url = site_url('/account');
+						$account_url      = site_url( '/account' );
 						$account_js_class = ' js-dms-account';
-						$account_btn_text = __('Личный кабинет', 'dms');
+						$account_btn_text = __( 'Личный кабинет', 'dms' );
 					} else {
-						$account_url = $is_in_account_page ? wp_logout_url( site_url() ) : site_url('/account');
-						$account_js_class = ''; 
-						$account_btn_text =  $is_in_account_page ? __('Выйти', 'dms') : __('Личный кабинет', 'dms');
+						$account_url      = $is_in_account_page ? wp_logout_url( site_url() ) : site_url( '/account' );
+						$account_js_class = '';
+						$account_btn_text = $is_in_account_page ? __( 'Выйти', 'dms' ) : __( 'Личный кабинет', 'dms' );
 					}
 					?>
 					
@@ -109,8 +113,17 @@
 			<?php echo $img_html; ?>
 		</div>
 		
-		<div class="menu-avatar-box"
-			 style="background-image: url(<?php echo get_template_directory_uri() . '/assets/images/userpic.jpg' ?>);">
+		<div class="menu-avatar-box">
+			<?php
+			$user_photo_id = \DMS\Helper\Utils::get_user_meta( $user_id, 'dms--user_ava', 0 );
+			if ( $user_photo_id ) {
+				\DMS\Helper\Media::the_img(
+					array( 'data-width' => 80, 'data-height' => 80, 'class' => 'profile-ava-img' ),
+					array( 'attachment_id' => $user_photo_id )
+				);
+			}
+			?>
+		
 		</div>
 		
 		<?php if ( has_nav_menu( 'header_menu' ) ) : ?>
@@ -121,15 +134,15 @@
 				wp_nav_menu(
 					array(
 						'theme_location' => 'header_menu',
-						'menu_class'     => 'mobile-menu'
+						'menu_class'     => 'mobile-menu',
 					)
 				);
 				?>
-				
+			
 			</nav>
 			
 			<div class="navbar-funcs2">
-				<a href="#" class="callback-link"><?php _e('Обратный звонок', 'dms') ?></a>
+				<a href="#contact" class="callback-link"><?php _e( 'Обратный звонок', 'dms' ) ?></a>
 				<?php \DMS\Helper\Front::the_lang_list(); ?>
 			</div>
 			
@@ -151,8 +164,4 @@
 	
 	</section>
 	
-	<section id="composer-header" class="bg-dark">
-		<div class="container">
-			<?php echo DMS()->View->load_composer_layout( 'header' ); ?>
-		</div>
-	</section>
+

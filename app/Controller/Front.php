@@ -171,6 +171,7 @@ class Front {
 	public static function get_js_localize_stings() {
 		return [
 			'registration/entered_email_exists' => __( 'Введенный e-mail уже зарегистрирован','dms'),
+			'registration/password_not_strong'  => __( 'Пароль должен содержать большие и маленьние символы(лат), цифры и спецсимволы','dms'),
 		];
 	}
 	

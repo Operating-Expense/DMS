@@ -138,6 +138,20 @@ export default class Theme {
 		
 	}
 	
+	// AVA
+	
+	readURL(input, img) {
+		if (input.files && input.files[0]) {
+			let reader = new FileReader();
+			reader.onload = function (e) {
+				$(img).removeAttr('srcset');
+				$(img).attr('src', e.target.result);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
+	
 	// POPUPS
 	
 	dmsPopups() {
@@ -282,6 +296,10 @@ export default class Theme {
 		pass1.rules("add", {
 			required: true,
 			minlength: 8,
+			pwcheck: true,
+			messages: {
+				pwcheck: window.themeJsVars.localize['registration/password_not_strong']
+			}
 		});
 		
 		pass2.rules("add", {
@@ -290,7 +308,12 @@ export default class Theme {
 			equalTo: '[name=pass1]',
 		});
 		
-		
+		$.validator.addMethod("pwcheck", function (value) {
+			return /[a-z]/.test(value) // has a lowercase letter
+				&& /[A-Z]/.test(value) // has a uppercase letter
+				&& /\d/.test(value) // has a digit
+				&& /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/.test(value) // has a special_characters 
+		});
 	}
 	
 	

@@ -4,10 +4,6 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 ?>
 
 
-<footer id="composer-footer">
-	<?php echo DMS()->View->load_composer_layout( 'footer' ); ?>
-</footer>
-
 <footer id="footer" class="page-footer">
 	
 	<div class="footer4c ">

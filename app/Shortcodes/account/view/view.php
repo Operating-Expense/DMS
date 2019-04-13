@@ -1,6 +1,7 @@
 <?php
 
 use DMS\Helper\Media;
+use DMS\Helper\Utils;
 
 $atts = $data['atts'];
 
@@ -28,16 +29,16 @@ if ( 0 === $user_id ) {
 $user_email = $current_user->user_email;
 $user_fio   = $current_user->user_firstname;
 
-$user_position        = get_user_meta( $user_id, 'dms/user_position', true ) ?: 'CTO';
-$user_company_name    = get_user_meta( $user_id, 'dms/user_company_name', true ) ?: 'OPEX';
-$user_company_address = get_user_meta( $user_id, 'dms/user_company_address', true ) ?: 'Kiev';
-$user_phone           = get_user_meta( $user_id, 'dms/user_phone', true ) ?: '80000000000';
-$user_reg_code        = get_user_meta( $user_id, 'dms/user_reg_code', true ) ?: '00000000000';
+$user_position        = Utils::get_user_meta( $user_id, 'dms--user_position', '' );
+$user_company_name    = Utils::get_user_meta( $user_id, 'dms--user_company_name', '' );
+$user_company_address = Utils::get_user_meta( $user_id, 'dms--user_company_address', '' );
+$user_phone           = Utils::get_user_meta( $user_id, 'dms--user_phone', '' );
+$user_reg_code        = Utils::get_user_meta( $user_id, 'dms--user_reg_code', '' );
+$user_photo_id        = Utils::get_user_meta( $user_id, 'dms--user_ava', 0 );
 
-$user_tariff_plan = 'Премиум';
-$user_balance     = 0;
+$user_tariff_plan = Utils::get_user_meta( $user_id, 'dms--user_tariff', __( 'Нет', 'dms' ) );
+$user_balance     = Utils::get_user_meta( $user_id, 'dms--user_balance', 0 );
 
-$user_photo_id = 0;
 
 ?>
 <section <?php echo implode( ' ', $attributes ); ?>>
@@ -80,7 +81,7 @@ $user_photo_id = 0;
 				</span>
 					</div>
 					<div class="link_to_replenish_box">
-						<a href="#replenish"> <?php _e( 'Пополнить', 'dms' ) ?> </a>
+						<a href="#contact"> <?php _e( 'Пополнить', 'dms' ) ?> </a>
 					</div>
 					<div class="link_to_contact_box d-none d-md-block">
 						<i class="fa fa-envelope-o"></i>
@@ -102,7 +103,14 @@ $user_photo_id = 0;
 				<div class="row user_ava_row d-flex align-items-center justify-content-center  justify-content-lg-start">
 					<div class="profile-ava-wrapper">
 						<div class="profile-ava">
-							<img src="" alt="">
+							<?php
+							if ( $user_photo_id ) {
+								Media::the_img(
+									array( 'data-width' => 138, 'data-height' => 138, 'class' => 'profile-ava-img' ),
+									array( 'attachment_id' => $user_photo_id )
+								);
+							}
+							?>
 						</div>
 						<a href="#" class="change-ava-link">Сменить фото</a>
 					</div>
@@ -114,44 +122,44 @@ $user_photo_id = 0;
 					<div class="row user_table_row">
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('E-mail', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'E-mail', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_email ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('ФИО', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'ФИО', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_fio ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('Должность', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'Должность', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_position ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('Юр. назв. предприятия', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'Юр. назв. предприятия', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_company_name ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('Юр. адрес', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'Юр. адрес', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_company_address ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('УДРПОУ', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'ЕГРПОУ', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_reg_code ?></div>
 						</div>
 						
 						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e('Телефон', 'dms'); ?></div>
+							<div class="item_title"><?php _e( 'Телефон', 'dms' ); ?></div>
 							<div class="item_value"><?php echo $user_phone ?></div>
 						</div>
-						
+					
 					</div>
 				</div>
 			</div>
-			
+		
 		</div>
 	</div>
 
