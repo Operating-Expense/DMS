@@ -74,13 +74,32 @@ class Utils {
 	 * @return mixed
 	 */
 	public static function get_user_meta( $user_id, $field_name, $default_value = null ) {
+		$value = $default_value;
 		
 		if ( function_exists( '\carbon_get_user_meta' ) ) {
 			$value = \carbon_get_user_meta( (int) $user_id, $field_name );
 		}
+		
 		//$value = get_user_meta( $user_id, "_{$field_name}", true );
 		
-		return ! empty( $value ) ? $value : $default_value;
+		return $value;
+	}
+	
+	
+	
+	/**
+	 * Set user Meta
+	 *
+	 * @param $user_id
+	 * @param $field_name
+	 * @param $value
+	 *
+	 * @return void
+	 */
+	public static function set_user_meta( $user_id, $field_name, $value ) {
+		if ( function_exists( '\carbon_set_user_meta' ) ) {
+			\carbon_set_user_meta( (int) $user_id, $field_name, $value );
+		}
 	}
 	
 	

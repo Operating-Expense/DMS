@@ -39,7 +39,7 @@ class DMS_API_Request {
 		
 		$options = array_replace( $options_defaults, $options );
 		
-		Logger::log( $options, 'request >>', 'user_registration_request' );
+		//Logger::log( $options, 'request >>', 'user_registration_request' );
 		
 		curl_setopt_array( $this->ch, $options );
 	}
@@ -56,7 +56,7 @@ class DMS_API_Request {
 		$curl_error = curl_error( $this->ch );
 		$result     = [
 			'headers_raw' => '',
-			'headers'     => '',
+			//'headers'     => '',
 			'body_raw'    => '',
 			'body'        => '',
 			'curl_error'  => '',
@@ -72,7 +72,7 @@ class DMS_API_Request {
 		// headers
 		$header_size           = curl_getinfo( $this->ch, CURLINFO_HEADER_SIZE );
 		$result['headers_raw'] = substr( $response, 0, $header_size );
-		
+		/*
 		$headers_arr = explode( "\r\n", $result['headers_raw'] );
 		$headers_arr = array_filter( $headers_arr );
 		$headers     = [];
@@ -84,7 +84,7 @@ class DMS_API_Request {
 		}
 		
 		$result['headers'] = $headers;
-		
+		*/
 		// body
 		$result['body_raw'] = substr( $response, $header_size );
 		$result['body']     = self::may_be_json( $result['body_raw'] );

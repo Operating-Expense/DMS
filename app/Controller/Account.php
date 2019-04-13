@@ -2,8 +2,11 @@
 
 namespace DMS\Controller;
 
+use DMS\Helper\DMS_API_Request;
 use DMS\Helper\Utils;
 use DMS\Helper\Logger;
+use DMS\Exception\DMS_Exeption;
+
 
 
 
@@ -11,12 +14,14 @@ class Account {
 	
 	
 	public static $err_codes = [
-		'ERR_REG__CURL_ERROR'       => 777100,
-		'ERR_REG__ALREADY_EXISTS'   => 777210,
-		'ERR_REG__INVALID_EMAIL'    => 777220,
-		'ERR_REG__INVALID_PASSWORD' => 777230,
-		'ERR_REG__UNKNOWN'          => 777240,
-		'ERR_REG__EMPTY_RESPONSE'   => 777300,
+		777100 => 'ERR_REG__CURL_ERROR',
+		777210 => 'ERR_REG__ALREADY_EXISTS',
+		777220 => 'ERR_REG__INVALID_EMAIL',
+		777230 => 'ERR_REG__INVALID_PASSWORD',
+		777240 => 'ERR_REG__UNKNOWN',
+		777300 => 'ERR_REG__EMPTY_RESPONSE',
+		777400 => 'ERR_TOKEN__UNKNOWN',
+		777410 => 'ERR_TOKEN__INVALID_GRANT',
 	];
 	
 	
@@ -51,6 +56,11 @@ class Account {
 		// redirect after password reset
 		add_action( 'after_password_reset', array( __CLASS__, 'after_password_reset_redirect' ), 77 );
 		
+		// receive and save token after user registration
+		add_action( 'dms/user_registration/after', array( __CLASS__, 'user_save_token' ), 10, 2 );
+		
+		// receive and save token after user signin
+		add_action( 'dms/user_signin/after', array( __CLASS__, 'user_save_token' ), 10, 1 );
 	}
 	
 	
@@ -190,15 +200,27 @@ class Account {
 		}
 		
 		// try to register via API
-		$registered_in_api = self::api__register_user( $user_email, $user_pass1 );
+		$api__register_user_process = self::api__register_user( $user_email, $user_pass1 );
 		
-		exit;
-		
-		if ( ! $registered_in_api['success'] ) {
+		if ( ! $api__register_user_process['success'] ) {
+			
+			Logger::log( "RESOLVE : ERROR [email({$user_email})]", '', 'user_registration' );
+			
 			self::_user_reg__send_valid_error(
-				__( 'Ошибка регистрации', 'dms' ) . ' : ' . $registered_in_api['message'],
-				$registered_in_api['message']
+				__( 'Ошибка регистрации', 'dms' ) . ' : ' . $api__register_user_process['message_front'],
+				$api__register_user_process['message']
 			);
+			/*
+			if ( $api__register_user_process['error_code'] === self::get_error_code( 'ERR_REG__ALREADY_EXISTS' ) ) {
+				Logger::log( "RESOLVE : SUCCESS [email({$user_email})]", '', 'user_registration' );
+			} else {
+				Logger::log( "RESOLVE : ERROR [email({$user_email})]", '', 'user_registration' );
+				
+				self::_user_reg__send_valid_error(
+					__( 'Ошибка регистрации', 'dms' ) . ' : ' . $api__register_user_process['message_front'],
+					$api__register_user_process['message']
+				);
+			} */
 		}
 		
 		// fill data
@@ -213,18 +235,24 @@ class Account {
 		do_action( 'dms/user_registration/before', $user_data );
 		
 		if ( is_wp_error( $user_id = wp_insert_user( $user_data ) ) ) {
+			Logger::log( "WP : ERROR [email({$user_email})]", '', 'user_registration' );
 			self::_user_reg__send_valid_error( __( 'Ошибка регистрации', 'dms' ), $user_id->get_error_message() );
 		}
 		
 		// update user meta
-		update_user_meta( $user_id, 'dms--user_position', $user_position );
-		update_user_meta( $user_id, 'dms--user_company_name', $user_company_name );
-		update_user_meta( $user_id, 'dms--user_company_address', $user_company_address );
-		update_user_meta( $user_id, 'dms--user_phone', $user_phone );
-		update_user_meta( $user_id, 'dms--user_reg_code', $user_reg_code );
-		update_user_meta( $user_id, 'dms--user_ap', base64_encode( 'dmss' . $user_pass1 ) );
+		Utils::set_user_meta( $user_id, 'dms--user_position', $user_position );
+		Utils::set_user_meta( $user_id, 'dms--user_company_name', $user_company_name );
+		Utils::set_user_meta( $user_id, 'dms--user_company_address', $user_company_address );
+		Utils::set_user_meta( $user_id, 'dms--user_phone', $user_phone );
+		Utils::set_user_meta( $user_id, 'dms--user_reg_code', $user_reg_code );
+		self::set_api_pass( $user_id, $user_pass1 );
 		
 		self::user_signin_process( get_user_by( 'id', $user_id ) );
+		
+		Logger::log(
+			"WP : SUCCESS [email({$user_email}), user_id({$user_id}), first_name({$user_data['first_name']})]",
+			'', 'user_registration'
+		);
 		
 		do_action( 'dms/user_registration/after', $user_id, $user_data );
 		
@@ -241,11 +269,35 @@ class Account {
 	
 	
 	
+	private static function _user_reg__send_valid_error( $error_html, $message = '' ) {
+		wp_send_json_error( [
+			'message'    => __FUNCTION__ . ' : user registration error. ' . $message,
+			'user_id'    => 0,
+			'error_html' => $error_html,
+			'redirect'   => '',
+			'_REQUEST'   => $_REQUEST,
+		] );
+	}
+	
+	
+	
+	public static function get_api_pass( $user_id ) {
+		return base64_decode( get_user_meta( (int)$user_id, '_dms--user_api_pass', true ) );
+	}
+	
+	
+	
+	public static function set_api_pass( $user_id, $value ) {
+		update_user_meta( $user_id, '_dms--user_api_pass', base64_encode( $value ) );
+	}
+	
+	
+	
 	private static function api__register_user( $user_email, $user_pass ) {
 		
 		try {
 			// ------------------------------------------------------------------
-			$request = new \DMS\Helper\DMS_API_Request();
+			$request = new DMS_API_Request();
 			
 			$options = [
 				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Account/Register',
@@ -259,22 +311,29 @@ class Account {
 			
 			// error cURL
 			if ( $res['curl_error'] ) {
-				throw new \Exception( $res['curl_error'], self::$err_codes['ERR_REG__CURL_ERROR'] );
+				throw new DMS_Exeption(
+					$res['curl_error'],
+					self::get_error_code( 'ERR_REG__CURL_ERROR' ),
+					null,
+					__( 'ошибка cURL ', 'dms' )
+				);
 			}
 			
 			// error e-mail already taken
 			if (
 				$res['http_code'] === 400
 				&&
-				! empty( $res['body']['ModelState'][''][1] )
+				! empty( $response_message = $res['body']['ModelState'][''][1] )
 				&&
-				strpos( $res['body']['ModelState'][''][1], 'Email' ) !== false
+				strpos( $response_message, 'Email' ) !== false
 				&&
-				strpos( $res['body']['ModelState'][''][1], 'already taken' ) !== false
+				strpos( $response_message, 'already taken' ) !== false
 			) {
-				throw new \Exception(
-					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][1]}",
-					self::$err_codes['ERR_REG__ALREADY_EXISTS']
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']}; {$response_message}",
+					self::get_error_code( 'ERR_REG__ALREADY_EXISTS' ),
+					null,
+					$response_message
 				);
 			}
 			
@@ -283,15 +342,17 @@ class Account {
 			if (
 				$res['http_code'] === 400
 				&&
-				! empty( $res['body']['ModelState'][''][0] )
+				! empty( $response_message = $res['body']['ModelState'][''][0] )
 				&&
-				strpos( $res['body']['ModelState'][''][0], 'Email' ) !== false
+				strpos( $response_message, 'Email' ) !== false
 				&&
-				strpos( $res['body']['ModelState'][''][0], 'is invalid' ) !== false
+				strpos( $response_message, 'is invalid' ) !== false
 			) {
-				throw new \Exception(
-					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][0]}",
-					self::$err_codes['ERR_REG__INVALID_EMAIL']
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']}; {$response_message}",
+					self::get_error_code( 'ERR_REG__INVALID_EMAIL' ),
+					null,
+					$response_message
 				);
 			}
 			
@@ -300,56 +361,166 @@ class Account {
 			if (
 				$res['http_code'] === 400
 				&&
-				! empty( $res['body']['ModelState'][''][0] )
+				! empty( $response_message = $res['body']['ModelState'][''][0] )
 				&&
-				strpos( $res['body']['ModelState'][''][0], 'Password' ) !== false
+				strpos( $response_message, 'Password' ) !== false
 			) {
-				throw new \Exception(
-					"HTTP Code = {$res['http_code']}; {$res['body']['ModelState'][''][1]}",
-					self::$err_codes['ERR_REG__INVALID_PASSWORD']
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']}; {$response_message}",
+					self::get_error_code( 'ERR_REG__INVALID_PASSWORD' ),
+					null,
+					$response_message
 				);
 			}
 			
 			// error unknown error by http code not 200
 			if ( $res['http_code'] !== 200 ) {
-				throw new \Exception( "HTTP Code = {$res['http_code']}", self::$err_codes['ERR_REG__UNKNOWN'] );
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']}",
+					self::get_error_code( 'ERR_REG__UNKNOWN' ),
+					null,
+					__( 'неизвестная ошибка', 'dms' )
+				);
 			}
 			
-			// error empty body
-			if ( ! $res['body'] ) {
-				throw new \Exception( 'Body of file is empty', self::$err_codes['ERR_REG__EMPTY_RESPONSE'] );
-			}
 			// ------------------------------------------------------------------
 			
-		} catch ( \Exception $e ) {
+		} catch ( DMS_Exeption $e ) {
 			
-			$err = array_search( $e->getCode(), self::$err_codes, true );
-			Logger::log( "ERROR [{$err}] : {$e->getMessage()}", '', 'user_registration' );
+			Logger::log( "API: ERROR [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}", '', 'user_registration' );
 			
 			return [
-				'success' => false,
-				'message' => "ERROR [{$e->getCode()}] : {$e->getMessage()}",
+				'success'       => false,
+				'message'       => "API: ERROR [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}",
+				'message_front' => $e->getMessageFront(),
+				'error_code'    => $e->getCode(),
 			];
 		}
 		
-		Logger::log( "SUCCESS [email({$user_email})]", '', 'user_registration' );
+		// http_code === 200 OK
+		
+		Logger::log( "API: SUCCESS [email({$user_email})]", '', 'user_registration' );
 		
 		return [
-			'success' => false,
-			'message' => '',
+			'success'       => true,
+			'message'       => '',
+			'message_front' => '',
+			'error_code'    => 0,
 		];
 	}
 	
 	
 	
-	private static function _user_reg__send_valid_error( $error_html, $message = '' ) {
-		wp_send_json_error( [
-			'message'    => __FUNCTION__ . ' : user registration error. ' . $message,
-			'user_id'    => 0,
-			'error_html' => $error_html,
-			'redirect'   => '',
-			'_REQUEST'   => $_REQUEST,
-		] );
+	
+	/**
+	 * @param $user mixed   \WP_User object or user ID
+	 * 
+	 * @return void
+	 */
+	public static function user_save_token( $user ) {
+		
+		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', (int) $user);
+		
+		$user_email = $user->user_email;
+		$user_pass  = self::get_api_pass( $user->ID );
+		
+		// try to get token for the user
+		$api__get_token_process = self::api__get_token( $user_email, $user_pass );
+		
+		if ( ! empty( $api__get_token_process['data']['access_token'] ) ) {
+			update_user_meta( $user->ID, '_dms--user_token', $api__get_token_process['data']['access_token'] );
+		}
+		
+	}
+	
+	
+	
+	public static function api__get_token( $user_email, $user_pass, $grant_type = 'password' ) {
+		
+		try {
+			// ------------------------------------------------------------------
+			$request = new DMS_API_Request();
+			
+			$options = [
+				CURLOPT_URL           => 'http://217.147.161.26:2660/Token',
+				CURLOPT_CUSTOMREQUEST => 'POST',
+				CURLOPT_POSTFIELDS    => "username={$user_email}&password={$user_pass}&grant_type={$grant_type}",
+				CURLOPT_HTTPHEADER    => [
+					'Content-Type: application/x-www-form-urlencoded',
+				],
+			];
+			
+			$request->init( $options );
+			$res = $request->exec();
+			
+			
+			// error cURL
+			if ( $res['curl_error'] ) {
+				throw new DMS_Exeption(
+					$res['curl_error'],
+					self::get_error_code( 'ERR_REG__CURL_ERROR' ),
+					null,
+					__( 'ошибка cURL ', 'dms' )
+				);
+			}
+			
+			// error 
+			if ( $res['http_code'] !== 200 ) {
+				
+				$response_error      = ! empty( $res['body']['error'] ) ? $res['body']['error'] : '';
+				$response_error_desc = ! empty( $res['body']['error_description'] ) ? $res['body']['error_description'] : '';
+				
+				$err_name      = $response_error === 'invalid_grant' ? 'ERR_TOKEN__INVALID_GRANT' : 'ERR_TOKEN__UNKNOWN';
+				$err_for_front = $response_error === 'invalid_grant' ? __( 'ошибка доступа', 'dms' ) : __( 'неизвестная ошибка', 'dms' );
+				
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']} {$response_error}; {$response_error_desc}",
+					self::get_error_code( $err_name ),
+					null,
+					$err_for_front
+				);
+			}
+			
+			// ------------------------------------------------------------------
+			
+		} catch ( DMS_Exeption $e ) {
+			
+			Logger::log( "API: ERROR [email({$user_email})] [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}", '', 'user_get_token' );
+			
+			return [
+				'success'       => false,
+				'message'       => "API: ERROR [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}",
+				'message_front' => $e->getMessageFront(),
+				'error_code'    => $e->getCode(),
+				'data'          => [],
+			];
+		}
+		
+		// http_code === 200 OK
+		
+		Logger::log( "API: SUCCESS [email({$user_email})]", '', 'user_get_token' );
+		
+		return [
+			'success'       => true,
+			'message'       => '',
+			'message_front' => '',
+			'error_code'    => 0,
+			'data'          => $res['body'],
+		];
+	}
+	
+	
+	
+	
+	public static function get_error_code( $error_name ) {
+		return array_search( $error_name, self::$err_codes, true );
+	}
+	
+	
+	
+	
+	public static function get_error_name( $error_code ) {
+		return ! empty( self::$err_codes[ $error_code ] ) ? self::$err_codes[ $error_code ] : false;
 	}
 	
 	
