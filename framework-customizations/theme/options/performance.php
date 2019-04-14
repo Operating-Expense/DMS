@@ -63,7 +63,7 @@ $options = array(
 
 					)
 				),
-
+				/*
 				'http2' => array(
 					'title'   => esc_html__( 'HTTP/2 Preload Options', 'dms' ),
 					'type'    => 'box',
@@ -101,6 +101,7 @@ $options = array(
 						),
 					)
 				),
+				*/
 				'wp_head' => array(
 					'title'   => esc_html__( 'WP Head Options', 'dms' ),
 					'type'    => 'box',
