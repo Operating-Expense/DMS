@@ -39,7 +39,7 @@ class DMS_API_Request {
 		
 		$options = array_replace( $options_defaults, $options );
 		
-		//Logger::log( $options, 'request >>', 'user_registration_request' );
+		//Logger::log( $options, 'request >>', 'api_request' );
 		
 		curl_setopt_array( $this->ch, $options );
 	}
@@ -95,7 +95,7 @@ class DMS_API_Request {
 		// url
 		$result['last_url'] = curl_getinfo( $this->ch, CURLINFO_EFFECTIVE_URL );
 		
-		Logger::log( $result, 'response >>', 'user_registration_request' );
+		Logger::log( $result, 'response >>', 'api_request' );
 		
 		return $result;
 	}

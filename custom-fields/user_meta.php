@@ -17,8 +17,8 @@ function dms_user_meta() {
 		
 		         Field::make( 'image', 'dms--user_ava', __( 'Фото' ) ),
 		
-		         Field::make( 'text', 'dms--user_tariff', __( 'Тариф', 'dms' ) ),
-		         Field::make( 'text', 'dms--user_balance', __( 'Баланс', 'dms' ) ),
+		         Field::make( 'text', 'dms--user_api_data__tariff', __( 'Тариф', 'dms' ) ),
+		         Field::make( 'text', 'dms--user_api_data__balance', __( 'Баланс', 'dms' ) )->set_attribute( 'readOnly', true ),
 	
 	         ) );
 	

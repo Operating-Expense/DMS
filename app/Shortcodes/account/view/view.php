@@ -36,8 +36,8 @@ $user_phone           = Utils::get_user_meta( $user_id, 'dms--user_phone', '' );
 $user_reg_code        = Utils::get_user_meta( $user_id, 'dms--user_reg_code', '' );
 $user_photo_id        = Utils::get_user_meta( $user_id, 'dms--user_ava', 0 );
 
-$user_tariff_plan = Utils::get_user_meta( $user_id, 'dms--user_tariff', __( 'Нет', 'dms' ) );
-$user_balance     = Utils::get_user_meta( $user_id, 'dms--user_balance', 0 );
+$user_tariff_plan = Utils::get_user_meta( $user_id, 'dms--user_api_data__tariff', __( 'Нет', 'dms' ) );
+$user_balance     = Utils::get_user_meta( $user_id, 'dms--user_api_data__balance', 0 );
 
 
 ?>

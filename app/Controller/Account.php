@@ -22,6 +22,28 @@ class Account {
 		777300 => 'ERR_REG__EMPTY_RESPONSE',
 		777400 => 'ERR_TOKEN__UNKNOWN',
 		777410 => 'ERR_TOKEN__INVALID_GRANT',
+		777500 => 'ERR_USER__UNKNOWN',
+		777510 => 'ERR_USER__ACCESS_DENIED',
+	];
+	
+	// !!! Don't change this values
+	public static $api_fields = [
+		'token' => [   // api_key => part_of_meta_key
+			'access_token' => 'access_token', 
+			'token_type'   => 'token_type',
+			'expires_in'   => 'expires_in',
+			'userName'     => 'user_name',
+			'.issued'      => 'issued',
+			'.expires'     => 'expires',
+		],
+		'data'  => [
+			'UserID'             => 'user_id',
+			'Name'               => 'name',
+			'DateInsert'         => 'date_insert',
+			'IsActive'           => 'is_active',
+			'Balance'            => 'balance',
+			'LastTransationDate' => 'last_transation_date',
+		],
 	];
 	
 	
@@ -57,15 +79,21 @@ class Account {
 		add_action( 'after_password_reset', array( __CLASS__, 'after_password_reset_redirect' ), 77 );
 		
 		// receive and save token after user registration
-		add_action( 'dms/user_registration/after', array( __CLASS__, 'user_save_token' ), 10, 2 );
+		add_action( 'dms/user_registration/after', array( __CLASS__, 'user_save_api_token' ), 10, 2 );
+		
+		// receive and save user data after user registration
+		add_action( 'dms/user_registration/after', array( __CLASS__, 'user_save_api_data' ), 10, 2 );
 		
 		// receive and save token after user signin
-		add_action( 'dms/user_signin/after', array( __CLASS__, 'user_save_token' ), 10, 1 );
+		add_action( 'dms/user_signin/after', array( __CLASS__, 'user_save_api_token' ), 10, 1 );
+		
+		// receive and save user data after user signin
+		add_action( 'dms/user_signin/after', array( __CLASS__, 'user_save_api_data' ), 10, 1 );
 	}
 	
 	
 	
-	public static function user_signin() {
+	public static function user_signin(): void {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -107,7 +135,7 @@ class Account {
 	
 	
 	
-	private static function user_signin_process( $user ) {
+	private static function user_signin_process( $user ): bool {
 		
 		if ( ! ( $user instanceof \WP_User ) ) {
 			return false;
@@ -134,7 +162,7 @@ class Account {
 	
 	
 	
-	public static function is_user_email_exists() {
+	public static function is_user_email_exists(): void {
 		
 		if ( ! Utils::verify_post_ajax_nonce() || email_exists( $_POST['email'] ) ) {
 			die( 'false' );
@@ -144,7 +172,7 @@ class Account {
 	
 	
 	
-	public static function user_registration() {
+	public static function user_registration(): void {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -269,7 +297,7 @@ class Account {
 	
 	
 	
-	private static function _user_reg__send_valid_error( $error_html, $message = '' ) {
+	private static function _user_reg__send_valid_error( $error_html, $message = '' ): void {
 		wp_send_json_error( [
 			'message'    => __FUNCTION__ . ' : user registration error. ' . $message,
 			'user_id'    => 0,
@@ -281,19 +309,24 @@ class Account {
 	
 	
 	
-	public static function get_api_pass( $user_id ) {
-		return base64_decode( get_user_meta( (int)$user_id, '_dms--user_api_pass', true ) );
+	public static function get_api_pass( int $user_id ): string {
+		return base64_decode( get_user_meta( $user_id, '_dms--user_api_pass', true ) );
 	}
 	
 	
 	
-	public static function set_api_pass( $user_id, $value ) {
+	public static function set_api_pass( int $user_id, string $value ): void {
 		update_user_meta( $user_id, '_dms--user_api_pass', base64_encode( $value ) );
 	}
 	
 	
+	public static function get_saved_api_access_token( int $user_id ): string {
+		return get_user_meta( $user_id, '_dms--user_api_token__access_token', true );
+	}
 	
-	private static function api__register_user( $user_email, $user_pass ) {
+	
+	
+	private static function api__register_user( string $user_email, string $user_pass ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -414,28 +447,37 @@ class Account {
 	
 	/**
 	 * @param $user mixed   \WP_User object or user ID
-	 * 
+	 *
 	 * @return void
 	 */
-	public static function user_save_token( $user ) {
+	public static function user_save_api_token( $user ): void {
 		
-		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', (int) $user);
+		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', $user );
 		
 		$user_email = $user->user_email;
 		$user_pass  = self::get_api_pass( $user->ID );
 		
 		// try to get token for the user
-		$api__get_token_process = self::api__get_token( $user_email, $user_pass );
+		$api_process = self::api__get_token( $user_email, $user_pass );
 		
-		if ( ! empty( $api__get_token_process['data']['access_token'] ) ) {
-			update_user_meta( $user->ID, '_dms--user_token', $api__get_token_process['data']['access_token'] );
-		}
+		// update meta fields
+		self::update_user_fields_by_api( $user, 'token', $api_process['data'] );
 		
 	}
 	
 	
 	
-	public static function api__get_token( $user_email, $user_pass, $grant_type = 'password' ) {
+	public static function update_user_fields_by_api( \WP_User $user, string $context, array $data ): void {
+		foreach ( self::$api_fields[ $context ] as $field_api => $field_meta ) {
+			if ( ! empty( $data[ $field_api ] ) ) {
+				update_user_meta( $user->ID, "_dms--user_api_{$context}__{$field_meta}", $data[ $field_api ] );
+			}
+		}
+	}
+	
+	
+	
+	public static function api__get_token( $user_email, $user_pass, $grant_type = 'password' ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -511,6 +553,115 @@ class Account {
 	
 	
 	
+	/**
+	 * @param $user mixed   \WP_User object or user ID
+	 *
+	 * @return void
+	 */
+	public static function user_save_api_data( $user ): void {
+		
+		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', $user );
+		
+		$user_email = $user->user_email;
+		$user_token = self::get_saved_api_access_token( $user->ID );
+		
+		// try to get api data for the user
+		$api_process = self::api__get_data( $user_email, $user_token );
+		
+		// update meta fields
+		self::update_user_fields_by_api( $user, 'data', $api_process['data'] );
+	}
+	
+	
+	
+	public static function api__get_data( string $user_email, string $token ): array {
+		
+		try {
+			// ------------------------------------------------------------------
+			$request = new DMS_API_Request();
+			
+			$options = [
+				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Users',
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER    => [
+					'Content-Type: application/json',
+					"Authorization: Bearer {$token}",
+				],
+			];
+			
+			$request->init( $options );
+			$res = $request->exec();
+			
+			
+			// error cURL
+			if ( $res['curl_error'] ) {
+				throw new DMS_Exeption(
+					$res['curl_error'],
+					self::get_error_code( 'ERR_REG__CURL_ERROR' ),
+					null,
+					__( 'ошибка cURL ', 'dms' )
+				);
+			}
+			
+			// error 
+			if ( $res['http_code'] !== 200 ) {
+				// "Message": "Authorization has been denied for this request."
+				$response_error = ! empty( $res['body']['Message'] ) ? $res['body']['Message'] : '';
+				
+				$err_name      = $response_error === 'Authorization has been denied for this request.'
+					? 'ERR_USER__ACCESS_DENIED' : 'ERR_USER__UNKNOWN';
+				$err_for_front = $response_error === 'Authorization has been denied for this request.'
+					? __( 'ошибка доступа', 'dms' ) : __( 'неизвестная ошибка', 'dms' );
+				
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']} {$response_error};",
+					self::get_error_code( $err_name ),
+					null,
+					$err_for_front
+				);
+			}
+			
+			// ------------------------------------------------------------------
+			
+		} catch ( DMS_Exeption $e ) {
+			
+			Logger::log( "API: ERROR [email({$user_email})] [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}", '', 'user_get_data' );
+			
+			return [
+				'success'       => false,
+				'message'       => "API: ERROR [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . "] : {$e->getMessage()}",
+				'message_front' => $e->getMessageFront(),
+				'error_code'    => $e->getCode(),
+				'data'          => [],
+			];
+		}
+		
+		// http_code === 200 OK
+		
+		Logger::log( "API: SUCCESS [email({$user_email})]", '', 'user_get_data' );
+		
+		return [
+			'success'       => true,
+			'message'       => '',
+			'message_front' => '',
+			'error_code'    => 0,
+			'data'          => self::get_curr_user_data( $user_email, $res['body'] ),
+		];
+	}
+	
+	
+	
+	public static function get_curr_user_data( $user_email, $response_data ) {
+		foreach ( $response_data as $item_user_data ) {
+			if ( $item_user_data['Name'] === $user_email ) {
+				return $item_user_data;
+			}
+		}
+		
+		return $response_data[0];
+	}
+	
+	
 	
 	public static function get_error_code( $error_name ) {
 		return array_search( $error_name, self::$err_codes, true );
@@ -525,7 +676,7 @@ class Account {
 	
 	
 	
-	public static function user_forgot() {
+	public static function user_forgot(): void {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
