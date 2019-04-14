@@ -59,11 +59,11 @@ class VisualComposer {
 	 **/
 	public function setup_vc() {
 
-		/**
-		 * if( function_exists( 'vc_disable_frontend') ) {
-		 * vc_disable_frontend();
-		 * }
-		 **/
+		
+		if( function_exists( 'vc_disable_frontend') ) {
+			vc_disable_frontend();
+		}
+		 
 
 		if ( function_exists( 'vc_set_default_editor_post_types' ) ) {
 			$list = array(
@@ -111,7 +111,6 @@ class VisualComposer {
 
 		vc_remove_param( 'vc_row', 'gap' );
 
-		vc_disable_frontend();
 	}
 
 }

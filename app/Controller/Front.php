@@ -146,8 +146,8 @@ class Front {
 			$path_to_lang_file = get_theme_file_path( "assets/libs/jquery-validation/localization/messages_{$current_lang}.js" );
 			$uri_to_lang_file  = get_theme_file_uri( "assets/libs/jquery-validation/localization/messages_{$current_lang}.js" );
 			
-			if ( file_exists( $path_to_lang_file ) ) { 
-				Assets::enqueue_script( 'jquery-validation-lang-'.$current_lang , $uri_to_lang_file, [ 'jquery' ], DMS()->config['cache_time'], true );
+			if ( file_exists( $path_to_lang_file ) ) {
+				Assets::enqueue_script( 'jquery-validation-lang-' . $current_lang, $uri_to_lang_file, [ 'jquery' ], DMS()->config['cache_time'], true );
 			}
 			
 		}
@@ -170,8 +170,8 @@ class Front {
 	
 	public static function get_js_localize_stings() {
 		return [
-			'registration/entered_email_exists' => __( 'Введенный e-mail уже зарегистрирован','dms'),
-			'registration/password_not_strong'  => __( 'Пароль должен содержать большие и маленьние символы(лат), цифры и спецсимволы','dms'),
+			'registration/entered_email_exists' => __( 'Введенный e-mail уже зарегистрирован', 'dms' ),
+			'registration/password_not_strong'  => __( 'Пароль должен содержать большие и маленьние символы(лат), цифры и спецсимволы', 'dms' ),
 		];
 	}
 	

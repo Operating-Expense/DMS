@@ -15,6 +15,7 @@ export default class Theme {
 		this.setupHeader();
 		this.loadGoogleFonts();
 		this.mobileMenuListener('.navigation-menu');
+		this.smoothScrollToAnchor();
 		this.dmsPopups();
 	}
 	
@@ -137,6 +138,32 @@ export default class Theme {
 		});
 		
 	}
+	
+	
+	smoothScrollToAnchor() {
+		let $root = $('html, body');
+		
+		$('a[href^="#"], a[href^="/#"]').not('[href="#"]').on('click', function (event) {
+			let href = $.attr(this, 'href');
+			let hrefHashOnly = href.replace(/^\//, '');
+			
+			// Figure out element to scroll to
+			let target = $(hrefHashOnly);
+			
+			// Does a scroll target exist?
+			if (target.length) {
+				// Only prevent default if animation is actually gonna happen
+				event.preventDefault();
+				$root.animate({
+					scrollTop: $(hrefHashOnly).offset().top
+				}, 700, function () {
+					window.location.hash = hrefHashOnly;
+				});
+			}
+			
+		});
+	}
+	
 	
 	// AVA
 	

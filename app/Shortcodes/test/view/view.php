@@ -15,8 +15,6 @@ if ( ! empty( $atts['el_classes'] ) ) {
 $attributes[] = ! empty( $atts['el_id'] ) ? 'id="' . $atts['el_id'] . '"' : '';
 $attributes[] = ! empty( $classes ) ? 'class="' . implode( ' ', $classes ) . '"' : '';
 
-$header_title = esc_html( $atts['header_title'] );
-
 $title = $atts['title'];
 $text  = ! empty( $data['content'] )
 	? apply_filters( 'the_content', $data['content'] )
@@ -52,7 +50,7 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 						<?php echo __( 'Имя', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_first" placeholder="" value="Сергей">
+						<input class="form-control" id="how_first" placeholder="" value="">
 						<div class="s-test__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
@@ -65,7 +63,7 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 						<?php echo __( 'Отчество', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_middle" placeholder="" value="Сергеевич">
+						<input class="form-control" id="how_middle" placeholder="" value="">
 						<div class="s-test__input_result">
 							<!--							<div class="result_row">♀</div>-->
 							<div class="result_row result_row_gender">♂</div>
@@ -78,7 +76,7 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 						<?php echo __( 'Населенный пункт', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_city" placeholder="" value="Киев">
+						<input class="form-control" id="how_city" placeholder="" value="">
 						<div class="s-test__input_result">
 							<div class="result_row">Киевский район</div>
 							<div class="result_row">Киевская область</div>
@@ -91,7 +89,7 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 						<?php echo __( 'Улица', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_street" placeholder="" value="Строителей">
+						<input class="form-control" id="how_street" placeholder="" value="">
 						<div class="s-test__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
@@ -104,7 +102,7 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 						<?php echo __( 'Дом', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_house" placeholder="" value="15/15">
+						<input class="form-control" id="how_house" placeholder="" value="">
 						<div class="s-test__input_result">
 							<div class="result_row">55.193376, 61.347116</div>
 							<div class="result_row">04080</div>
