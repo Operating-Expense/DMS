@@ -16,6 +16,7 @@ export default class Theme {
 		this.loadGoogleFonts();
 		this.mobileMenuListener('.navigation-menu');
 		this.smoothScrollToAnchor();
+		this.changeLinkToLocalized();
 		this.dmsPopups();
 	}
 	
@@ -159,6 +160,32 @@ export default class Theme {
 				}, 700, function () {
 					window.location.hash = hrefHashOnly;
 				});
+			}
+			
+		});
+	}
+	
+	
+	changeLinkToLocalized() {
+		
+		$('a[href^="/#"]').on('click', function (event) {
+			let href = $.attr(this, 'href');
+			let hrefHashOnly = href.replace(/^\//, '');
+			
+			// Figure out element to
+			let target = $(hrefHashOnly);
+			
+			// Does a target not exist? -> go to another page
+			if (!target.length && window.WPGlobus) {
+				event.preventDefault();
+				
+				let langPart = window.WPGlobus.enabledLanguages[0] === window.WPGlobus.language ? '' : window.WPGlobus.language + '/';
+				
+				window.location.href = window.location.protocol + '//'
+					+ window.location.hostname
+					+ (location.port ? ":" + location.port : "")
+					+ '/' + langPart
+					+ hrefHashOnly;
 			}
 			
 		});

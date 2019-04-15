@@ -71,13 +71,16 @@ $user_id      = $current_user->ID;
 					<?php
 					
 					$is_in_account_page = is_page( 'account' );
+					$account_url_std    = class_exists( 'WPGlobus_Utils' )
+						? WPGlobus_Utils::localize_url( get_permalink( get_page_by_path( 'account' ) ) )
+						: get_permalink( get_page_by_path( 'account' ) );
 					
 					if ( ! is_user_logged_in() ) {
-						$account_url      = site_url( '/account' );
+						$account_url      = $account_url_std;
 						$account_js_class = ' js-dms-account';
 						$account_btn_text = __( 'Личный кабинет', 'dms' );
 					} else {
-						$account_url      = $is_in_account_page ? wp_logout_url( site_url() ) : site_url( '/account' );
+						$account_url      = $is_in_account_page ? wp_logout_url( site_url() ) : $account_url_std;
 						$account_js_class = '';
 						$account_btn_text = $is_in_account_page ? __( 'Выйти', 'dms' ) : __( 'Личный кабинет', 'dms' );
 					}
