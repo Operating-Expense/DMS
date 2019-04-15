@@ -1,7 +1,9 @@
 <?php
 
+namespace DMS\DMS_API;
 
-namespace DMS\Helper;
+use DMS\Helper\Logger;
+
 
 
 class DMS_API_Request {

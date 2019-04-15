@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import dmsSearch from './dms/search.js';
 
 export default class Theme {
 	/**
@@ -18,6 +19,7 @@ export default class Theme {
 		this.smoothScrollToAnchor();
 		this.changeLinkToLocalized();
 		this.dmsPopups();
+		dmsSearch().init();
 	}
 	
 	/**

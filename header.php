@@ -72,7 +72,7 @@ $user_id      = $current_user->ID;
 					
 					$is_in_account_page = is_page( 'account' );
 					$account_url_std    = class_exists( 'WPGlobus_Utils' )
-						? WPGlobus_Utils::localize_url( get_permalink( get_page_by_path( 'account' ) ) )
+						? \WPGlobus_Utils::localize_url( get_permalink( get_page_by_path( 'account' ) ) )
 						: get_permalink( get_page_by_path( 'account' ) );
 					
 					if ( ! is_user_logged_in() ) {
