@@ -31,6 +31,11 @@ class DMS_API {
 		
 		// receive and save user data after user signin
 		add_action( 'dms/user_signin/after', array( DMS_API_Manager::class, 'user_save_api_data' ), 10, 1 );
+		
+		// api search
+		add_action( 'wp_ajax_' . 'dms/api_search/field/first', array(  DMS_API_Manager::class, 'search_first' ) );
+		
+		
 	}
 	
 	

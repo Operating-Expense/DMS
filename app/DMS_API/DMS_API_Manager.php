@@ -30,6 +30,11 @@ class DMS_API_Manager {
 		],
 	];
 	
+	public static $moniker_live_period = 840; // sec,  api - 900
+	
+	//public static $max_number_of_results = 3;
+	
+	
 	
 	
 	/**
@@ -84,6 +89,79 @@ class DMS_API_Manager {
 		
 		// update meta fields
 		self::update_user_fields_by_api( $user, 'data', $api_process['data'] );
+	}
+	
+	
+	
+	public static function search_first(): void {
+		
+		if ( ! Utils::verify_post_ajax_nonce() ) {
+			return;
+		}
+		
+		// data
+		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
+		$current_user   = wp_get_current_user();
+		
+		$home_url = class_exists( 'WPGlobus_Utils' )
+			? \WPGlobus_Utils::localize_url( home_url() )
+			: home_url();
+		$home_url = esc_url( $home_url );
+		
+		// checks
+		if ( ! $current_user->ID ) {
+			wp_send_json_error( [
+				'message'    => __FUNCTION__ . ' : User not Authorized',
+				'user_id'    => 0,
+				'error_html' => __( 'Вы не авторизованы. Перезайдите в кабинет', 'dms' ),
+				'redirect'   => $home_url,
+				'result'     => '',
+				'_REQUEST'   => $_REQUEST,
+			] );
+		}
+		
+		if ( ! $search_request ) {
+			wp_send_json_error( [
+				'message'    => __FUNCTION__ . ' : search_request is empty',
+				'user_id'    => $current_user->ID,
+				'error_html' => __( 'Пустой поисковый запрос', 'dms' ),
+				'redirect'   => '',
+				'result'     => '',
+				'_REQUEST'   => $_REQUEST,
+			] );
+		}
+		
+		
+		$user_email = $current_user->user_email;
+		$user_token = self::get_saved_api_access_token( $current_user->ID );
+		
+		// try to get api data for the user
+		$api_process = DMS_API_Process::api__get_field_First( $user_email, $user_token, $search_request );
+		
+		// checks
+		
+		if ( isset( $api_process['data'] ) ) {
+			
+			$data = apply_filters( 'dms/api_search_ajax/Firsts/data', $api_process['data'], $user_email, $search_request );
+			
+			wp_send_json_success( [
+				'message'    => __FUNCTION__ . ' : success',
+				'user_id'    => $current_user->ID,
+				'error_html' => '',
+				'redirect'   => '',
+				'result'     => $data,
+				'_REQUEST'   => $_REQUEST,
+			] );
+		}
+		
+		wp_send_json_error( [
+			'message'    => __FUNCTION__ . ' : unknown error',
+			'user_id'    => $current_user->ID,
+			'error_html' => __( 'Неизвестная ошибка', 'dms' ),
+			'redirect'   => '',
+			'result'     => '',
+			'_REQUEST'   => $_REQUEST,
+		] );
 	}
 	
 	

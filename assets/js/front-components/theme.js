@@ -19,7 +19,7 @@ export default class Theme {
 		this.smoothScrollToAnchor();
 		this.changeLinkToLocalized();
 		this.dmsPopups();
-		dmsSearch().init();
+		this.dmsApiSearch();
 	}
 	
 	/**
@@ -208,7 +208,9 @@ export default class Theme {
 	}
 	
 	
-	// POPUPS
+	// --------------------------------------------------------------------
+	//    POPUPS 
+	// --------------------------------------------------------------------
 	
 	dmsPopups() {
 		this.dmsPopupClose();
@@ -243,7 +245,9 @@ export default class Theme {
 		});
 	}
 	
-	
+	// --------------------------------------------------------------------
+	//    Account 
+	// --------------------------------------------------------------------
 	dmsAccountAjaxHandler(form, action, errorBox) {
 		
 		if (!form.length || !action.length || !errorBox.length) {
@@ -402,8 +406,32 @@ export default class Theme {
 			required: true,
 			email: true,
 		});
+	}
+	
+	
+	// --------------------------------------------------------------------
+	//    DMS API Search 
+	// --------------------------------------------------------------------
+	dmsApiSearch() {
+		'use strict';
 		
+		const genFieldData = (name, minLength, resultLimit) => {
+			return {
+				name,
+				inputSelector: `#s-test__try_form input[name="${name}"]`,
+				action: `dms/api_search/field/${name}`,
+				minLength: minLength || 1,
+				resultLimit: resultLimit || 10,
+				url: window.themeJsVars.ajaxurl, // common field
+				nonce: window.themeJsVars.ajax_nonce,  // common field
+			};
+		};
 		
+		dmsSearch(genFieldData('first', 1, 10)).init();
+		dmsSearch(genFieldData('middle', 1, 10)).init();
+		dmsSearch(genFieldData('city', 1, 10)).init();
+		dmsSearch(genFieldData('street', 1, 10)).init();
+		dmsSearch(genFieldData('house', 1, 10)).init();
 	}
 	
 	

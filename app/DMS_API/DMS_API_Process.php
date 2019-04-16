@@ -20,6 +20,8 @@ class DMS_API_Process {
 		777410 => 'ERR_TOKEN__INVALID_GRANT',
 		777500 => 'ERR_USER__UNKNOWN',
 		777510 => 'ERR_USER__ACCESS_DENIED',
+		777610 => 'ERR_SEARCH_FIRSTS__UNKNOWN',
+		777611 => 'ERR_SEARCH_FIRSTS__ACCESS_DENIED',
 	];
 	
 	
@@ -294,6 +296,86 @@ class DMS_API_Process {
 	}
 	
 	
+	
+	public static function api__get_field_First( string $user_email, string $token, string $search_request ): array {
+		
+		try {
+			// ------------------------------------------------------------------
+			$request = new DMS_API_Request();
+			
+			$options = [
+				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Firsts?sRequest=' . urlencode($search_request),
+				CURLOPT_CUSTOMREQUEST => 'GET',
+				CURLOPT_HTTPHEADER    => [
+					'Content-Type: application/json',
+					"Authorization: Bearer {$token}",
+				],
+			];
+			
+			$request->init( $options );
+			$res = $request->exec();
+			
+			
+			// error cURL
+			if ( $res['curl_error'] ) {
+				throw new DMS_Exeption(
+					$res['curl_error'],
+					self::get_error_code( 'ERR_REG__CURL_ERROR' ),
+					null,
+					__( 'ошибка cURL ', 'dms' )
+				);
+			}
+			
+			// error 
+			if ( $res['http_code'] !== 200 ) {
+				// "Message": "Authorization has been denied for this request."
+				$response_error = ! empty( $res['body']['Message'] ) ? $res['body']['Message'] : '';
+				
+				$err_name      = $response_error === 'Authorization has been denied for this request.'
+					? 'ERR_SEARCH_FIRSTS__ACCESS_DENIED' : 'ERR_SEARCH_FIRSTS__UNKNOWN';
+				$err_for_front = $response_error === 'Authorization has been denied for this request.'
+					? __( 'ошибка доступа', 'dms' ) : __( 'неизвестная ошибка', 'dms' );
+				
+				throw new DMS_Exeption(
+					"HTTP Code = {$res['http_code']} {$response_error};",
+					self::get_error_code( $err_name ),
+					null,
+					$err_for_front
+				);
+			}
+			
+			// ------------------------------------------------------------------
+			
+		} catch ( DMS_Exeption $e ) {
+			
+			$err_details = "[email({$user_email})] [sRequest:{$search_request}] [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . ']'; 
+			
+			Logger::log( "API: ERROR {$err_details} : {$e->getMessage()}", '', 'search__Firsts' );
+			
+			return [
+				'success'       => false,
+				'message'       => "API: ERROR {$err_details} : {$e->getMessage()}",
+				'message_front' => $e->getMessageFront(),
+				'error_code'    => $e->getCode(),
+				'data'          => [],
+			];
+		}
+		
+		// http_code === 200 OK
+		
+		Logger::log( "API: SUCCESS [email({$user_email})] [sRequest:{$search_request}]", '', 'search__Firsts' );
+		
+		return [
+			'success'       => true,
+			'message'       => '',
+			'message_front' => '',
+			'error_code'    => 0,
+			'data'          => $res['body'],
+		];
+	}
+	
+	
+	// ==========================================================================
 	
 	public static function get_curr_user_data( $user_email, $response_data ) {
 		foreach ( $response_data as $item_user_data ) {

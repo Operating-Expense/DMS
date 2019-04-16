@@ -43,70 +43,75 @@ $btn_try_url  = esc_url( $atts['btn_try_url'] );
 		
 		<div class="col-xl-6 order-2 order-xl-1 s-test__left">
 			
-			<form class="s-test__try_form form-color-gray">
+			<form id="s-test__try_form" class="s-test__try_form form-color-gray">
 				
-				<div class="form-group row">
-					<label for="how_first" class="col-sm-3 col-form-label">
+				<div class="form-group row search_box_first">
+					<label for="try_first" class="col-sm-3 col-form-label">
 						<?php echo __( 'Имя', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_first" placeholder="" value="">
-						<div class="s-test__input_result">
+						<input class="form-control" id="try_first" name="first" placeholder="">
+						<div class="s-test__input_result search_result_ext_box">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
 						</div>
+						<div class="search_result_box"></div>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="how_middle" class="col-sm-3 col-form-label">
+				<div class="form-group row search_box_middle">
+					<label for="try_middle" class="col-sm-3 col-form-label">
 						<?php echo __( 'Отчество', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_middle" placeholder="" value="">
-						<div class="s-test__input_result">
+						<input class="form-control" id="try_middle" name="middle" placeholder="">
+						<div class="s-test__input_result search_result_ext_box">
 							<!--							<div class="result_row">♀</div>-->
 							<div class="result_row result_row_gender">♂</div>
 						</div>
+						<div class="search_result_box"></div>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="how_city" class="col-sm-3 col-form-label">
+				<div class="form-group row search_box_city">
+					<label for="try_city" class="col-sm-3 col-form-label">
 						<?php echo __( 'Населенный пункт', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_city" placeholder="" value="">
-						<div class="s-test__input_result">
+						<input class="form-control" id="try_city" name="city" placeholder="">
+						<div class="s-test__input_result search_result_ext_box">
 							<div class="result_row">Киевский район</div>
 							<div class="result_row">Киевская область</div>
 						</div>
+						<div class="search_result_box"></div>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="how_street" class="col-sm-3 col-form-label">
+				<div class="form-group row search_box_street">
+					<label for="try_street" class="col-sm-3 col-form-label">
 						<?php echo __( 'Улица', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_street" placeholder="" value="">
-						<div class="s-test__input_result">
+						<input class="form-control" id="try_street" name="street" placeholder="">
+						<div class="s-test__input_result search_result_ext_box">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
 						</div>
+						<div class="search_result_box"></div>
 					</div>
 				</div>
 				
-				<div class="form-group row">
-					<label for="how_house" class="col-sm-3 col-form-label">
+				<div class="form-group row search_box_house">
+					<label for="try_house" class="col-sm-3 col-form-label">
 						<?php echo __( 'Дом', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="how_house" placeholder="" value="">
-						<div class="s-test__input_result">
+						<input class="form-control" id="try_house" name="house" placeholder="">
+						<div class="s-test__input_result search_result_ext_box">
 							<div class="result_row">55.193376, 61.347116</div>
 							<div class="result_row">04080</div>
 						</div>
+						<div class="search_result_box"></div>
 					</div>
 				</div>
 			
