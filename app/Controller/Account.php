@@ -22,25 +22,25 @@ class Account {
 		if ( wp_doing_ajax() ) {
 			
 			// user signin
-			add_action( 'wp_ajax_' . 'dms/account/user_signin', array( __CLASS__, 'user_signin' ) );
-			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_signin', array( __CLASS__, 'user_signin' ) );
+			add_action( 'wp_ajax_' . 'dms/account/user_signin', [ __CLASS__, 'user_signin' ] );
+			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_signin', [ __CLASS__, 'user_signin' ] );
 			
 			// check is_user_email_exists
-			add_action( 'wp_ajax_' . 'dms/account/is_user_email_exists', array( __CLASS__, 'is_user_email_exists' ) );
-			add_action( 'wp_ajax_nopriv_' . 'dms/account/is_user_email_exists', array( __CLASS__, 'is_user_email_exists' ) );
+			add_action( 'wp_ajax_' . 'dms/account/is_user_email_exists', [ __CLASS__, 'is_user_email_exists' ] );
+			add_action( 'wp_ajax_nopriv_' . 'dms/account/is_user_email_exists', [ __CLASS__, 'is_user_email_exists' ] );
 			
 			// user registration
-			add_action( 'wp_ajax_' . 'dms/account/user_registration', array( __CLASS__, 'user_registration' ) );
-			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_registration', array( __CLASS__, 'user_registration' ) );
+			add_action( 'wp_ajax_' . 'dms/account/user_registration', [ __CLASS__, 'user_registration' ] );
+			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_registration', [ __CLASS__, 'user_registration' ] );
 			
 			// user forgot password
-			add_action( 'wp_ajax_' . 'dms/account/user_forgot', array( __CLASS__, 'user_forgot' ) );
-			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_forgot', array( __CLASS__, 'user_forgot' ) );
+			add_action( 'wp_ajax_' . 'dms/account/user_forgot', [ __CLASS__, 'user_forgot' ] );
+			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_forgot', [ __CLASS__, 'user_forgot' ] );
 			
 		}
 		
 		// redirect after password reset
-		add_action( 'after_password_reset', array( __CLASS__, 'after_password_reset_redirect' ), 77 );
+		add_action( 'after_password_reset', [ __CLASS__, 'after_password_reset_redirect' ], 77 );
 		
 		
 	}

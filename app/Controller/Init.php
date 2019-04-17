@@ -24,6 +24,9 @@ class Init {
 		// add theme support
 		add_action( 'after_setup_theme', array( $this, 'add_theme_support' ) );
 		
+		// Remove admin bar for not admin
+		add_action( 'after_setup_theme', array( $this, 'remove_admin_bar' ) );
+		
 		// register sidebars
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 		
@@ -43,6 +46,18 @@ class Init {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'automatic-feed-links' );
 	}
+	
+	
+	/**
+	 * Remove admin bar for not admin
+	 **/
+	public function remove_admin_bar() {
+		if ( ! current_user_can( 'administrator' ) && ! is_admin() ) {
+			show_admin_bar( false );
+		}
+	}
+	
+	
 	
 	/**
 	 * Register theme sidebars

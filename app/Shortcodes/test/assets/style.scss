@@ -166,6 +166,7 @@
 				background-color: #e8e8e8;
 				z-index: 100;
 				text-align: center;
+				overflow: hidden;
 			}
 			
 			.search_result_row {
@@ -183,6 +184,8 @@
 				background-color: #e8e8e8;
 				cursor: pointer;
 				text-align: left;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 			}
 		}
 		

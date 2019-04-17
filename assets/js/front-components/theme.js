@@ -415,23 +415,22 @@ export default class Theme {
 	dmsApiSearch() {
 		'use strict';
 		
-		const genFieldData = (name, minLength, resultLimit) => {
+		const genFieldData = (name, minLength) => {
 			return {
 				name,
 				inputSelector: `#s-test__try_form input[name="${name}"]`,
 				action: `dms/api_search/field/${name}`,
 				minLength: minLength || 1,
-				resultLimit: resultLimit || 10,
 				url: window.themeJsVars.ajaxurl, // common field
 				nonce: window.themeJsVars.ajax_nonce,  // common field
 			};
 		};
 		
-		dmsSearch(genFieldData('first', 1, 10)).init();
-		dmsSearch(genFieldData('middle', 1, 10)).init();
-		dmsSearch(genFieldData('city', 1, 10)).init();
-		dmsSearch(genFieldData('street', 1, 10)).init();
-		dmsSearch(genFieldData('house', 1, 10)).init();
+		dmsSearch(genFieldData('first', 1)).init();
+		dmsSearch(genFieldData('middle', 1)).init();
+		dmsSearch(genFieldData('city', 1)).init();
+		dmsSearch(genFieldData('street', 1)).init();
+		dmsSearch(genFieldData('house', 1)).init();
 	}
 	
 	

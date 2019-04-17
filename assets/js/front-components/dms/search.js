@@ -4,15 +4,21 @@ export default (options) => {
 	let $ = window.jQuery;
 	let {name, inputSelector, url, action, nonce, minLength} = options;
 	let searchRequest = null;
-	let resultBox = $(inputSelector).siblings('.search_result_box').eq(0);
-	let form = $(inputSelector).closest('form');
-	let parent = $(inputSelector).closest('.s-test__input_rel');
+	
+	let input = $(inputSelector);
+	let resultBox = input.siblings('.search_result_box').eq(0);
+	let form = input.closest('form');
+	
+	let parent = input.closest('[data-sbname]');
 	let extBox = parent.find('.search_result_ext_box');
 	
-	let resultHandler = null;
+	let resultHandler = null, extHandler = null;
 	
 	switch (name) {
+		
 		case 'first':
+		case 'middle':
+			// =======================================================
 			resultHandler = (result) => {
 				if (!Array.isArray(result) || !result.length) {
 					return '';
@@ -21,68 +27,228 @@ export default (options) => {
 				let resultHtml = '';
 				
 				result.forEach((item, i, arr) => {
-					if (!item.First || !item.First.length) return;
-					if (!item.SexId || !item.SexId) return;
+					let mainValField = item.First ? item.First : item.Middle;
 					
-					resultHtml += `<div class="search_result_row" data-type="Firsts" data-sexid="${item.SexId}">${item.First}</div>`;
+					if (!mainValField || !mainValField.length) return;
+					
+					let SexId = item.SexId || '';
+					
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}">${mainValField}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
 			};
-			break;
-		case 'middle':
-			resultHandler = null;
-			break;
-		case 'city':
-			resultHandler = null;
-			break;
-		case 'street':
-			resultHandler = null;
-			break;
-		case 'house':
-			resultHandler = null;
-			break;
-	}
-	
-	return {
-		init: () => {
-			console.log(`dms search ${action} init...`);
 			
-			$(inputSelector).on('blur', function (event) {
-				resultBox.html('').hide();
-			});
-			
-			$('body').on('click', '.search_result_row', function (event) {
-				//event.preventDefault();
+			extHandler = (resultElement) => {
+				let $resultElement = $(resultElement);
+				let value = $resultElement.attr('data-mainval') || '';
+				let sexid = $resultElement.attr('data-sexid') || '';
 				
-				console.log(1);
-				
-				let resultBox = $(this).closest('.search_result_box');
-				let value = $(this).text();
-				let sexid = $(this).attr('data-sexid');
-				let input = $(this).closest('.s-test__input_rel').find('input');
 				let extHtml = '';
 				
 				input.val(value);
 				resultBox.html('').hide();
 				
 				if (sexid === '1') {
-					extHtml = `<div class="result_row result_row_gender" data-type="Firsts" data-sexid="${sexid}">♂</div>`;
+					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♂</div>`;
 				} else if (sexid === '2') {
-					extHtml = `<div class="result_row result_row_gender" data-type="Firsts" data-sexid="${sexid}">♀</div>`;
+					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
 				}
 				
 				extBox.html(extHtml).show();
+			};
+			
+			break;
+		// =======================================================
+		case 'city':
+			// =======================================================
+			resultHandler = (result) => {
+				if (!Array.isArray(result) || !result.length) {
+					return '';
+				}
 				
+				let resultHtml = '';
+				
+				result.forEach((item, i, arr) => {
+					let mainValField = item.City;
+					
+					if (!mainValField || !mainValField.length) return;
+					
+					let SettlementType = item.SettlementType || '';
+					let Area = item.Area || '';
+					let Region = item.Region || '';
+					let st_moniker = item.st_moniker || '';
+					
+					let valString = mainValField;
+					valString = SettlementType ? SettlementType + ' ' + valString : valString;
+					valString = Area ? valString + ', ' + Area : valString;
+					valString = Region ? valString + ', ' + Region : valString;
+					
+					resultHtml += `<div class="search_result_row" data-st_moniker="${st_moniker}" data-mainval="${mainValField}" data-region="${Region}" data-area="${Area}">${valString}</div>`;
+				});
+				
+				resultBox.html(resultHtml).show();
+			};
+			
+			extHandler = (resultElement) => {
+				let $resultElement = $(resultElement);
+				let value = $resultElement.attr('data-mainval') || '';
+				let st_moniker = $resultElement.attr('data-st_moniker') || '';
+				let region = $resultElement.attr('data-region') || '';
+				let area = $resultElement.attr('data-area') || '';
+				
+				let extHtml = '';
+				
+				input.val(value);
+				resultBox.html('').hide();
+				form.attr('data-st_moniker', st_moniker);
+				
+				
+				if (area) {
+					extHtml += `<div class="result_row" data-type="${name}" data-area="${area}">${area}</div>`;
+				}
+				if (region) {
+					extHtml += `<div class="result_row" data-type="${name}" data-area="${region}">${region}</div>`;
+				}
+				
+				extBox.html(extHtml).show();
+			};
+			break;
+		// =======================================================
+		case 'street':
+			// =======================================================
+			resultHandler = (result) => {
+				if (!Array.isArray(result) || !result.length) {
+					return '';
+				}
+				
+				let resultHtml = '';
+				
+				result.forEach((item, i, arr) => {
+					let mainValField = item.Street;
+					
+					if (!mainValField || !mainValField.length) return;
+					
+					let house_moniker = item.house_moniker || '';
+					let StreetType = item.StreetType || '';
+					
+					let valString = mainValField;
+					valString = StreetType ? StreetType + ' ' + valString : valString;
+					
+					resultHtml += `<div class="search_result_row" data-house_moniker="${house_moniker}" data-mainval="${mainValField}">${valString}</div>`;
+				});
+				
+				resultBox.html(resultHtml).show();
+			};
+			
+			extHandler = (resultElement) => {
+				let $resultElement = $(resultElement);
+				let value = $resultElement.attr('data-mainval') || '';
+				let house_moniker = $resultElement.attr('data-house_moniker') || '';
+				
+				let extHtml = '';
+				
+				input.val(value);
+				resultBox.html('').hide();
+				form.attr('data-house_moniker', house_moniker);
+				
+				extBox.html(extHtml).show();
+			};
+			break;
+		// =======================================================
+		case 'house':
+			// =======================================================
+			resultHandler = (result) => {
+				if (!Array.isArray(result) || !result.length) {
+					return '';
+				}
+				
+				let resultHtml = '';
+				
+				result.forEach((item, i, arr) => {
+					let mainValField = item.HouseNum;
+					
+					if (!mainValField || !mainValField.length) return;
+					
+					let Index_ = item.Index_ || '';
+					let Lat = item.Lat || '';
+					let Long = item.Long || '';
+					let HouseNumAdd = item.HouseNumAdd || '';
+					
+					mainValField = mainValField + HouseNumAdd;
+					let valString = mainValField;
+					
+					
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-index="${Index_}"  data-lat="${Lat}" data-long="${Long}">${valString}</div>`;
+				});
+				
+				resultBox.html(resultHtml).show();
+			};
+			
+			extHandler = (resultElement) => {
+				let $resultElement = $(resultElement);
+				let value = $resultElement.attr('data-mainval') || '';
+				let index = $resultElement.attr('data-index') || '';
+				let lat = $resultElement.attr('data-lat') || '';
+				let long = $resultElement.attr('data-long') || '';
+				
+				let extHtml = '';
+				
+				input.val(value);
+				resultBox.html('').hide();
+				
+				if (lat && long) {
+					extHtml += `<div class="result_row" data-type="${name}" data-lat="${lat}" data-long="${long}">${lat}, ${long}</div>`;
+				}
+				if (index) {
+					extHtml += `<div class="result_row" data-type="${name}" data-index="${index}">${index}</div>`;
+				}
+				
+				extBox.html(extHtml).show();
+			};
+			break;
+		// =======================================================
+	}
+	
+	
+	function escHtml(text) {
+		let map = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			"'": '&#039;'
+		};
+		
+		if (typeof text === 'string') {
+			return text.replace(/[&<>"']/g, function (m) {
+				return map[m];
+			});
+		}
+		return text;
+	}
+	
+	return {
+		init: () => {
+			
+			$('#main-wrapper').on('click', `[data-sbname="${name}"] .search_result_row`, function (event) {
+				if (extHandler) {
+					extHandler(this);
+				}
 			});
 			
 			
+			$('#main-wrapper').on('click', function (event) {
+				resultBox.html('').hide();
+			});
 			
-			$(inputSelector).on('keyup', function (event) {
+			
+			//=================================================
+			// API Request
+			//=================================================
+			input.on('keyup', function (event) {
 				let that = this,
 					value = $(this).val();
-				
-				console.log('value ', value);
 				
 				if (value.length >= minLength) {
 					if (searchRequest !== null)
@@ -93,10 +259,12 @@ export default (options) => {
 						data: {
 							ajax_nonce: nonce,
 							action,
-							value
+							value,
+							st_moniker: form.attr('data-st_moniker') || null,
+							house_moniker: form.attr('data-house_moniker') || null,
+							lang: 'uk_UA'
 						},
 						beforeSend: function () {
-							console.log('beforeSend');
 							resultBox.html('').hide();
 							extBox.html('').hide();
 						},
@@ -104,30 +272,23 @@ export default (options) => {
 							console.log(response);
 							
 							if (response.success && response.data.result && resultHandler) {
-								
 								//we need to check if the value is the same
 								if (value === $(that).val()) {
 									//Receiving the result of search here
 									resultHandler(response.data.result);
 								} else {
-									console.log('fack');
+									console.log('>>  value is not the same');
 								}
-								
-								
-							} else {
-								//resultBox.html('').hide();
 							}
 							
+							// redirect if need
 							if (response.data && response.data.redirect) {
 								window.location.href = response.data.redirect;
 							}
-							
-							
 						},
 						error: function (xhr, textStatus, thrownError) {
-							console.log('ajax ERROR');
-						}
-						,
+							//console.log('ajax ERROR');
+						},
 						complete: function () {
 							//console.log('ajax PROCESS  COMPLETED');
 						}
