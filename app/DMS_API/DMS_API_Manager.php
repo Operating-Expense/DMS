@@ -10,8 +10,10 @@ use DMS\Exception\DMS_Exeption;
 class DMS_API_Manager {
 	
 	
-	public const MAX_NUMBER_OF_RESULTS = 5; // -1 - all,
+	public const MAX_NUMBER_OF_RESULTS = 8; // -1 - all,
 	public const MONIKER_LIVE_PERIOD = 840;  // sec,  api - 900
+	public const DEFAULT_LANG = 'uk_UA';
+	
 	
 	// !!! Don't change this values
 	public static $api_fields = [
@@ -99,6 +101,8 @@ class DMS_API_Manager {
 		
 		// data
 		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
+		$lang           = ! empty( $_POST['Lang'] ) ? $_POST['Lang'] : self::DEFAULT_LANG;
+		$sexid          = ! empty( $_POST['SexId'] ) ? $_POST['SexId'] : '';
 		$current_user   = wp_get_current_user();
 		
 		$home_url = class_exists( 'WPGlobus_Utils' )
@@ -134,7 +138,11 @@ class DMS_API_Manager {
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
 		
 		// try to get api data for the user
-		$query       = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( 'uk_UA' ) ];
+		$query       = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
+		if ( $sexid ) {
+			$query['iSexId'] = $sexid;
+		}
+		
 		$api_process = DMS_API_Process::api__get_field_First( $user_email, $user_token, $query );
 		
 		// checks
@@ -174,6 +182,8 @@ class DMS_API_Manager {
 		
 		// data
 		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
+		$lang           = ! empty( $_POST['Lang'] ) ? $_POST['Lang'] : self::DEFAULT_LANG;
+		$sexid          = ! empty( $_POST['SexId'] ) ? $_POST['SexId'] : '';
 		$current_user   = wp_get_current_user();
 		
 		$home_url = class_exists( 'WPGlobus_Utils' )
@@ -207,7 +217,10 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( 'uk_UA' ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
+		if ( $sexid ) {
+			$query['iSexId'] = $sexid;
+		}
 		
 		// try to get api data for the user
 		$api_process = DMS_API_Process::api__get_field_Middle( $user_email, $user_token, $query );
@@ -249,6 +262,7 @@ class DMS_API_Manager {
 		
 		// data
 		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
+		$lang           = ! empty( $_POST['Lang'] ) ? $_POST['Lang'] : self::DEFAULT_LANG;
 		$current_user   = wp_get_current_user();
 		
 		$home_url = class_exists( 'WPGlobus_Utils' )
@@ -282,7 +296,7 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( 'uk_UA' ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
 		
 		// try to get api data for the user
 		$api_process = DMS_API_Process::api__get_field_City( $user_email, $user_token, $query );
@@ -325,6 +339,7 @@ class DMS_API_Manager {
 		// data
 		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
 		$st_moniker     = ! empty( $_POST['st_moniker'] ) ? $_POST['st_moniker'] : '';
+		$lang           = ! empty( $_POST['Lang'] ) ? $_POST['Lang'] : self::DEFAULT_LANG;
 		$current_user   = wp_get_current_user();
 		
 		$home_url = class_exists( 'WPGlobus_Utils' )
@@ -369,7 +384,7 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'stMoniker' => urlencode( $st_moniker ), 'Lang' => urlencode( 'uk_UA' ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'stMoniker' => urlencode( $st_moniker ), 'Lang' => urlencode( $lang ) ];
 		
 		// try to get api data for the user
 		$api_process = DMS_API_Process::api__get_field_Street( $user_email, $user_token, $query );
@@ -411,7 +426,8 @@ class DMS_API_Manager {
 		
 		// data
 		$search_request = ! empty( trim( $_POST['value'] ) ) ? trim( $_POST['value'] ) : '';
-		$house_moniker     = ! empty( $_POST['house_moniker'] ) ? $_POST['house_moniker'] : '';
+		$house_moniker  = ! empty( $_POST['house_moniker'] ) ? $_POST['house_moniker'] : '';
+		$lang           = ! empty( $_POST['Lang'] ) ? $_POST['Lang'] : self::DEFAULT_LANG;
 		$current_user   = wp_get_current_user();
 		
 		$home_url = class_exists( 'WPGlobus_Utils' )
@@ -456,7 +472,7 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'houseMoniker' => urlencode( $house_moniker ), 'Lang' => urlencode( 'uk_UA' ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'houseMoniker' => urlencode( $house_moniker ), 'Lang' => urlencode( $lang ) ];
 		
 		// try to get api data for the user
 		$api_process = DMS_API_Process::api__get_field_House( $user_email, $user_token, $query );

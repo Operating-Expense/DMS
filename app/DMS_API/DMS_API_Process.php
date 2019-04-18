@@ -643,7 +643,7 @@ class DMS_API_Process {
 			
 			$err_details = "[email({$user_email})] [" . self::query_arr_to_str( $query ) . "] [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . ']';
 			
-			Logger::log( "API: ERROR {$err_details} : {$e->getMessage()}", '', 'search__City' );
+			Logger::log( "API: ERROR {$err_details} : {$e->getMessage()}", '', 'search__Street' );
 			
 			return [
 				'success'       => false,
@@ -656,7 +656,7 @@ class DMS_API_Process {
 		
 		// http_code === 200 OK
 		
-		Logger::log( "API: SUCCESS [email({$user_email})] [" . self::query_arr_to_str( $query ) . ']', '', 'search__City' );
+		Logger::log( "API: SUCCESS [email({$user_email})] [" . self::query_arr_to_str( $query ) . ']', '', 'search__Street' );
 		
 		return [
 			'success'       => true,
@@ -730,7 +730,7 @@ class DMS_API_Process {
 			
 			$err_details = "[email({$user_email})] [" . self::query_arr_to_str( $query ) . "] [{$e->getCode()}|" . self::get_error_name( $e->getCode() ) . ']';
 			
-			Logger::log( "API: ERROR {$err_details} : {$e->getMessage()}", '', 'search__City' );
+			Logger::log( "API: ERROR {$err_details} : {$e->getMessage()}", '', 'search__House' );
 			
 			return [
 				'success'       => false,
@@ -743,7 +743,7 @@ class DMS_API_Process {
 		
 		// http_code === 200 OK
 		
-		Logger::log( "API: SUCCESS [email({$user_email})] [" . self::query_arr_to_str( $query ) . ']', '', 'search__City' );
+		Logger::log( "API: SUCCESS [email({$user_email})] [" . self::query_arr_to_str( $query ) . ']', '', 'search__House' );
 		
 		return [
 			'success'       => true,

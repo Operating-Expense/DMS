@@ -8,16 +8,27 @@ export default (options) => {
 	let input = $(inputSelector);
 	let resultBox = input.siblings('.search_result_box').eq(0);
 	let form = input.closest('form');
+	let mainWraper = $('#main-wrapper');
 	
 	let parent = input.closest('[data-sbname]');
 	let extBox = parent.find('.search_result_ext_box');
 	
 	let resultHandler = null, extHandler = null;
 	
+	let langMap = {
+		"ru": "ru_RU",
+		"uk": "uk_UA",
+		"en": "en_UK",
+	};
+	
+	let currentSiteLang = window.WPGlobus.language;
+	let lang = langMap[currentSiteLang] === undefined ? '' : langMap[currentSiteLang];
+	
+	let lastRequest = '';
+	
 	switch (name) {
 		
 		case 'first':
-		case 'middle':
 			// =======================================================
 			resultHandler = (result) => {
 				if (!Array.isArray(result) || !result.length) {
@@ -27,7 +38,7 @@ export default (options) => {
 				let resultHtml = '';
 				
 				result.forEach((item, i, arr) => {
-					let mainValField = item.First ? item.First : item.Middle;
+					let mainValField = item.First;
 					
 					if (!mainValField || !mainValField.length) return;
 					
@@ -47,7 +58,55 @@ export default (options) => {
 				let extHtml = '';
 				
 				input.val(value);
+				lastRequest = value;
+				input.attr('data-competed', '1');
 				resultBox.html('').hide();
+				form.attr('data-sexid', sexid);
+				
+				if (sexid === '1') {
+					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♂</div>`;
+				} else if (sexid === '2') {
+					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
+				}
+				
+				extBox.html(extHtml).show();
+			};
+			
+			break;
+		case 'middle':
+			// =======================================================
+			resultHandler = (result) => {
+				if (!Array.isArray(result) || !result.length) {
+					return '';
+				}
+				
+				let resultHtml = '';
+				
+				result.forEach((item, i, arr) => {
+					let mainValField = item.Middle;
+					
+					if (!mainValField || !mainValField.length) return;
+					
+					let SexId = item.SexId || '';
+					
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}">${mainValField}</div>`;
+				});
+				
+				resultBox.html(resultHtml).show();
+			};
+			
+			extHandler = (resultElement) => {
+				let $resultElement = $(resultElement);
+				let value = $resultElement.attr('data-mainval') || '';
+				let sexid = $resultElement.attr('data-sexid') || '';
+				
+				let extHtml = '';
+				
+				input.val(value);
+				lastRequest = value;
+				input.attr('data-competed', '1');
+				resultBox.html('').hide();
+				form.attr('data-sexid', sexid);
 				
 				if (sexid === '1') {
 					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♂</div>`;
@@ -100,6 +159,8 @@ export default (options) => {
 				let extHtml = '';
 				
 				input.val(value);
+				lastRequest = value;
+				input.attr('data-competed', '1');
 				resultBox.html('').hide();
 				form.attr('data-st_moniker', st_moniker);
 				
@@ -149,6 +210,8 @@ export default (options) => {
 				let extHtml = '';
 				
 				input.val(value);
+				lastRequest = value;
+				input.attr('data-competed', '1');
 				resultBox.html('').hide();
 				form.attr('data-house_moniker', house_moniker);
 				
@@ -195,6 +258,8 @@ export default (options) => {
 				let extHtml = '';
 				
 				input.val(value);
+				lastRequest = value;
+				input.attr('data-competed', '1');
 				resultBox.html('').hide();
 				
 				if (lat && long) {
@@ -228,18 +293,43 @@ export default (options) => {
 		return text;
 	}
 	
+	
+	function mayBeClearSexId() {
+		let firstVal = form.find('input[name=first]').attr('data-competed');
+		let middleVal = form.find('input[name=middle]').attr('data-competed');
+		
+		if ( name === 'middle' && $.trim(firstVal) !== '1') {
+			form.attr('data-sexid', '');
+		}
+		
+		if ( name === 'first' && $.trim(middleVal) !== '1') {
+			form.attr('data-sexid', '');
+		}
+	}
+	
+	// ========================================================================
+	// ========================================================================
 	return {
 		init: () => {
 			
-			$('#main-wrapper').on('click', `[data-sbname="${name}"] .search_result_row`, function (event) {
+			
+			mainWraper.on('click', `[data-sbname="${name}"] .search_result_row`, function (event) {
 				if (extHandler) {
 					extHandler(this);
 				}
 			});
 			
 			
-			$('#main-wrapper').on('click', function (event) {
+			mainWraper.on('click', function (event) {
 				resultBox.html('').hide();
+				if ($.trim(input.val()) === '') {
+					input.attr('data-competed', '0');
+					extBox.html('').hide();
+				}
+			});
+			
+			input.on('input', function (event) {
+				mayBeClearSexId();
 			});
 			
 			
@@ -249,6 +339,13 @@ export default (options) => {
 			input.on('keyup', function (event) {
 				let that = this,
 					value = $(this).val();
+				
+				
+				if (lastRequest === value) {
+					return;
+				}
+				
+				lastRequest = value;
 				
 				if (value.length >= minLength) {
 					if (searchRequest !== null)
@@ -262,18 +359,20 @@ export default (options) => {
 							value,
 							st_moniker: form.attr('data-st_moniker') || null,
 							house_moniker: form.attr('data-house_moniker') || null,
-							lang: 'uk_UA'
+							SexId: form.attr('data-sexid') || null,
+							Lang: lang
 						},
 						beforeSend: function () {
 							resultBox.html('').hide();
 							extBox.html('').hide();
+							input.attr('data-competed', '0');
 						},
 						success: function (response) {
 							console.log(response);
 							
 							if (response.success && response.data.result && resultHandler) {
 								//we need to check if the value is the same
-								if (value === $(that).val()) {
+								if (value === $(that).val() && value) {
 									//Receiving the result of search here
 									resultHandler(response.data.result);
 								} else {
@@ -293,6 +392,11 @@ export default (options) => {
 							//console.log('ajax PROCESS  COMPLETED');
 						}
 					});
+					
+				} else {
+					resultBox.html('').hide();
+					extBox.html('').hide();
+					input.attr('data-competed', '0');
 				}
 			});
 			
