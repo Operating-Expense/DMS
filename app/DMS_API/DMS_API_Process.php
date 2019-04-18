@@ -320,7 +320,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_First( string $user_email, string $token, array $query ): array {
+	public static function api__get_field_First( string $user_email, string $token, array $query, array $headers ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -329,10 +329,10 @@ class DMS_API_Process {
 			$options = [
 				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Firsts' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
-				CURLOPT_HTTPHEADER    => [
+				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
 					"Authorization: Bearer {$token}",
-				],
+				], $headers ),
 			];
 			
 			$request->init( $options );
@@ -408,7 +408,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_Middle( string $user_email, string $token, array $query ): array {
+	public static function api__get_field_Middle( string $user_email, string $token, array $query, array $headers ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -417,10 +417,10 @@ class DMS_API_Process {
 			$options = [
 				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Middles' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
-				CURLOPT_HTTPHEADER    => [
+				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
 					"Authorization: Bearer {$token}",
-				],
+				], $headers ),
 			];
 			
 			$request->init( $options );
@@ -495,7 +495,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_City( string $user_email, string $token, array $query ): array {
+	public static function api__get_field_City( string $user_email, string $token, array $query, array $headers ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -504,10 +504,10 @@ class DMS_API_Process {
 			$options = [
 				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Cities' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
-				CURLOPT_HTTPHEADER    => [
+				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
 					"Authorization: Bearer {$token}",
-				],
+				], $headers ),
 			];
 			
 			$request->init( $options );
@@ -582,7 +582,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_Street( string $user_email, string $token, array $query ): array {
+	public static function api__get_field_Street( string $user_email, string $token, array $query, array $headers ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -591,10 +591,10 @@ class DMS_API_Process {
 			$options = [
 				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Streets' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
-				CURLOPT_HTTPHEADER    => [
+				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
 					"Authorization: Bearer {$token}",
-				],
+				], $headers ),
 			];
 			
 			$request->init( $options );
@@ -669,7 +669,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_House( string $user_email, string $token, array $query ): array {
+	public static function api__get_field_House( string $user_email, string $token, array $query, array $headers ): array {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -678,10 +678,10 @@ class DMS_API_Process {
 			$options = [
 				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Houses' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
-				CURLOPT_HTTPHEADER    => [
+				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
 					"Authorization: Bearer {$token}",
-				],
+				], $headers ),
 			];
 			
 			$request->init( $options );
@@ -787,7 +787,7 @@ class DMS_API_Process {
 		$str = '';
 		foreach ( $arr as $key => $value ) {
 			if ( is_int( $value ) || is_string( $value ) ) {
-				$str = "&{$key}={$value}";
+				$str .= "&{$key}={$value}";
 			}
 		}
 		if ( $trimmed ) {

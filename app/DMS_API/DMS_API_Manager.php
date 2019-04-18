@@ -137,13 +137,15 @@ class DMS_API_Manager {
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
 		
-		// try to get api data for the user
-		$query       = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
+		// try to get api data
+		$query = [ 'sRequest' => urlencode( $search_request ) ];
 		if ( $sexid ) {
 			$query['iSexId'] = $sexid;
 		}
 		
-		$api_process = DMS_API_Process::api__get_field_First( $user_email, $user_token, $query );
+		$headers = [ 'Accept-Language: ' . urlencode( $lang ) ];
+		
+		$api_process = DMS_API_Process::api__get_field_First( $user_email, $user_token, $query, $headers );
 		
 		// checks
 		
@@ -217,13 +219,15 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ) ];
 		if ( $sexid ) {
 			$query['iSexId'] = $sexid;
 		}
 		
+		$headers = [ 'Accept-Language: ' . urlencode( $lang ) ];
+		
 		// try to get api data for the user
-		$api_process = DMS_API_Process::api__get_field_Middle( $user_email, $user_token, $query );
+		$api_process = DMS_API_Process::api__get_field_Middle( $user_email, $user_token, $query, $headers );
 		
 		// checks
 		
@@ -296,10 +300,11 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'Lang' => urlencode( $lang ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ) ];
+		$headers    = [ 'Accept-Language: ' . urlencode( $lang ) ];
 		
 		// try to get api data for the user
-		$api_process = DMS_API_Process::api__get_field_City( $user_email, $user_token, $query );
+		$api_process = DMS_API_Process::api__get_field_City( $user_email, $user_token, $query, $headers );
 		
 		// checks
 		
@@ -384,10 +389,11 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'stMoniker' => urlencode( $st_moniker ), 'Lang' => urlencode( $lang ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'stMoniker' => urlencode( $st_moniker ) ];
+		$headers    = [ 'Accept-Language: ' . urlencode( $lang ) ];
 		
 		// try to get api data for the user
-		$api_process = DMS_API_Process::api__get_field_Street( $user_email, $user_token, $query );
+		$api_process = DMS_API_Process::api__get_field_Street( $user_email, $user_token, $query, $headers );
 		
 		// checks
 		
@@ -472,10 +478,11 @@ class DMS_API_Manager {
 		
 		$user_email = $current_user->user_email;
 		$user_token = self::get_saved_api_access_token( $current_user->ID );
-		$query      = [ 'sRequest' => urlencode( $search_request ), 'houseMoniker' => urlencode( $house_moniker ), 'Lang' => urlencode( $lang ) ];
+		$query      = [ 'sRequest' => urlencode( $search_request ), 'houseMoniker' => urlencode( $house_moniker ) ];
+		$headers    = [ 'Accept-Language: ' . urlencode( $lang ) ];
 		
 		// try to get api data for the user
-		$api_process = DMS_API_Process::api__get_field_House( $user_email, $user_token, $query );
+		$api_process = DMS_API_Process::api__get_field_House( $user_email, $user_token, $query, $headers );
 		
 		// checks
 		
