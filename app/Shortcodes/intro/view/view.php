@@ -178,7 +178,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 			<div class="row no-gutters">
 				
 				<div class="col-3 s-intro__footer_item">
-					<a href="mailto:<?php echo Utils::get_option( 'dms_email', '' ) ?>">
+					<a href="<?php echo home_url() ?>">
 						<i class="s-intro__footer_icon s-intro__footer_icon1"></i>
 					</a>
 				</div>

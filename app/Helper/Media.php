@@ -206,5 +206,32 @@ class Media {
 		}
 
 	}
+	
+	
+	/**
+	 * @param array $file_array
+	 * @param int $post_id
+	 * @param bool $set_as_thumb
+	 *
+	 * @return int Return 0 on error
+	 */
+	public static function import_media(array $file_array, int $post_id = 0, bool $set_as_thumb = false ) {
+		
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/media.php';
+		
+		$attach_id = media_handle_sideload( $file_array, $post_id );
+		
+		if ( is_wp_error( $attach_id ) ) {
+			return 0;
+		}
+		
+		if ( $set_as_thumb && $post_id > 0 ) {
+			set_post_thumbnail( $post_id, $attach_id );
+		}
+		
+		return $attach_id;
+	}
 
 }

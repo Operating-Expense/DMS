@@ -29,15 +29,15 @@ if ( 0 === $user_id ) {
 $user_email = $current_user->user_email;
 $user_fio   = $current_user->user_firstname;
 
-$user_position        = Utils::get_user_meta( $user_id, 'dms--user_position', '' );
-$user_company_name    = Utils::get_user_meta( $user_id, 'dms--user_company_name', '' );
-$user_company_address = Utils::get_user_meta( $user_id, 'dms--user_company_address', '' );
-$user_phone           = Utils::get_user_meta( $user_id, 'dms--user_phone', '' );
-$user_reg_code        = Utils::get_user_meta( $user_id, 'dms--user_reg_code', '' );
-$user_photo_id        = Utils::get_user_meta( $user_id, 'dms--user_ava', 0 );
+$user_position        = esc_html( Utils::get_user_meta( $user_id, 'dms--user_position', '' ) );
+$user_company_name    = esc_html( Utils::get_user_meta( $user_id, 'dms--user_company_name', '' ) );
+$user_company_address = esc_html( Utils::get_user_meta( $user_id, 'dms--user_company_address', '' ) );
+$user_phone           = esc_html( Utils::get_user_meta( $user_id, 'dms--user_phone', '' ) ) ;
+$user_reg_code        = esc_html( Utils::get_user_meta( $user_id, 'dms--user_reg_code', '' ) );
+$user_photo_id        = esc_html( Utils::get_user_meta( $user_id, 'dms--user_ava', 0 ) );
 
-$user_tariff_plan = Utils::get_user_meta( $user_id, 'dms--user_api_data__tariff', __( 'Нет', 'dms' ) );
-$user_balance     = Utils::get_user_meta( $user_id, 'dms--user_api_data__balance', 0 );
+$user_tariff_plan = esc_html( Utils::get_user_meta( $user_id, 'dms--user_api_data__tariff', __( 'Нет', 'dms' ) ) );
+$user_balance     = esc_html( Utils::get_user_meta( $user_id, 'dms--user_api_data__balance', 0 ) );
 
 
 ?>
@@ -96,71 +96,94 @@ $user_balance     = Utils::get_user_meta( $user_id, 'dms--user_api_data__balance
 	
 	</div>
 	
-	<div class="container">
-		<div class="row user_data_row">
-			
-			<div class="col-lg-2">
-				<div class="row user_ava_row d-flex align-items-center justify-content-center  justify-content-lg-start">
-					<div class="profile-ava-wrapper">
-						<div class="profile-ava">
-							<?php
-							if ( $user_photo_id ) {
-								Media::the_img(
-									array( 'data-width' => 138, 'data-height' => 138, 'class' => 'profile-ava-img' ),
-									array( 'attachment_id' => $user_photo_id )
-								);
-							}
-							?>
+	<form action="" id="dms_user_profile" class="dms_user_profile" enctype="multipart/form-data">
+		<div class="container">
+			<div class="row user_data_row">
+				
+				<div class="col-lg-2">
+					<div class="row user_ava_row d-flex align-items-center justify-content-center  justify-content-lg-start">
+						<div class="profile-ava-wrapper">
+							<div class="profile-ava">
+								<?php
+								if ( $user_photo_id ) {
+									Media::the_img(
+										array( 'data-width' => 138, 'data-height' => 138, 'class' => 'profile-ava-img' ),
+										array( 'attachment_id' => $user_photo_id )
+									);
+								}
+								?>
+							</div>
+							<label class="pf_ava_label" for="pf_ava">
+								<?php _e( 'Сменить фото', 'dms' ) ?>
+							</label>
+							<input id="pf_ava" class="pf_ava" name="pf_ava" type="file" accept="image/jpeg,image/jpg,image/png">
 						</div>
-						<a href="#" class="change-ava-link">Сменить фото</a>
 					</div>
 				</div>
-			</div>
-			
-			<div class="col-lg-10">
-				<div class="user_table">
-					<div class="row user_table_row">
+				
+				<div class="col-lg-10">
+					<div class="user_table">
+						<div class="row user_table_row">
+							
+							<div class="col-md-4 user_table_item">
+								<div class="item_title"><?php _e( 'E-mail', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_email ?></div>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'ФИО', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_fio ?></div>
+								<textarea name="pf_fio" class="pf_control pf_fio"></textarea>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'Должность', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_position ?></div>
+								<textarea name="pf_position" class="pf_control pf_position"></textarea>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'Юр. назв. предприятия', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_company_name ?></div>
+								<textarea name="pf_company_name" class="pf_control pf_company_name"></textarea>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'Юр. адрес', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_company_address ?></div>
+								<textarea name="pf_company_address" class="pf_control pf_company_address"></textarea>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'ЕГРПОУ', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_reg_code ?></div>
+								<textarea name="pf_reg_code" class="pf_control pf_reg_code"></textarea>
+							</div>
+							
+							<div class="col-md-4 user_table_item item_editable">
+								<div class="item_title"><?php _e( 'Телефон', 'dms' ); ?></div>
+								<div class="item_value"><?php echo $user_phone ?></div>
+								<textarea name="pf_phone" class="pf_control pf_phone"></textarea>
+							</div>
 						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'E-mail', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_email ?></div>
 						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'ФИО', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_fio ?></div>
-						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'Должность', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_position ?></div>
-						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'Юр. назв. предприятия', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_company_name ?></div>
-						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'Юр. адрес', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_company_address ?></div>
-						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'ЕГРПОУ', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_reg_code ?></div>
-						</div>
-						
-						<div class="col-md-4 user_table_item">
-							<div class="item_title"><?php _e( 'Телефон', 'dms' ); ?></div>
-							<div class="item_value"><?php echo $user_phone ?></div>
-						</div>
-					
 					</div>
 				</div>
+				
+				<div class="col-12">
+					<div class="pf_error_box"></div>
+					<div class="user_profile_actions">
+						<a href="#" class="user_profile_action_link pf_action_edit" data-profile_action="edit" role="button">
+							<?php _e( 'Редактировать', 'dms' ) ?>
+						</a>
+						<a href="#" class="user_profile_action_link pf_action_save" data-profile_action="save" role="button">
+							<?php _e( 'Сохранить', 'dms' ) ?>
+						</a>
+					</div>
+				</div>
+			
 			</div>
-		
 		</div>
-	</div>
+	</form>
 
 </section>

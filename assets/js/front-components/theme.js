@@ -194,19 +194,6 @@ export default class Theme {
 	}
 	
 	
-	// AVA
-	
-	readURL(input, img) {
-		if (input.files && input.files[0]) {
-			let reader = new FileReader();
-			reader.onload = function (e) {
-				$(img).removeAttr('srcset');
-				$(img).attr('src', e.target.result);
-			};
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	
 	
 	// --------------------------------------------------------------------
 	//    POPUPS 

@@ -14,6 +14,8 @@ if ( ! class_exists( 'dmsShortcode_Account' ) ) {
 			
 			], $this->atts( $atts ), $this->shortcode );
 			
+			Assets::enqueue_script( $this->shortcode . '-script', $this->shortcode_uri . '/assets/scripts.js' );
+			
 			Assets::enqueue_style_dist(
 				$this->shortcode . '-style',
 				'shortcode-' . $this->shortcode . '.css'

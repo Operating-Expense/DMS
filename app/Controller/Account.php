@@ -2,8 +2,10 @@
 
 namespace DMS\Controller;
 
+use Carbon_Fields\Helper\Helper;
 use DMS\Helper\Utils;
 use DMS\Helper\Logger;
+use DMS\Helper\Media;
 use DMS\DMS_API\DMS_API_Manager;
 
 
@@ -36,6 +38,9 @@ class Account {
 			// user forgot password
 			add_action( 'wp_ajax_' . 'dms/account/user_forgot', [ __CLASS__, 'user_forgot' ] );
 			add_action( 'wp_ajax_nopriv_' . 'dms/account/user_forgot', [ __CLASS__, 'user_forgot' ] );
+			
+			// user_save_profile
+			add_action( 'wp_ajax_' . 'dms/account/user_save_profile', [ __CLASS__, 'user_save_profile' ] );
 			
 		}
 		
@@ -360,6 +365,115 @@ class Account {
 		wp_redirect( home_url() );
 		exit;
 	}
+	
+	
+	
+	public static function user_save_profile(): void {
+		
+		if ( ! Utils::verify_post_ajax_nonce() ) {
+			return;
+		}
+		
+		
+		$user = wp_get_current_user();
+		
+		if ( empty( $user->ID ) ) {  // no user - no work
+			wp_send_json_error( [
+				'message'    => __FUNCTION__ . ' : no current user ID  ',
+				'user_id'    => 0,
+				'error_html' => __( 'Ошибка : пользователь неопределен ', 'dms' ),
+				'_REQUEST'   => $_REQUEST,
+			] );
+		}
+		
+		
+		
+		$us_POST = wp_unslash( $_POST );  // Wordpress add slashes to $_POST automatically
+		
+		// data
+		$fio             = ! empty( $us_POST['pf_fio'] ) ? sanitize_text_field( trim( $us_POST['pf_fio'] ) ) : '';
+		$position        = ! empty( $us_POST['pf_position'] ) ? sanitize_text_field( trim( $us_POST['pf_position'] ) ) : '';
+		$company_name    = ! empty( $us_POST['pf_company_name'] ) ? sanitize_text_field( trim( $us_POST['pf_company_name'] ) ) : '';
+		$company_address = ! empty( $us_POST['pf_company_address'] ) ? sanitize_text_field( trim( $us_POST['pf_company_address'] ) ) : '';
+		$reg_code        = ! empty( $us_POST['pf_reg_code'] ) ? sanitize_text_field( trim( $us_POST['pf_reg_code'] ) ) : '';
+		$phone           = ! empty( $us_POST['pf_phone'] ) ? sanitize_text_field( trim( $us_POST['pf_phone'] ) ) : '';
+		
+		$ava_data = ! empty( $_FILES['pf_ava'] ) ? $_FILES['pf_ava'] : [];
+		
+		// checks
+		if ( ! $fio ) {
+			wp_send_json_error( [
+				'message'    => __FUNCTION__ . ' : no fio  ',
+				'user_id'    => $user->ID,
+				'error_html' => __( 'Ошибка : поле ФИО пустое ', 'dms' ),
+				'_REQUEST'   => $_REQUEST,
+			] );
+		}
+		
+		do_action( 'dms/account/profile/before_update', $user );
+		
+		// AVA
+		
+		/*
+		Array
+        (
+            [name] => face1.jpg
+            [type] => image/jpeg
+            [tmp_name] => F:\OSPanel\userdata\temp\php588.tmp
+            [error] => 0
+            [size] => 295038
+        )*/
+		
+		$max_file_size       = wp_convert_hr_to_bytes( '4MB' );
+		$valid_ava_formats   = [ 'jpeg', 'jpg', 'jpe', 'png' ];
+		$ava_must_be_updated = false;
+		$ava_attach_id       = 0;
+		
+		if (
+			$ava_data
+			&&
+			$ava_data['error'] === UPLOAD_ERR_OK
+			&&
+			$ava_data['size'] < $max_file_size
+			&&
+			in_array( strtolower( pathinfo( $ava_data['name'], PATHINFO_EXTENSION ) ), $valid_ava_formats, true )
+			&&
+			( $ava_attach_id = Media::import_media( $ava_data ) ?: 0 )
+		) {
+			$ava_must_be_updated = true;
+		}
+		
+		
+		wp_update_user( [ 'ID' => $user->ID, 'user_firstname' => $fio ] );
+		Utils::set_user_meta( $user->ID, 'dms--user_position', $position );
+		Utils::set_user_meta( $user->ID, 'dms--user_company_name', $company_name );
+		Utils::set_user_meta( $user->ID, 'dms--user_company_address', $company_address );
+		Utils::set_user_meta( $user->ID, 'dms--user_phone', $phone );
+		Utils::set_user_meta( $user->ID, 'dms--user_reg_code', $reg_code );
+		if ( $ava_must_be_updated ) {
+			Utils::set_user_meta( $user->ID, 'dms--user_ava', $ava_attach_id );
+		}
+		
+		
+		wp_send_json_success( [
+			'message'    => __FUNCTION__ . ' : success',
+			'user_id'    => $user->ID,
+			'saved'      => [
+				'pf_fio'              => $fio,
+				'pf_position'         => $position,
+				'pf_company_name'     => $company_name,
+				'pf_company_address'  => $company_address,
+				'pf_reg_code'         => $reg_code,
+				'pf_phone'            => $phone,
+				'ava_must_be_updated' => $ava_must_be_updated,
+				'ava_attach_id'       => $ava_attach_id,
+			],
+			'error_html' => '',
+			'_REQUEST'   => $_REQUEST,
+		] );
+	}
+	
+	
 	
 	
 }

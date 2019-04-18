@@ -23,69 +23,6 @@
 		padding: 50px 15px;
 	}
 	
-	// typo
-	
-	.s-test__img_box {
-		margin-bottom: 30px;
-	}
-	
-	.s-test__text {
-		margin: 0 95px 40px;
-		text-align: center;
-		
-		&, a {
-			font-family: $font-dms-Roboto;
-			font-size: 16px;
-			line-height: 1.67;
-			font-weight: normal;
-			font-style: normal;
-			letter-spacing: -0.2px;
-			font-stretch: normal;
-			color: $color-dms-text-dark;
-		}
-	}
-	
-	.s-test__btns {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-content: center;
-		align-items: center;
-		padding: 0;
-	}
-	
-	.s-test__btn_try {
-		display: block;
-		padding: 0 30px 0 40px;
-		font-family: $font-dms-Roboto;
-		font-size: 18px;
-		font-weight: 500;
-		font-style: normal;
-		font-stretch: normal;
-		line-height: 3;
-		letter-spacing: normal;
-		color: $color-dms-text-inv;
-		background-color: $color-dms-ac-blue;
-		margin-bottom: 20px;
-		
-		.arrow-box {
-			width: 13px;
-			height: 100%;
-			margin-left: 15px;
-			margin-right: 3px;
-			padding-left: 15px;
-			border-left: 1px solid rgba($color-dms-text-inv, 0.5);
-			
-			.arrow-right {
-				border: solid $color-dms-text-inv;
-				border-width: 0 2px 2px 0;
-			}
-		}
-		
-		word-break: keep-all;
-		white-space: nowrap;
-	}
-	
 	
 	// FORM
 	
@@ -202,13 +139,6 @@
 		.s-test-title {
 			margin-bottom: 10px;
 		}
-		.s-test__text {
-			margin: 0 20% 40px;
-			
-			&, a {
-				font-size: 18px;
-			}
-		}
 	}
 	
 	@include media-breakpoint-down(md) {
@@ -216,12 +146,6 @@
 	}
 	
 	@include media-breakpoint-down(sm) {
-		.s-test__text {
-			
-			&, a {
-				font-size: 18px;
-			}
-		}
 		
 		.s-test__btn_try {
 			padding: 0 60px;
@@ -238,9 +162,7 @@
 	
 	
 	@include media-breakpoint-down(xs) {
-		.s-test__text {
-			margin: 0 10px 40px;
-		}
+	
 	}
 	
 } 
