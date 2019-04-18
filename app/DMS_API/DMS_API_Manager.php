@@ -93,6 +93,20 @@ class DMS_API_Manager {
 	
 	
 	
+	public static function user_refresh_api_data(): void {
+		if ( ! is_page( 'account' ) ) {
+			return;
+		}
+		
+		$current_user = wp_get_current_user();
+		
+		if ( $current_user->ID ) {
+			self::user_save_api_data( $current_user );
+		}
+	}
+	
+	
+	
 	public static function search_first(): void {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
