@@ -90,7 +90,7 @@ class Account {
 		wp_send_json_error( [
 			'message'    => __FUNCTION__ . ' : authenticate error',
 			'user_id'    => 0,
-			'error_html' => __( 'Ошибка входа, введите правельный e-mail и пароль', 'dms' ),
+			'error_html' => __( 'Ошибка входа, введите правильный e-mail и пароль', 'dms' ),
 			'redirect'   => '',
 			'_REQUEST'   => $_REQUEST,
 		] );
@@ -342,12 +342,12 @@ class Account {
 		if ( $firstname === '' ) {
 			$firstname = 'User';
 		}
-		$message = sprintf( __( 'Hi %1s!<br>', 'dms' ), $firstname );
-		$message .= sprintf( __( 'An account has been created on %1s for email address %2s<br>', 'dms' ), get_bloginfo( 'name' ), $email );
-		$message .= __( 'Click here to set the password for your account: <br>', 'dms' );
+		$message = sprintf( __( 'Добрый день %1s!<br>', 'dms' ), $firstname );
+		$message .= sprintf( __( 'Аккаунт на %1s создан для адреса электронной почты %2s<br>', 'dms' ), get_bloginfo( 'name' ), $email );
+		$message .= __( 'Нажмите здесь, чтобы установить пароль для вашей учетной записи:<br>', 'dms' );
 		$message .= $rp_link_html . '<br>';
 		
-		$subject    = sprintf( __( 'Your account on %1s', 'dms' ), get_bloginfo( 'name' ) );
+		$subject    = sprintf( __( 'Ваш аккаунт на %1s', 'dms' ), get_bloginfo( 'name' ) );
 		$headers    = array();
 		$email_from = get_option( 'admin_email' );
 		
@@ -381,7 +381,7 @@ class Account {
 			wp_send_json_error( [
 				'message'    => __FUNCTION__ . ' : no current user ID  ',
 				'user_id'    => 0,
-				'error_html' => __( 'Ошибка : пользователь неопределен ', 'dms' ),
+				'error_html' => __( 'Ошибка : пользователь не определен ', 'dms' ),
 				'_REQUEST'   => $_REQUEST,
 			] );
 		}
@@ -405,7 +405,7 @@ class Account {
 			wp_send_json_error( [
 				'message'    => __FUNCTION__ . ' : no fio  ',
 				'user_id'    => $user->ID,
-				'error_html' => __( 'Ошибка : поле ФИО пустое ', 'dms' ),
+				'error_html' => __( 'Ошибка : поле пустое ФИО ', 'dms' ),
 				'_REQUEST'   => $_REQUEST,
 			] );
 		}

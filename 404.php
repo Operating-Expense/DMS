@@ -4,9 +4,9 @@
 		<div class="row">
 			<article class="col-12">
 				
-				<h1><?php esc_html_e( 'Unfortunately, we can not find requested page.', 'dms' ); ?></h1>
+				<h1><?php esc_html_e( 'К сожалению, мы не можем найти запрашиваемую страницу.', 'dms' ); ?></h1>
 				
-				<h4><?php esc_html_e( 'Try to find something else using a form below.', 'dms' ); ?></h4>
+				<h4><?php esc_html_e( 'Попробуйте найти что-то еще, используя форму ниже.', 'dms' ); ?></h4>
 				
 				<?php get_search_form(); ?>
 			

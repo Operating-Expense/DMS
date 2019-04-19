@@ -11,7 +11,7 @@ function dms_user_meta() {
 	         ->add_fields( array(
 		         Field::make( 'text', 'dms--user_company_name', __( 'Юр. назв. предприятия', 'dms' ) ),
 		         Field::make( 'text', 'dms--user_company_address', __( 'Юр. адрес предприятия', 'dms' ) ),
-		         Field::make( 'text', 'dms--user_reg_code', __( 'УДРПОУ', 'dms' ) ),
+		         Field::make( 'text', 'dms--user_reg_code', __( 'ЕГРПОУ', 'dms' ) ),
 		         Field::make( 'text', 'dms--user_phone', __( 'Телефон', 'dms' ) ),
 		         Field::make( 'text', 'dms--user_position', __( 'Должность', 'dms' ) ),
 		

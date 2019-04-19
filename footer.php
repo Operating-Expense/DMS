@@ -1,5 +1,9 @@
 <?php
-$img      = \DMS\Helper\Utils::get_option( 'logo_img', 0 );
+
+use DMS\Helper\Utils;
+use DMS\Helper\Locale;
+
+$img      = Utils::get_option( 'logo_img', 0 );
 $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" alt="DM Solutions">' : '';
 ?>
 
@@ -46,13 +50,13 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 				
 				<div class="col-lg-3 col-md-6 order-2 order-lg-3">
 					<div class="footer_box1">
-						<?php echo \DMS\Helper\Utils::get_option( 'footer_box1', '' ) ?>
+						<?php echo Utils::get_option( 'footer_box1', '' ) ?>
 					</div>
 				</div>
 				
 				<div class="col-lg-3 col-md-6 order-4 order-lg-4">
 					<div class="footer_box2">
-						<?php echo \DMS\Helper\Utils::get_option( 'footer_box2', '' ) ?>
+						<?php echo Utils::get_option( 'footer_box2', '' ) ?>
 					</div>
 				</div>
 			
@@ -66,7 +70,7 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 				<div class="col-md-12">
 					<div class="row align-items-center">
 						<div class="col-md-6 order-2 order-md-1 copyright">
-							<?php echo \DMS\Helper\Utils::get_option( 'bottom_bar_text' ); ?>
+							<?php echo Utils::get_option( 'bottom_bar_text' ) ?>
 						</div>
 						<div class="col-md-6 order-1 order-md-2 dev-logo">
 							<img src="<?php echo get_template_directory_uri() . '/assets/images/opex.svg' ?>" alt="opex">

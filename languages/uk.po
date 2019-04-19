@@ -1,14 +1,16 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Project-Id-Version: DMS Theme\n"
-"POT-Creation-Date: 2019-04-10 14:27+0300\n"
-"PO-Revision-Date: 2019-04-10 14:39+0300\n"
+"POT-Creation-Date: 2019-04-19 16:03+0300\n"
+"PO-Revision-Date: 2019-04-19 16:06+0300\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -17,8 +19,6 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: uk_UA\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor-custom\n"
@@ -28,28 +28,98 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: *.js\n"
 
 #: 404.php:7
-msgid "Unfortunately, we can not find requested page."
-msgstr ""
+msgid "К сожалению, мы не можем найти запрашиваемую страницу."
+msgstr "На жаль, ми не можемо знайти запитувану сторінку."
 
 #: 404.php:9
-msgid "Try to find something else using a form below."
-msgstr ""
+msgid "Попробуйте найти что-то еще, используя форму ниже."
+msgstr "Спробуйте знайти щось ще, використовуючи форму нижче."
 
-#: app/Controller/Account.php:75
-msgid "Ошибка аутентификации"
-msgstr ""
+#: app/Controller/Account.php:93
+msgid "Ошибка входа, введите правильный e-mail и пароль"
+msgstr "Помилка входу, введіть правильний e-mail і пароль"
 
-#: app/Controller/Account.php:264
-msgid "Your account on "
-msgstr ""
+#: app/Controller/Account.php:162
+msgid "Ошибка регистрации : некорректный e-mail"
+msgstr "Помилка реєстрації: некоректний e-mail"
+
+#: app/Controller/Account.php:166
+msgid "Ошибка регистрации : некорректный пароль"
+msgstr "Помилка реєстрації: некоректний пароль"
+
+#: app/Controller/Account.php:170
+msgid "Ошибка регистрации : пустое поле \"ФИО\""
+msgstr "Помилка реєстрації: пусте поле \"ПІБ\""
+
+#: app/Controller/Account.php:174
+msgid "Ошибка регистрации : пустое поле \"Должность\""
+msgstr "Помилка реєстрації: пусте поле \"Посада\""
+
+#: app/Controller/Account.php:178
+msgid "Ошибка регистрации : пустое поле \"Название компании\""
+msgstr "Помилка реєстрації: пусте поле \"Назва компанії\""
+
+#: app/Controller/Account.php:182
+msgid "Ошибка регистрации : пустое поле \"Юр. адрес\""
+msgstr "Помилка реєстрації: пусте поле \"Юр. Адреса\""
+
+#: app/Controller/Account.php:186
+msgid "Ошибка регистрации : пустое поле \"Телефон\""
+msgstr "Помилка реєстрації: пусте поле \"Телефон\""
+
+#: app/Controller/Account.php:190
+msgid "Ошибка регистрации : пустое поле \"ЕГРПОУ\""
+msgstr "Помилка реєстрації: пусте поле \"ЄДРПОУ\""
+
+#: app/Controller/Account.php:202 app/Controller/Account.php:208
+#: app/Controller/Account.php:238
+msgid "Ошибка регистрации"
+msgstr "Помилка реєстрації"
+
+#: app/Controller/Account.php:300
+msgid "Ошибка : неверный e-mail "
+msgstr "Помилка: невірний e-mail "
+
+#: app/Controller/Account.php:345
+#, php-format
+msgid "Добрый день %1s!<br>"
+msgstr "Добрий день %1s!<br>"
+
+#: app/Controller/Account.php:346
+#, php-format
+msgid "Аккаунт на %1s создан для адреса электронной почты %2s<br>"
+msgstr "Аккаунт на % 1s створений для адреси електронної пошти % 2s <br>"
+
+#: app/Controller/Account.php:347
+msgid "Нажмите здесь, чтобы установить пароль для вашей учетной записи:<br>"
+msgstr "Натисніть тут, щоб встановити пароль для вашого профілю: <br>"
+
+#: app/Controller/Account.php:350
+#, php-format
+msgid "Ваш аккаунт на %1s"
+msgstr "Ваш аккаунт на %1s"
+
+#: app/Controller/Account.php:384
+msgid "Ошибка : пользователь не определен "
+msgstr "Помилка: користувач не визначений "
+
+#: app/Controller/Account.php:408
+msgid "Ошибка : поле пустое ФИО "
+msgstr "Помилка: поле пусте ПІБ "
 
 #: app/Controller/Backend.php:94 app/Controller/Backend.php:95
 msgid "Website Settings"
 msgstr ""
 
 #: app/Controller/Front.php:173
-msgid "Введите свой e-mail"
-msgstr "Введіть свій e-mail"
+msgid "Введенный e-mail уже зарегистрирован"
+msgstr "Введений e-mail вже зареєстрований"
+
+#: app/Controller/Front.php:174
+msgid ""
+"Пароль должен содержать большие и маленьние символы(лат), цифры и спецсимволы"
+msgstr ""
+"Пароль повинен містити великі і маленьніе символи (лат), цифри і спецсимволи"
 
 #: app/Controller/Menu.php:36
 msgid "Header Menu"
@@ -63,6 +133,49 @@ msgstr ""
 msgid "Bottom Bar Menu 2"
 msgstr ""
 
+#: app/DMS_API/DMS_API_Manager.php:132 app/DMS_API/DMS_API_Manager.php:215
+#: app/DMS_API/DMS_API_Manager.php:296 app/DMS_API/DMS_API_Manager.php:374
+#: app/DMS_API/DMS_API_Manager.php:463
+msgid "Вы не авторизованы. Перезайдите в кабинет"
+msgstr "Ви не авторизовані. Перезайдіть в кабінет"
+
+#: app/DMS_API/DMS_API_Manager.php:143 app/DMS_API/DMS_API_Manager.php:226
+#: app/DMS_API/DMS_API_Manager.php:307 app/DMS_API/DMS_API_Manager.php:385
+#: app/DMS_API/DMS_API_Manager.php:474
+msgid "Пустой поисковый запрос"
+msgstr "Порожній пошуковий запит"
+
+#: app/DMS_API/DMS_API_Manager.php:184 app/DMS_API/DMS_API_Manager.php:266
+#: app/DMS_API/DMS_API_Manager.php:343 app/DMS_API/DMS_API_Manager.php:432
+#: app/DMS_API/DMS_API_Manager.php:521
+msgid "Неизвестная ошибка"
+msgstr "Невідома помилка"
+
+#: app/DMS_API/DMS_API_Manager.php:396 app/DMS_API/DMS_API_Manager.php:485
+msgid "Отсутствует моникер"
+msgstr "Відсутній монікер"
+
+#: app/DMS_API/DMS_API_Process.php:66 app/DMS_API/DMS_API_Process.php:187
+#: app/DMS_API/DMS_API_Process.php:263 app/DMS_API/DMS_API_Process.php:348
+#: app/DMS_API/DMS_API_Process.php:436 app/DMS_API/DMS_API_Process.php:523
+#: app/DMS_API/DMS_API_Process.php:610 app/DMS_API/DMS_API_Process.php:697
+msgid "ошибка cURL "
+msgstr "помилка cURL "
+
+#: app/DMS_API/DMS_API_Process.php:130 app/DMS_API/DMS_API_Process.php:198
+#: app/DMS_API/DMS_API_Process.php:289 app/DMS_API/DMS_API_Process.php:374
+#: app/DMS_API/DMS_API_Process.php:462 app/DMS_API/DMS_API_Process.php:549
+#: app/DMS_API/DMS_API_Process.php:636 app/DMS_API/DMS_API_Process.php:723
+msgid "неизвестная ошибка"
+msgstr "невідома помилка"
+
+#: app/DMS_API/DMS_API_Process.php:198 app/DMS_API/DMS_API_Process.php:276
+#: app/DMS_API/DMS_API_Process.php:361 app/DMS_API/DMS_API_Process.php:449
+#: app/DMS_API/DMS_API_Process.php:536 app/DMS_API/DMS_API_Process.php:623
+#: app/DMS_API/DMS_API_Process.php:710
+msgid "ошибка доступа"
+msgstr "помилка доступу"
+
 #: app/Shortcodes/about/config.php:4
 msgid "About"
 msgstr ""
@@ -72,7 +185,7 @@ msgstr ""
 #: app/Shortcodes/intro/config.php:6 app/Shortcodes/problem/config.php:6
 #: app/Shortcodes/product/config.php:6 app/Shortcodes/rprice/config.php:6
 #: app/Shortcodes/stat/config.php:6 app/Shortcodes/target/config.php:6
-#: app/Shortcodes/tariff/config.php:6
+#: app/Shortcodes/tariff/config.php:6 app/Shortcodes/test/config.php:6
 msgid "DMS"
 msgstr ""
 
@@ -82,6 +195,7 @@ msgstr ""
 #: app/Shortcodes/problem/config.php:12 app/Shortcodes/product/config.php:13
 #: app/Shortcodes/rprice/config.php:12 app/Shortcodes/stat/config.php:12
 #: app/Shortcodes/target/config.php:12 app/Shortcodes/tariff/config.php:12
+#: app/Shortcodes/test/config.php:12
 msgid "Title"
 msgstr ""
 
@@ -109,6 +223,9 @@ msgstr ""
 #: app/Shortcodes/target/config.php:14 app/Shortcodes/target/config.php:22
 #: app/Shortcodes/target/config.php:31 app/Shortcodes/tariff/config.php:14
 #: app/Shortcodes/tariff/config.php:22 app/Shortcodes/tariff/config.php:31
+#: app/Shortcodes/test/config.php:14 app/Shortcodes/test/config.php:25
+#: app/Shortcodes/test/config.php:34
+#: vendor/htmlburger/carbon-fields/core/Container/Container.php:712
 msgid "General"
 msgstr ""
 
@@ -127,6 +244,7 @@ msgstr ""
 #: app/Shortcodes/problem/config.php:19 app/Shortcodes/product/config.php:30
 #: app/Shortcodes/rprice/config.php:35 app/Shortcodes/stat/config.php:19
 #: app/Shortcodes/target/config.php:19 app/Shortcodes/tariff/config.php:19
+#: app/Shortcodes/test/config.php:22
 msgid "CSS classes"
 msgstr ""
 
@@ -135,7 +253,7 @@ msgstr ""
 #: app/Shortcodes/intro/config.php:95 app/Shortcodes/problem/config.php:26
 #: app/Shortcodes/product/config.php:37 app/Shortcodes/rprice/config.php:42
 #: app/Shortcodes/stat/config.php:26 app/Shortcodes/target/config.php:26
-#: app/Shortcodes/tariff/config.php:26
+#: app/Shortcodes/tariff/config.php:26 app/Shortcodes/test/config.php:29
 msgid "CSS id"
 msgstr ""
 
@@ -143,54 +261,73 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: app/Shortcodes/account/view/view.php:21
+#: app/Shortcodes/account/view/view.php:22
 msgid "NO USER LOGGED IN"
 msgstr ""
 
-#: app/Shortcodes/account/view/view.php:71
+#: app/Shortcodes/account/view/view.php:39
+msgid "Нет"
+msgstr "Ні"
+
+#: app/Shortcodes/account/view/view.php:72
 msgid "Баланс:"
-msgstr ""
+msgstr "Баланс:"
 
-#: app/Shortcodes/account/view/view.php:77
+#: app/Shortcodes/account/view/view.php:78
 msgid "Тарифный план:"
-msgstr ""
+msgstr "Тарифний план:"
 
-#: app/Shortcodes/account/view/view.php:83
+#: app/Shortcodes/account/view/view.php:84
 msgid "Пополнить"
-msgstr ""
+msgstr "Поповнити"
 
-#: app/Shortcodes/account/view/view.php:88
+#: app/Shortcodes/account/view/view.php:89
 msgid "Написать нам"
-msgstr ""
+msgstr "Написати нам"
 
-#: app/Shortcodes/account/view/view.php:117 footer.php:102 footer.php:133
-#: footer.php:157
+#: app/Shortcodes/account/view/view.php:117
+msgid "Сменить фото"
+msgstr "Змінити фото"
+
+#: app/Shortcodes/account/view/view.php:129 footer.php:102 footer.php:137
+#: footer.php:165
 msgid "E-mail"
 msgstr ""
 
-#: app/Shortcodes/account/view/view.php:122 footer.php:164
+#: app/Shortcodes/account/view/view.php:134 footer.php:178
 msgid "ФИО"
-msgstr ""
+msgstr "ПІБ"
 
-#: app/Shortcodes/account/view/view.php:127 footer.php:166
+#: app/Shortcodes/account/view/view.php:140 custom-fields/user_meta.php:16
+#: footer.php:184
 msgid "Должность"
-msgstr ""
+msgstr "Посада"
 
-#: app/Shortcodes/account/view/view.php:132
+#: app/Shortcodes/account/view/view.php:146 custom-fields/user_meta.php:12
 msgid "Юр. назв. предприятия"
-msgstr ""
+msgstr "Юр. назв. підприємства"
 
-#: app/Shortcodes/account/view/view.php:137 footer.php:169
+#: app/Shortcodes/account/view/view.php:152 footer.php:193
 msgid "Юр. адрес"
-msgstr ""
+msgstr "Юр. адреса"
 
-#: app/Shortcodes/account/view/view.php:142
-msgid "УДРПОУ"
-msgstr ""
+#: app/Shortcodes/account/view/view.php:158 custom-fields/user_meta.php:14
+#: footer.php:181
+msgid "ЕГРПОУ"
+msgstr "ЄДРПОУ"
 
-#: app/Shortcodes/account/view/view.php:147 footer.php:168
+#: app/Shortcodes/account/view/view.php:164 custom-fields/user_meta.php:15
+#: footer.php:190
 msgid "Телефон"
-msgstr ""
+msgstr "Телефон"
+
+#: app/Shortcodes/account/view/view.php:177
+msgid "Редактировать"
+msgstr "Редагувати"
+
+#: app/Shortcodes/account/view/view.php:180
+msgid "Сохранить"
+msgstr "Зберегти"
 
 #: app/Shortcodes/cert/config.php:4 app/Shortcodes/cert/config.php:38
 #: app/Shortcodes/cert/config.php:39
@@ -390,7 +527,6 @@ msgid "Text Transform"
 msgstr ""
 
 #: app/Shortcodes/heading/config.php:85
-#: framework-customizations/theme/options/posts/page.php:11
 msgid "None"
 msgstr ""
 
@@ -548,25 +684,55 @@ msgstr ""
 msgid "Button How it works url "
 msgstr ""
 
-#: app/Shortcodes/intro/view/view.php:105
+#: app/Shortcodes/intro/view/view.php:105 app/Shortcodes/test/view/view.php:41
 msgid "Имя"
-msgstr ""
+msgstr "Ім'я"
 
-#: app/Shortcodes/intro/view/view.php:118
+#: app/Shortcodes/intro/view/view.php:108
+msgctxt "example"
+msgid "Сергей"
+msgstr "Сергій"
+
+#: app/Shortcodes/intro/view/view.php:118 app/Shortcodes/test/view/view.php:52
 msgid "Отчество"
-msgstr ""
+msgstr "По батькові"
 
-#: app/Shortcodes/intro/view/view.php:131
+#: app/Shortcodes/intro/view/view.php:121
+msgctxt "example"
+msgid "Сергеевич"
+msgstr "Сергійович"
+
+#: app/Shortcodes/intro/view/view.php:131 app/Shortcodes/test/view/view.php:63
 msgid "Населенный пункт"
-msgstr ""
+msgstr "Населений пункт"
 
-#: app/Shortcodes/intro/view/view.php:144
+#: app/Shortcodes/intro/view/view.php:134
+msgctxt "example"
+msgid "Киев"
+msgstr "Київ"
+
+#: app/Shortcodes/intro/view/view.php:136
+msgctxt "example"
+msgid "Киевский район"
+msgstr "Київський район"
+
+#: app/Shortcodes/intro/view/view.php:137
+msgctxt "example"
+msgid "Киевская область"
+msgstr "Київская область"
+
+#: app/Shortcodes/intro/view/view.php:144 app/Shortcodes/test/view/view.php:74
 msgid "Улица"
-msgstr ""
+msgstr "Вулиця"
 
-#: app/Shortcodes/intro/view/view.php:157
+#: app/Shortcodes/intro/view/view.php:147
+msgctxt "example"
+msgid "Новоконстантиновская"
+msgstr "Новокостянтинівська"
+
+#: app/Shortcodes/intro/view/view.php:157 app/Shortcodes/test/view/view.php:85
 msgid "Дом"
-msgstr ""
+msgstr "Будинок"
 
 #: app/Shortcodes/menu/config.php:11 app/Shortcodes/menu/config.php:23
 msgid "Menu"
@@ -824,6 +990,10 @@ msgstr ""
 
 #: app/Shortcodes/tariff/config.php:127
 msgid "Item link text"
+msgstr ""
+
+#: app/Shortcodes/test/config.php:4
+msgid "Test"
 msgstr ""
 
 #: app/Widgets/social_icons/view/backend.php:9
@@ -1096,49 +1266,69 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
+#: custom-fields/user_meta.php:10
+msgid "Данные аккаунта"
+msgstr "Дані облікового запису"
+
+#: custom-fields/user_meta.php:13
+msgid "Юр. адрес предприятия"
+msgstr "Юр. адреса підприємства"
+
+#: custom-fields/user_meta.php:18
+msgid "Фото"
+msgstr "Фото"
+
+#: custom-fields/user_meta.php:20
+msgid "Тариф"
+msgstr "Тариф"
+
+#: custom-fields/user_meta.php:21
+msgid "Баланс"
+msgstr "Баланс"
+
 #: footer.php:96
 msgid "Вход"
-msgstr ""
+msgstr "Вхід"
 
-#: footer.php:103 footer.php:158
+#: footer.php:105
 msgid "Password"
 msgstr ""
 
-#: footer.php:104
+#: footer.php:108
 msgid "Войти"
-msgstr ""
+msgstr "Увійти"
 
-#: footer.php:109
+#: footer.php:113
 msgid "Забыли пароль?"
-msgstr ""
+msgstr "Забули пароль?"
 
-#: footer.php:110 footer.php:151
+#: footer.php:114 footer.php:159
 msgid "Регистрация"
-msgstr ""
+msgstr "Реєстрація"
 
-#: footer.php:127
+#: footer.php:131
 msgid "Восстановить"
-msgstr ""
+msgstr "Відновити"
 
-#: footer.php:134
+#: footer.php:140
 msgid "Отправить"
-msgstr ""
+msgstr "Надіслати"
 
-#: footer.php:160
-msgid "Повторите Password"
-msgstr ""
+#: footer.php:168
+msgid "Пароль"
+msgstr "Пароль"
 
-#: footer.php:165
-msgid "ЕГРПОУ"
-msgstr ""
+#: footer.php:172
+msgid "Повторите пароль"
+msgstr "Повторіть пароль"
 
-#: footer.php:167
+#: footer.php:187
 msgid "Название компании"
-msgstr ""
+msgstr "Назва компанії"
 
-#: footer.php:173
+#: footer.php:198
 msgid "Зарегистрироваться"
-msgstr ""
+msgstr "Зареєструватися"
 
 #: framework-customizations/extensions/sidebars/views/frontend-no-widgets.php:7
 #, php-format
@@ -1163,7 +1353,6 @@ msgstr ""
 
 #: framework-customizations/theme/options/footer.php:6
 #: framework-customizations/theme/options/footer.php:11
-#: framework-customizations/theme/options/posts/composerlayout.php:48
 msgid "Footer"
 msgstr ""
 
@@ -1173,7 +1362,7 @@ msgstr ""
 
 #: framework-customizations/theme/options/footer.php:22
 msgid "Можно вписать адрес"
-msgstr ""
+msgstr "Можна вписати адресу"
 
 #: framework-customizations/theme/options/footer.php:32
 msgid "Footer box 2"
@@ -1181,7 +1370,7 @@ msgstr ""
 
 #: framework-customizations/theme/options/footer.php:34
 msgid "Можно вписать доп ссылки"
-msgstr ""
+msgstr "Можна вписати доп посилання"
 
 #: framework-customizations/theme/options/footer.php:45
 msgid "Bottom Bar"
@@ -1216,10 +1405,8 @@ msgstr ""
 #: framework-customizations/theme/options/general.php:74
 #: framework-customizations/theme/options/performance.php:23
 #: framework-customizations/theme/options/performance.php:53
-#: framework-customizations/theme/options/performance.php:79
-#: framework-customizations/theme/options/performance.php:93
-#: framework-customizations/theme/options/performance.php:116
-#: framework-customizations/theme/options/performance.php:139
+#: framework-customizations/theme/options/performance.php:117
+#: framework-customizations/theme/options/performance.php:140
 msgid "Yes"
 msgstr ""
 
@@ -1227,10 +1414,8 @@ msgstr ""
 #: framework-customizations/theme/options/general.php:79
 #: framework-customizations/theme/options/performance.php:28
 #: framework-customizations/theme/options/performance.php:58
-#: framework-customizations/theme/options/performance.php:84
-#: framework-customizations/theme/options/performance.php:98
-#: framework-customizations/theme/options/performance.php:121
-#: framework-customizations/theme/options/performance.php:144
+#: framework-customizations/theme/options/performance.php:122
+#: framework-customizations/theme/options/performance.php:145
 msgid "No"
 msgstr ""
 
@@ -1251,7 +1436,6 @@ msgid "Disables trackbacks/pingbacks"
 msgstr ""
 
 #: framework-customizations/theme/options/header.php:6
-#: framework-customizations/theme/options/posts/composerlayout.php:47
 msgid "Header"
 msgstr ""
 
@@ -1327,117 +1511,33 @@ msgid ""
 "down your site speed. Use neatly"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:68
-msgid "HTTP/2 Preload Options"
-msgstr ""
-
-#: framework-customizations/theme/options/performance.php:76
-msgid "Enable/Disable HTTP/2 Preload for styles"
-msgstr ""
-
-#: framework-customizations/theme/options/performance.php:86
-msgid "HTTP/2 Preload for styles on/off"
-msgstr ""
-
-#: framework-customizations/theme/options/performance.php:90
-msgid "Enable/Disable HTTP/2 Preload for scripts"
-msgstr ""
-
-#: framework-customizations/theme/options/performance.php:100
-msgid "HTTP/2 Preload for scripts on/off"
-msgstr ""
-
-#: framework-customizations/theme/options/performance.php:105
+#: framework-customizations/theme/options/performance.php:106
 msgid "WP Head Options"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:113
+#: framework-customizations/theme/options/performance.php:114
 msgid "Clean Up WP head"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:123
+#: framework-customizations/theme/options/performance.php:124
 msgid ""
 "Remove unnecessary link's ,Remove inline CSS and JS from WP emoji support, "
 "Remove inline CSS used by Recent Comments widget, Remove inline CSS used by "
 "posts with galleries, Remove self-closing tag"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:128
+#: framework-customizations/theme/options/performance.php:129
 msgid "Js/Css additional"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:136
+#: framework-customizations/theme/options/performance.php:137
 msgid "Remove Versions"
 msgstr ""
 
-#: framework-customizations/theme/options/performance.php:146
+#: framework-customizations/theme/options/performance.php:147
 msgid ""
 "Resources with a \"?\" in the URL are not cached by some proxy caching "
 "servers."
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:24
-msgid "Default"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:25
-msgid "For manual select"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:26
-msgid "Blog page"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:27
-msgid "Search results page"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:28
-msgid "Archive page"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:29
-msgid "404 page"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:38
-msgid "Settings"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:43
-msgid "Layout type"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:57
-msgid "Placement"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/composerlayout.php:59
-msgid "Where this Header/Footer will be shown"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/page.php:10
-msgid "Inherit"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/page.php:24
-msgid "Header & Footer options"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/page.php:29
-msgid "Page Header"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/page.php:40
-msgid "Page Footer"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/portfolio.php:5
-msgid "Portfolio Details"
-msgstr ""
-
-#: framework-customizations/theme/options/posts/portfolio.php:10
-msgid "Gallery Images"
 msgstr ""
 
 #: framework-customizations/theme/options/social.php:6
@@ -1476,21 +1576,17 @@ msgstr ""
 msgid "Social Profiles"
 msgstr ""
 
-#: header.php:62
-msgid "Enter your e-mail"
-msgstr "Введіть свій e-mail"
-
-#: header.php:66 header.php:134
+#: header.php:68 header.php:148
 msgid "Обратный звонок"
-msgstr ""
+msgstr "Зворотний дзвінок"
 
-#: header.php:76 header.php:80
+#: header.php:81 header.php:85
 msgid "Личный кабинет"
-msgstr ""
+msgstr "Особистий кабінет"
 
-#: header.php:80
+#: header.php:85
 msgid "Выйти"
-msgstr ""
+msgstr "Вийти"
 
 #: index.php:90
 msgid "Read more"
@@ -1508,6 +1604,135 @@ msgstr ""
 msgid "By "
 msgstr ""
 
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:242
+msgid "The parent must be 'array', 'string' or 'null'."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:271
+msgid "The position of inner blocks must be 'above' or 'below'."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:289
+msgid "The template must be an 'array' or 'null'."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:307
+msgid "The template lock must be 'all', 'insert', 'false' or 'null'."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:325
+msgid "The allowed blocks must be an 'array' or 'null'."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:392
+msgid "'render_callback' is required for the blocks."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:396
+msgid "'render_callback' must be a callable."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Container/Theme_Options_Container.php:207
+msgid "Settings saved."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Field/Footer_Scripts_Field.php:20
+msgid ""
+"If you need to add scripts to your footer (like Google Analytics tracking "
+"code), you should enter them in this box."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Field/Gravity_Form_Field.php:47
+msgid "No form"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Field/Header_Scripts_Field.php:20
+msgid "If you need to add scripts to your header, you should enter them here."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Field/Sidebar_Field.php:74
+msgctxt "sidebar"
+msgid "Add New"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:69
+msgid "Please enter a name for the sidebar."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:72
+msgid "Unknown action attempted."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:102
+msgid "Sidebar with the same ID is already registered."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:112
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:142
+msgid ""
+"Failed to update option storing your custom sidebars. Please contact support."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:137
+msgid "Sidebar not found."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:181
+msgid "Add Sidebar"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:182
+msgid "Please enter the name of the new sidebar:"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:183
+msgid "Are you sure you wish to remove this sidebar?"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:361
+msgid "No option names provided"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:372
+msgid "Theme Options updated."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:394
+msgid "Sorry, you are not allowed to read blocks of this post."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:404
+msgid "Sorry, you are not allowed to read blocks as this user."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:427
+msgid "The name of the block."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:432
+msgid "The content of the block."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:436
+msgid "ID of the post context."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/core/REST_API/Router.php:467
+msgid "Invalid block."
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/templates/Container/common/options-page.php:43
+msgid "Actions"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/templates/Container/common/options-page.php:52
+msgid "Save Changes"
+msgstr ""
+
+#: vendor/htmlburger/carbon-fields/templates/Container/widget.php:4
+msgid "No options are available for this widget."
+msgstr ""
+
 #. Theme Name of the plugin/theme
 msgid "DMS Theme"
 msgstr ""
@@ -1523,3 +1748,9 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://solidbunch.com"
 msgstr ""
+
+#~ msgid "Введите свой e-mail"
+#~ msgstr "Введіть свій e-mail"
+
+#~ msgid "Enter your e-mail"
+#~ msgstr "Введіть свій e-mail"

@@ -105,7 +105,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Имя', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_first" placeholder="" value="Сергій" readonly>
+						<input class="form-control" id="how_first" placeholder="" value="<?php _ex('Сергей', 'example', 'dms') ?>" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>
@@ -118,7 +118,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Отчество', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_middle" placeholder="" value="Сергійович" readonly>
+						<input class="form-control" id="how_middle" placeholder="" value="<?php _ex('Сергеевич', 'example', 'dms') ?>" readonly>
 						<div class="s-intro__input_result">
 							<!--							<div class="result_row">♀</div>-->
 							<div class="result_row result_row_gender">♂</div>
@@ -131,10 +131,10 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Населенный пункт', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_city" placeholder="" value="Київ" readonly>
+						<input class="form-control" id="how_city" placeholder="" value="<?php _ex('Киев', 'example', 'dms') ?>" readonly>
 						<div class="s-intro__input_result">
-							<div class="result_row">Киевский район</div>
-							<div class="result_row">Киевская область</div>
+							<div class="result_row"><?php _ex('Киевский район', 'example', 'dms') ?></div>
+							<div class="result_row"><?php _ex('Киевская область', 'example','dms') ?></div>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 						<?php echo __( 'Улица', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-intro__input_rel">
-						<input class="form-control" id="how_street" placeholder="" value="Новокостянтинівська" readonly>
+						<input class="form-control" id="how_street" placeholder="" value="<?php _ex('Новоконстантиновская', 'example','dms') ?>" readonly>
 						<div class="s-intro__input_result">
 							<div class="result_row"></div>
 							<div class="result_row"></div>

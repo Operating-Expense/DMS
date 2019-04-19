@@ -393,7 +393,7 @@ class DMS_API_Manager {
 			wp_send_json_error( [
 				'message'    => __FUNCTION__ . ' : st_moniker is empty',
 				'user_id'    => $current_user->ID,
-				'error_html' => __( 'Отсутсвует моникер', 'dms' ),
+				'error_html' => __( 'Отсутствует моникер', 'dms' ),
 				'redirect'   => '',
 				'result'     => '',
 				'_REQUEST'   => $_REQUEST,
@@ -482,7 +482,7 @@ class DMS_API_Manager {
 			wp_send_json_error( [
 				'message'    => __FUNCTION__ . ' : house_moniker is empty',
 				'user_id'    => $current_user->ID,
-				'error_html' => __( 'Отсутсвует моникер', 'dms' ),
+				'error_html' => __( 'Отсутствует моникер', 'dms' ),
 				'redirect'   => '',
 				'result'     => '',
 				'_REQUEST'   => $_REQUEST,
