@@ -95,7 +95,7 @@ $title = $atts['title'];
 		
 		</div>
 		
-		<div class="col-xl-5 order-2 order-xl-2 justify-content-center align-items-center s-test__right">
+		<div class="col-xl-5 order-2 order-xl-2 align-items-center s-test__right">
 			
 			<div class="extra_info_box"></div>
 		

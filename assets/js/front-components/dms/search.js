@@ -45,11 +45,9 @@ export default (options) => {
 					
 					if (!mainValField || !mainValField.length) return;
 					
-					let SexId = item.SexId || '';
-					
 					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}" data-item="${itemToAttr}">${mainValField}</div>`;
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-item="${itemToAttr}">${mainValField}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -58,7 +56,15 @@ export default (options) => {
 			extHandler = (resultElement) => {
 				let $resultElement = $(resultElement);
 				let value = $resultElement.attr('data-mainval') || '';
-				let sexid = $resultElement.attr('data-sexid') || '';
+				
+				let itemData = null;
+				try {
+					itemData = JSON.parse(decodeURIComponent($resultElement.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				let SexId = itemData ? itemData['SexId'] : '';
 				
 				let extHtml = '';
 				
@@ -66,12 +72,12 @@ export default (options) => {
 				lastRequest = value;
 				input.attr('data-competed', '1');
 				resultBox.html('').hide();
-				form.attr('data-sexid', sexid);
+				form.attr('data-sexid', SexId);
 				
-				if (sexid === '1') {
-					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♂</div>`;
-				} else if (sexid === '2') {
-					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
+				if (SexId === '1') {
+					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♂</div>`;
+				} else if (SexId === '2') {
+					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♀</div>`;
 				}
 				
 				mainInfoBox.html(extHtml).show();
@@ -92,11 +98,9 @@ export default (options) => {
 					
 					if (!mainValField || !mainValField.length) return;
 					
-					let SexId = item.SexId || '';
-					
 					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}" data-item="${itemToAttr}">${mainValField}</div>`;
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-item="${itemToAttr}">${mainValField}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -105,7 +109,14 @@ export default (options) => {
 			extHandler = (resultElement) => {
 				let $resultElement = $(resultElement);
 				let value = $resultElement.attr('data-mainval') || '';
-				let sexid = $resultElement.attr('data-sexid') || '';
+				let itemData = null;
+				try {
+					itemData = JSON.parse(decodeURIComponent($resultElement.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				let SexId = itemData ? itemData['SexId'] : '';
 				
 				let extHtml = '';
 				
@@ -113,12 +124,12 @@ export default (options) => {
 				lastRequest = value;
 				input.attr('data-competed', '1');
 				resultBox.html('').hide();
-				form.attr('data-sexid', sexid);
+				form.attr('data-sexid', SexId);
 				
-				if (sexid === '1') {
-					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♂</div>`;
-				} else if (sexid === '2') {
-					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
+				if (SexId === '1') {
+					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♂</div>`;
+				} else if (SexId === '2') {
+					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♀</div>`;
 				}
 				
 				mainInfoBox.html(extHtml).show();
@@ -143,16 +154,20 @@ export default (options) => {
 					let SettlementType = item.SettlementType || '';
 					let Area = item.Area || '';
 					let Region = item.Region || '';
-					let st_moniker = item.st_moniker || '';
 					
 					let valString = mainValField;
-					valString = SettlementType ? SettlementType + ' ' + valString : valString;
-					valString = Area ? valString + ', ' + Area : valString;
-					valString = Region ? valString + ', ' + Region : valString;
+					valString = SettlementType ? `<span>${SettlementType} </span>`+ valString : valString;
+					valString = Area || Region ? valString + '<div class="srr_subrow">' : valString;
+					valString = Area ? valString + `<span>${Area} &nbsp;</span>` : valString;
+					valString = Region ? valString + `<span>${Region} </span>` : valString;
+					valString = Area || Region ? valString + '</div>' : valString;
 					
 					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-st_moniker="${st_moniker}" data-mainval="${mainValField}" data-region="${Region}" data-area="${Area}" data-item="${itemToAttr}">${valString}</div>`;
+					resultHtml += '<div class="search_result_row" ';
+					resultHtml += `data-mainval="${mainValField}" `;
+					resultHtml += `data-item="${itemToAttr}" `;
+					resultHtml += `>${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -161,9 +176,17 @@ export default (options) => {
 			extHandler = (resultElement) => {
 				let $resultElement = $(resultElement);
 				let value = $resultElement.attr('data-mainval') || '';
-				let st_moniker = $resultElement.attr('data-st_moniker') || '';
-				let region = $resultElement.attr('data-region') || '';
-				let area = $resultElement.attr('data-area') || '';
+				let itemData = null;
+				try {
+					itemData = JSON.parse(decodeURIComponent($resultElement.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				let st_moniker = itemData ? itemData['st_moniker'] : '';
+				let Region = itemData ? itemData['Region'] : '';
+				let Area = itemData ? itemData['Area'] : '';
+				let SettlementType = itemData ? itemData['SettlementType'] : '';
 				
 				let extHtml = '';
 				
@@ -174,11 +197,14 @@ export default (options) => {
 				form.attr('data-st_moniker', st_moniker);
 				
 				
-				if (area) {
-					extHtml += `<div class="result_row" data-type="${name}" data-area="${area}">${area}</div>`;
+				if (SettlementType) {
+					extHtml += `<div class="result_row" data-type="${name}">${SettlementType}</div>`;
 				}
-				if (region) {
-					extHtml += `<div class="result_row" data-type="${name}" data-area="${region}">${region}</div>`;
+				if (Area) {
+					extHtml += `<div class="result_row" data-type="${name}">${Area}</div>`;
+				}
+				if (Region) {
+					extHtml += `<div class="result_row" data-type="${name}">${Region}</div>`;
 				}
 				
 				mainInfoBox.html(extHtml).show();
@@ -199,7 +225,6 @@ export default (options) => {
 					
 					if (!mainValField || !mainValField.length) return;
 					
-					let house_moniker = item.house_moniker || '';
 					let StreetType = item.StreetType || '';
 					
 					let valString = mainValField;
@@ -207,7 +232,7 @@ export default (options) => {
 					
 					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-house_moniker="${house_moniker}" data-mainval="${mainValField}" data-item="${itemToAttr}">${valString}</div>`;
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-item="${itemToAttr}">${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -216,7 +241,16 @@ export default (options) => {
 			extHandler = (resultElement) => {
 				let $resultElement = $(resultElement);
 				let value = $resultElement.attr('data-mainval') || '';
-				let house_moniker = $resultElement.attr('data-house_moniker') || '';
+				
+				let itemData = null;
+				try {
+					itemData = JSON.parse(decodeURIComponent($resultElement.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				let house_moniker = itemData ? itemData['house_moniker'] : '';
+				let StreetType = itemData ? itemData['StreetType'] : '';
 				
 				let extHtml = '';
 				
@@ -225,6 +259,10 @@ export default (options) => {
 				input.attr('data-competed', '1');
 				resultBox.html('').hide();
 				form.attr('data-house_moniker', house_moniker);
+				
+				if (StreetType) {
+					extHtml += `<div class="result_row" data-type="${name}">${StreetType}</div>`;
+				}
 				
 				mainInfoBox.html(extHtml).show();
 			};
@@ -244,9 +282,6 @@ export default (options) => {
 					
 					if (!mainValField || !mainValField.length) return;
 					
-					let Index_ = item.Index_ || '';
-					let Lat = item.Lat || '';
-					let Long = item.Long || '';
 					let HouseNumAdd = item.HouseNumAdd || '';
 					
 					mainValField = mainValField + HouseNumAdd;
@@ -254,7 +289,7 @@ export default (options) => {
 					
 					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-index="${Index_}"  data-lat="${Lat}" data-long="${Long}" data-item="${itemToAttr}">${valString}</div>`;
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-item="${itemToAttr}">${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -263,9 +298,19 @@ export default (options) => {
 			extHandler = (resultElement) => {
 				let $resultElement = $(resultElement);
 				let value = $resultElement.attr('data-mainval') || '';
-				let index = $resultElement.attr('data-index') || '';
-				let lat = $resultElement.attr('data-lat') || '';
-				let long = $resultElement.attr('data-long') || '';
+				
+				let itemData = null;
+				try {
+					itemData = JSON.parse(decodeURIComponent($resultElement.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				let Index_ = itemData ? itemData['Index_'] : '';
+				let Lat = itemData ? itemData['Lat'] : '';
+				let Long = itemData ? itemData['Long'] : '';
+				let CityDistrict = itemData ? itemData['CityDistrict'] : '';
+				
 				
 				let extHtml = '';
 				
@@ -274,11 +319,14 @@ export default (options) => {
 				input.attr('data-competed', '1');
 				resultBox.html('').hide();
 				
-				if (lat && long) {
-					extHtml += `<div class="result_row" data-type="${name}" data-lat="${lat}" data-long="${long}">${lat}, ${long}</div>`;
+				if (Lat && Long) {
+					extHtml += `<div class="result_row" data-type="${name}">${Lat}, ${Long}</div>`;
 				}
-				if (index) {
-					extHtml += `<div class="result_row" data-type="${name}" data-index="${index}">${index}</div>`;
+				if (Index_) {
+					extHtml += `<div class="result_row" data-type="${name}">${Index_}</div>`;
+				}
+				if (CityDistrict) {
+					extHtml += `<div class="result_row" data-type="${name}">${CityDistrict}</div>`;
 				}
 				
 				mainInfoBox.html(extHtml).show();

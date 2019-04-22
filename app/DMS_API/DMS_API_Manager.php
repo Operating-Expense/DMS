@@ -10,7 +10,7 @@ use DMS\Exception\DMS_Exeption;
 class DMS_API_Manager {
 	
 	
-	public const MAX_NUMBER_OF_RESULTS = 8; // -1 - all,
+	public const MAX_NUMBER_OF_RESULTS = -1; // -1 - all,
 	public const MONIKER_LIVE_PERIOD = 840;  // sec,  api - 900
 	public const DEFAULT_LANG = 'uk_UA';
 	

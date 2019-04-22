@@ -19,7 +19,7 @@
 	
 	.s-test__right {
 		position: relative;
-		text-align: center;
+		text-align: left;
 		padding: 0 30px;
 	}
 	
@@ -105,6 +105,8 @@
 				text-align: center;
 				overflow: hidden;
 				padding: 0 1px;
+				max-height: 206px;
+				overflow-y: scroll;
 			}
 			
 			.search_result_row {
@@ -124,9 +126,18 @@
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				
+				span {
+					font-size: 11px;
+					color: #424258;
+					font-weight: 300;
+				}
+				
 				&.active {
 					outline: 1px solid #cdcdcd;
+					background-color: #f8f8ff;
 				}
+				
+				
 			}
 		}
 		
@@ -182,7 +193,7 @@
 		}
 		
 		.s-test__right {
-			padding: 20px 10% 0;
+			padding: 80px 2% 0;
 		}
 	}
 	
