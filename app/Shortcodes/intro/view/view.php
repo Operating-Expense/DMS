@@ -33,6 +33,12 @@ $btn_how_text = esc_html( $atts['btn_how_text'] );
 $btn_how_url  = esc_url( $atts['btn_how_url'] );
 
 
+$account_url = class_exists( 'WPGlobus_Utils' )
+	? \WPGlobus_Utils::localize_url( get_permalink( get_page_by_path( 'account' ) ) )
+	: get_permalink( get_page_by_path( 'account' ) );
+
+
+
 ?>
 <section <?php echo implode( ' ',$attributes ); ?>>
 	
@@ -68,8 +74,9 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 				<?php } ?>
 				
 				<div class="s-intro__btns">
-					<?php if ( $btn_try_text ) { ?>
-						<a href="<?php echo $btn_try_url ?>" class="s-intro__btn_try btn-arrow">
+					<?php if ( $btn_try_text ) {
+						?>
+						<a href="<?php echo $account_url ?>" class="s-intro__btn_try btn-arrow <?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>">
 							<?php echo $btn_try_text ?>
 							<div class="arrow-box">
 								<i class="arrow-right"></i>
@@ -191,12 +198,7 @@ $btn_how_url  = esc_url( $atts['btn_how_url'] );
 				</div>
 				
 				<div class="col-3 s-intro__footer_item">
-					<?php
-					$account_url_std    = class_exists( 'WPGlobus_Utils' )
-						? \WPGlobus_Utils::localize_url( get_permalink( get_page_by_path( 'account' ) ) )
-						: get_permalink( get_page_by_path( 'account' ) );
-					?>
-					<a href="<?php echo $account_url_std ?>" class="<?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>">
+					<a href="<?php echo $account_url ?>" class="<?php if ( ! is_user_logged_in() ) echo ' js-dms-account' ?>">
 						<i class="s-intro__footer_icon s-intro__footer_icon3"></i>
 					</a>
 				</div>

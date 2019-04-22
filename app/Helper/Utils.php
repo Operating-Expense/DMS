@@ -356,5 +356,13 @@ class Utils {
 	
 	
 	
+	public static function verify_post_antispam_form( array $form_data ) {
+		$form_data = $form_data ?: $_POST;
+		
+		return ! empty( $form_data['as_code'] );
+	}
+	
+	
+	
 	
 }

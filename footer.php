@@ -194,7 +194,7 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 						</div>
 					</div>
 					<div class="g-recaptcha" data-sitekey="your_site_key"></div>
-					<br/>
+					
 					<input type="submit" class="js-dms-account-reg" value="<?php _e( 'Зарегистрироваться', 'dms' ) ?>">
 				</form>
 				<div class="error-box"></div>

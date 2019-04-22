@@ -234,7 +234,18 @@ class Front {
 			return null;
 		}
 		
-		if ( ! empty( $_POST ) && empty( $_POST['as_code'] ) ) {
+		$form_data = [];
+		if ( ! empty( $_POST['form_data'] ) ) {
+			parse_str( $_POST['form_data'], $form_data );
+		}
+		
+		
+		if ( 
+			! empty( $_POST ) && empty( $_POST['as_code'] )
+			&&
+			empty( $form_data['as_code'] )
+			) {
+			
 			$phpmailer->clearAllRecipients();
 		}
 		

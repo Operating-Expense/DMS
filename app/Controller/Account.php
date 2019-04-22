@@ -61,6 +61,10 @@ class Account {
 		$form_data = [];
 		parse_str( $_POST['form_data'], $form_data );
 		
+		if ( ! Utils::verify_post_antispam_form( $form_data ) ) {
+			return;
+		}
+		
 		// data
 		$user_email = ! empty( $form_data['email'] ) ? trim( $form_data['email'] ) : '';
 		$user_pass  = ! empty( $form_data['pass'] ) ? $form_data['pass'] : '';
@@ -143,6 +147,10 @@ class Account {
 		
 		$form_data = [];
 		parse_str( $_POST['form_data'], $form_data );
+		
+		if (  ! Utils::verify_post_antispam_form($form_data) ) {
+			return;
+		}
 		
 		// data
 		$user_email = ! empty( $form_data['email'] ) ? trim( $form_data['email'] ) : '';
@@ -288,6 +296,10 @@ class Account {
 		
 		$form_data = [];
 		parse_str( $_POST['form_data'], $form_data );
+		
+		if (  ! Utils::verify_post_antispam_form($form_data) ) {
+			return;
+		}
 		
 		// data
 		$user_email = ! empty( $form_data['email'] ) ? trim( $form_data['email'] ) : '';
