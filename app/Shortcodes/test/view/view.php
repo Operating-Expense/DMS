@@ -32,7 +32,7 @@ $title = $atts['title'];
 	
 	<div class="row justify-content-center">
 		
-		<div class="col-xl-7 order-2 order-xl-1 s-test__left">
+		<div class="col-xl-7 order-1 order-xl-1 s-test__left">
 			
 			<form id="s-test__try_form" class="s-test__try_form form-color-gray" autocomplete="off" role="presentation">
 				
@@ -95,9 +95,9 @@ $title = $atts['title'];
 		
 		</div>
 		
-		<div class="col-xl-5 order-1 order-xl-2 justify-content-center align-items-center s-test__right">
+		<div class="col-xl-5 order-2 order-xl-2 justify-content-center align-items-center s-test__right">
 			
-			<div class="s-test__extra_info_box"></div>
+			<div class="extra_info_box"></div>
 		
 		</div>
 	

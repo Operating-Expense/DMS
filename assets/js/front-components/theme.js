@@ -336,7 +336,7 @@ export default class Theme {
 				}
 			},
 			messages: {
-				remote: themeJsVars.localize['registration/entered_email_exists'],
+				remote: window.themeJsVars.localize['registration/entered_email_exists'],
 			}
 		});
 		

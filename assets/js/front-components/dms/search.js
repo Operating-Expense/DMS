@@ -11,7 +11,10 @@ export default (options) => {
 	let mainWraper = $('#main-wrapper');
 	
 	let parent = input.closest('[data-sbname]');
-	let extBox = parent.find('.search_result_ext_box');
+	let mainInfoBox = parent.find('.search_result_ext_box');
+	
+	let shortcode = input.closest('.shortcode-test');
+	let extInfoBox = shortcode.find('.extra_info_box');
 	
 	let resultHandler = null, extHandler = null;
 	
@@ -44,7 +47,9 @@ export default (options) => {
 					
 					let SexId = item.SexId || '';
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}">${mainValField}</div>`;
+					let itemToAttr = encodeURIComponent(JSON.stringify(item));
+					
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}" data-item="${itemToAttr}">${mainValField}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -69,7 +74,7 @@ export default (options) => {
 					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
 				}
 				
-				extBox.html(extHtml).show();
+				mainInfoBox.html(extHtml).show();
 			};
 			
 			break;
@@ -89,7 +94,9 @@ export default (options) => {
 					
 					let SexId = item.SexId || '';
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}">${mainValField}</div>`;
+					let itemToAttr = encodeURIComponent(JSON.stringify(item));
+					
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-sexid="${SexId}" data-item="${itemToAttr}">${mainValField}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -114,7 +121,7 @@ export default (options) => {
 					extHtml += `<div class="result_row result_row_gender" data-sexid="${sexid}">♀</div>`;
 				}
 				
-				extBox.html(extHtml).show();
+				mainInfoBox.html(extHtml).show();
 			};
 			
 			break;
@@ -143,7 +150,9 @@ export default (options) => {
 					valString = Area ? valString + ', ' + Area : valString;
 					valString = Region ? valString + ', ' + Region : valString;
 					
-					resultHtml += `<div class="search_result_row" data-st_moniker="${st_moniker}" data-mainval="${mainValField}" data-region="${Region}" data-area="${Area}">${valString}</div>`;
+					let itemToAttr = encodeURIComponent(JSON.stringify(item));
+					
+					resultHtml += `<div class="search_result_row" data-st_moniker="${st_moniker}" data-mainval="${mainValField}" data-region="${Region}" data-area="${Area}" data-item="${itemToAttr}">${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -172,7 +181,7 @@ export default (options) => {
 					extHtml += `<div class="result_row" data-type="${name}" data-area="${region}">${region}</div>`;
 				}
 				
-				extBox.html(extHtml).show();
+				mainInfoBox.html(extHtml).show();
 			};
 			break;
 		// =======================================================
@@ -196,7 +205,9 @@ export default (options) => {
 					let valString = mainValField;
 					valString = StreetType ? StreetType + ' ' + valString : valString;
 					
-					resultHtml += `<div class="search_result_row" data-house_moniker="${house_moniker}" data-mainval="${mainValField}">${valString}</div>`;
+					let itemToAttr = encodeURIComponent(JSON.stringify(item));
+					
+					resultHtml += `<div class="search_result_row" data-house_moniker="${house_moniker}" data-mainval="${mainValField}" data-item="${itemToAttr}">${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -215,7 +226,7 @@ export default (options) => {
 				resultBox.html('').hide();
 				form.attr('data-house_moniker', house_moniker);
 				
-				extBox.html(extHtml).show();
+				mainInfoBox.html(extHtml).show();
 			};
 			break;
 		// =======================================================
@@ -241,8 +252,9 @@ export default (options) => {
 					mainValField = mainValField + HouseNumAdd;
 					let valString = mainValField;
 					
+					let itemToAttr = encodeURIComponent(JSON.stringify(item));
 					
-					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-index="${Index_}"  data-lat="${Lat}" data-long="${Long}">${valString}</div>`;
+					resultHtml += `<div class="search_result_row" data-mainval="${mainValField}" data-index="${Index_}"  data-lat="${Lat}" data-long="${Long}" data-item="${itemToAttr}">${valString}</div>`;
 				});
 				
 				resultBox.html(resultHtml).show();
@@ -269,7 +281,7 @@ export default (options) => {
 					extHtml += `<div class="result_row" data-type="${name}" data-index="${index}">${index}</div>`;
 				}
 				
-				extBox.html(extHtml).show();
+				mainInfoBox.html(extHtml).show();
 			};
 			break;
 		// =======================================================
@@ -298,13 +310,33 @@ export default (options) => {
 		let firstVal = form.find('input[name=first]').attr('data-competed');
 		let middleVal = form.find('input[name=middle]').attr('data-competed');
 		
-		if ( name === 'middle' && $.trim(firstVal) !== '1') {
+		if (name === 'middle' && $.trim(firstVal) !== '1') {
 			form.attr('data-sexid', '');
 		}
 		
-		if ( name === 'first' && $.trim(middleVal) !== '1') {
+		if (name === 'first' && $.trim(middleVal) !== '1') {
 			form.attr('data-sexid', '');
 		}
+	}
+	
+	
+	function genJsonPreview(itemData) {
+		if (!(itemData instanceof Object)) {
+			return '';
+		}
+		
+		let result = '';
+		
+		for (let key in itemData) {
+			let value = itemData[key] === null ? '-' : itemData[key];
+			
+			result += '<div class="extra_info_item">';
+			result += `<span class="ei_key">${key}</span>`;
+			result += '<span class="ei_sep"> : </span>';
+			result += `<span class="ei_value">${value}</span>`;
+			result += '</div>';
+		}
+		return result;
 	}
 	
 	// ========================================================================
@@ -324,12 +356,42 @@ export default (options) => {
 				resultBox.html('').hide();
 				if ($.trim(input.val()) === '') {
 					input.attr('data-competed', '0');
-					extBox.html('').hide();
+					mainInfoBox.html('').hide();
 				}
 			});
 			
+			
 			input.on('input', function (event) {
 				mayBeClearSexId();
+			});
+			
+			
+			resultBox.on('mouseover', '.search_result_row', function (event) {
+				let $this = $(this);
+				let itemData = null;
+				
+				try {
+					itemData = JSON.parse(decodeURIComponent($this.attr('data-item')));
+				} catch (e) {
+					console.warn(e.message);
+				}
+				
+				if (itemData) {
+					extInfoBox.html(genJsonPreview(itemData));
+					extInfoBox.fadeIn(100);
+				}
+				
+				$this.siblings().removeClass('active');
+				$this.addClass('active');
+				
+			});
+			
+			resultBox.on('mouseout', '.search_result_row', function (event) {
+				let $this = $(this);
+				$this.siblings().removeClass('active');
+				
+				extInfoBox.html('');
+				extInfoBox.fadeOut(100);
 			});
 			
 			
@@ -364,7 +426,7 @@ export default (options) => {
 						},
 						beforeSend: function () {
 							resultBox.html('').hide();
-							extBox.html('').hide();
+							mainInfoBox.html('').hide();
 							input.attr('data-competed', '0');
 						},
 						success: function (response) {
@@ -395,7 +457,7 @@ export default (options) => {
 					
 				} else {
 					resultBox.html('').hide();
-					extBox.html('').hide();
+					mainInfoBox.html('').hide();
 					input.attr('data-competed', '0');
 				}
 			});
