@@ -215,7 +215,7 @@ class Media {
 	 *
 	 * @return int Return 0 on error
 	 */
-	public static function import_media(array $file_array, int $post_id = 0, bool $set_as_thumb = false ) {
+	public static function import_media(array $file_array, $post_id = 0, $set_as_thumb = false ) {
 		
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';

@@ -5,7 +5,7 @@ namespace DMS\Helper;
 
 class Logger {
 	
-	const LOGGING_ENABLED = true;
+	const LOGGING_ENABLED = false;
 	const LOGGING_TIME_MS = true;
 	
 	

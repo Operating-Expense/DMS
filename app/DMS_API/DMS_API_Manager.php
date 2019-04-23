@@ -10,9 +10,9 @@ use DMS\Exception\DMS_Exeption;
 class DMS_API_Manager {
 	
 	
-	public const MAX_NUMBER_OF_RESULTS = -1; // -1 - all,
-	public const MONIKER_LIVE_PERIOD = 840;  // sec,  api - 900
-	public const DEFAULT_LANG = 'uk_UA';
+	const MAX_NUMBER_OF_RESULTS = -1; // -1 - all,
+	const MONIKER_LIVE_PERIOD = 840;  // sec,  api - 900
+	const DEFAULT_LANG = 'uk_UA';
 	
 	
 	// !!! Don't change this values
@@ -44,7 +44,7 @@ class DMS_API_Manager {
 	 *
 	 * @return array
 	 */
-	public static function user_registration( $data_arr, $user_email, $user_pass ): array {
+	public static function user_registration( $data_arr, $user_email, $user_pass ) {
 		return DMS_API_Process::api__register_user( $user_email, $user_pass );
 	}
 	
@@ -55,7 +55,7 @@ class DMS_API_Manager {
 	 *
 	 * @return void
 	 */
-	public static function user_save_api_token( $user ): void {
+	public static function user_save_api_token( $user ) {
 		
 		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', $user );
 		
@@ -77,7 +77,7 @@ class DMS_API_Manager {
 	 *
 	 * @return void
 	 */
-	public static function user_save_api_data( $user ): void {
+	public static function user_save_api_data( $user ) {
 		
 		$user = ( $user instanceof \WP_User ) ? $user : \get_user_by( 'ID', $user );
 		
@@ -93,7 +93,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function user_refresh_api_data(): void {
+	public static function user_refresh_api_data() {
 		if ( ! is_page( 'account' ) ) {
 			return;
 		}
@@ -107,7 +107,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function search_first(): void {
+	public static function search_first() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -190,7 +190,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function search_middle(): void {
+	public static function search_middle() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -272,7 +272,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function search_city(): void {
+	public static function search_city() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -349,7 +349,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function search_street(): void {
+	public static function search_street() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -438,7 +438,7 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function search_house(): void {
+	public static function search_house() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -551,25 +551,25 @@ class DMS_API_Manager {
 	
 	
 	
-	public static function get_api_pass( int $user_id ): string {
+	public static function get_api_pass( $user_id ) {
 		return base64_decode( get_user_meta( $user_id, '_dms--user_api_pass', true ) );
 	}
 	
 	
 	
-	public static function set_api_pass( int $user_id, string $value ): void {
+	public static function set_api_pass( $user_id, $value ) {
 		update_user_meta( $user_id, '_dms--user_api_pass', base64_encode( $value ) );
 	}
 	
 	
 	
-	public static function get_saved_api_access_token( int $user_id ): string {
+	public static function get_saved_api_access_token( $user_id ) {
 		return get_user_meta( $user_id, '_dms--user_api_token__access_token', true );
 	}
 	
 	
 	
-	public static function update_user_fields_by_api( \WP_User $user, string $context, array $data ): void {
+	public static function update_user_fields_by_api( \WP_User $user, $context, array $data ) {
 		foreach ( self::$api_fields[ $context ] as $field_api => $field_meta ) {
 			if ( isset( $data[ $field_api ] ) ) {
 				update_user_meta( $user->ID, "_dms--user_api_{$context}__{$field_meta}", $data[ $field_api ] );

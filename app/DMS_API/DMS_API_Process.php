@@ -41,7 +41,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__register_user( string $user_email, string $user_pass ): array {
+	public static function api__register_user( $user_email, $user_pass ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -159,7 +159,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_token( $user_email, $user_pass, $grant_type = 'password' ): array {
+	public static function api__get_token( $user_email, $user_pass, $grant_type = 'password' ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -235,7 +235,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_user_data( string $user_email, string $token ): array {
+	public static function api__get_user_data( $user_email, $token ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -320,7 +320,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_First( string $user_email, string $token, array $query, array $headers ): array {
+	public static function api__get_field_First( $user_email, $token, array $query, array $headers ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -408,7 +408,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_Middle( string $user_email, string $token, array $query, array $headers ): array {
+	public static function api__get_field_Middle( $user_email, $token, array $query, array $headers ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -495,7 +495,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_City( string $user_email, string $token, array $query, array $headers ): array {
+	public static function api__get_field_City( $user_email, $token, array $query, array $headers ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -582,7 +582,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_Street( string $user_email, string $token, array $query, array $headers ): array {
+	public static function api__get_field_Street( $user_email, $token, array $query, array $headers ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -669,7 +669,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function api__get_field_House( string $user_email, string $token, array $query, array $headers ): array {
+	public static function api__get_field_House( $user_email, $token, array $query, array $headers ) {
 		
 		try {
 			// ------------------------------------------------------------------
@@ -780,7 +780,7 @@ class DMS_API_Process {
 	
 	
 	
-	public static function query_arr_to_str( $arr, $trimmed = true ): string {
+	public static function query_arr_to_str( $arr, $trimmed = true ) {
 		if ( ! is_array( $arr ) ) {
 			return '';
 		}

@@ -52,7 +52,7 @@ class Account {
 	
 	
 	
-	public static function user_signin(): void {
+	public static function user_signin() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -102,7 +102,7 @@ class Account {
 	
 	
 	
-	private static function user_signin_process( $user ): bool {
+	private static function user_signin_process( $user ) {
 		
 		if ( ! ( $user instanceof \WP_User ) ) {
 			return false;
@@ -129,7 +129,7 @@ class Account {
 	
 	
 	
-	public static function is_user_email_exists(): void {
+	public static function is_user_email_exists() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() || email_exists( $_POST['email'] ) ) {
 			die( 'false' );
@@ -139,7 +139,7 @@ class Account {
 	
 	
 	
-	public static function user_registration(): void {
+	public static function user_registration() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -276,7 +276,7 @@ class Account {
 	
 	
 	
-	private static function _user_reg__send_valid_error( $error_html, $message = '' ): void {
+	private static function _user_reg__send_valid_error( $error_html, $message = '' ) {
 		wp_send_json_error( [
 			'message'    => __FUNCTION__ . ' : user registration error. ' . $message,
 			'user_id'    => 0,
@@ -288,7 +288,7 @@ class Account {
 	
 	
 	
-	public static function user_forgot(): void {
+	public static function user_forgot() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
@@ -380,7 +380,7 @@ class Account {
 	
 	
 	
-	public static function user_save_profile(): void {
+	public static function user_save_profile() {
 		
 		if ( ! Utils::verify_post_ajax_nonce() ) {
 			return;
