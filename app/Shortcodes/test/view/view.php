@@ -35,13 +35,19 @@ $title = $atts['title'];
 		<div class="col-xl-7 order-1 order-xl-1 s-test__left">
 			
 			<form id="s-test__try_form" class="s-test__try_form form-color-gray" autocomplete="off" role="presentation">
+				<input autocomplete="false" name="hidden" type="text" style="display:none;">
+				<input style="display:none" type="text" name="fakefirstremembered"/>
+				<input style="display:none" type="text" name="fakemiddleremembered"/>
+				<input style="display:none" type="text" name="fakecityremembered"/>
+				<input style="display:none" type="text" name="fakestreetremembered"/>
+				<input style="display:none" type="text" name="fakehouseremembered"/>
 				
 				<div class="form-group row" data-sbname="first">
 					<label for="try_first" class="col-sm-3 col-form-label">
 						<?php echo __( 'Имя', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="try_first" name="first" autocomplete="new-password">
+						<input class="form-control" id="try_first" name="first" autocomplete="nope">
 						<div class="s-test__input_result search_result_ext_box"></div>
 						<div class="search_result_box"></div>
 					</div>
@@ -52,7 +58,7 @@ $title = $atts['title'];
 						<?php echo __( 'Отчество', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="try_middle" name="middle" autocomplete="new-password">
+						<input class="form-control" id="try_middle" name="middle" autocomplete="nope">
 						<div class="s-test__input_result search_result_ext_box"></div>
 						<div class="search_result_box"></div>
 					</div>
@@ -63,7 +69,7 @@ $title = $atts['title'];
 						<?php echo __( 'Населенный пункт', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="try_city" name="city" autocomplete="new-password">
+						<input class="form-control" id="try_city" name="city" autocomplete="nope">
 						<div class="s-test__input_result search_result_ext_box"></div>
 						<div class="search_result_box"></div>
 					</div>
@@ -74,7 +80,7 @@ $title = $atts['title'];
 						<?php echo __( 'Улица', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="try_street" name="street" autocomplete="new-password">
+						<input class="form-control" id="try_street" name="street" autocomplete="nope">
 						<div class="s-test__input_result search_result_ext_box"></div>
 						<div class="search_result_box"></div>
 					</div>
@@ -85,7 +91,7 @@ $title = $atts['title'];
 						<?php echo __( 'Дом', 'dms' ) ?>
 					</label>
 					<div class="col-sm-9 s-test__input_rel">
-						<input class="form-control" id="try_house" name="house" autocomplete="new-password">
+						<input class="form-control" id="try_house" name="house" autocomplete="nope">
 						<div class="s-test__input_result search_result_ext_box"></div>
 						<div class="search_result_box"></div>
 					</div>

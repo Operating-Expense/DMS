@@ -24,6 +24,15 @@ export default (options) => {
 		"en": "en_UK",
 	};
 	
+	const keyCodes = {
+		ESCAPE: 27,
+		ENTER: 13,
+		SPACE: 32,
+		TAB: 9,
+		ARROW_UP: 38,
+		ARROW_DOWN: 40
+	};
+	
 	let currentSiteLang = window.WPGlobus.language;
 	let lang = langMap[currentSiteLang] === undefined ? '' : langMap[currentSiteLang];
 	
@@ -74,9 +83,9 @@ export default (options) => {
 				resultBox.html('').hide();
 				form.attr('data-sexid', SexId);
 				
-				if (SexId === '1') {
+				if (SexId === 1) {
 					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♂</div>`;
-				} else if (SexId === '2') {
+				} else if (SexId === 2) {
 					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♀</div>`;
 				}
 				
@@ -126,9 +135,9 @@ export default (options) => {
 				resultBox.html('').hide();
 				form.attr('data-sexid', SexId);
 				
-				if (SexId === '1') {
+				if (SexId === 1) {
 					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♂</div>`;
-				} else if (SexId === '2') {
+				} else if (SexId === 2) {
 					extHtml += `<div class="result_row result_row_gender" data-type="${name}">♀</div>`;
 				}
 				
@@ -147,16 +156,21 @@ export default (options) => {
 				let resultHtml = '';
 				
 				result.forEach((item, i, arr) => {
-					let mainValField = item.City;
+					let City = item.City || '';
+					let mainValField = City;
 					
 					if (!mainValField || !mainValField.length) return;
 					
 					let SettlementType = item.SettlementType || '';
+					let Suburb = item.Suburb || '';
 					let Area = item.Area || '';
 					let Region = item.Region || '';
 					
+					mainValField = Suburb ? Suburb : mainValField;
+					
 					let valString = mainValField;
-					valString = SettlementType ? `<span>${SettlementType} </span>`+ valString : valString;
+					valString = SettlementType ? `<span>${SettlementType} </span>` + valString : valString;
+					valString = (mainValField === Suburb) && City ? valString + ', ' + City : valString;
 					valString = Area || Region ? valString + '<div class="srr_subrow">' : valString;
 					valString = Area ? valString + `<span>${Area} &nbsp;</span>` : valString;
 					valString = Region ? valString + `<span>${Region} </span>` : valString;
@@ -184,8 +198,10 @@ export default (options) => {
 				}
 				
 				let st_moniker = itemData ? itemData['st_moniker'] : '';
-				let Region = itemData ? itemData['Region'] : '';
+				let Suburb = itemData ? itemData['Suburb'] : '';
+				let City = itemData ? itemData['City'] : '';
 				let Area = itemData ? itemData['Area'] : '';
+				let Region = itemData ? itemData['Region'] : '';
 				let SettlementType = itemData ? itemData['SettlementType'] : '';
 				
 				let extHtml = '';
@@ -200,9 +216,15 @@ export default (options) => {
 				if (SettlementType) {
 					extHtml += `<div class="result_row" data-type="${name}">${SettlementType}</div>`;
 				}
-				if (Area) {
+				
+				if (Suburb && City && Area) {
+					extHtml += `<div class="result_row" data-type="${name}">${City}, ${Area}</div>`;
+				} else if (Suburb && City) {
+					extHtml += `<div class="result_row" data-type="${name}">${City}</div>`;
+				} else if (Area) {
 					extHtml += `<div class="result_row" data-type="${name}">${Area}</div>`;
 				}
+				
 				if (Region) {
 					extHtml += `<div class="result_row" data-type="${name}">${Region}</div>`;
 				}
@@ -387,6 +409,35 @@ export default (options) => {
 		return result;
 	}
 	
+	
+	function activateResultItem(resultRow) {
+		let $this = $(resultRow);
+		let itemData = null;
+		
+		try {
+			itemData = JSON.parse(decodeURIComponent($this.attr('data-item')));
+		} catch (e) {
+			console.warn(e.message);
+		}
+		
+		if (itemData) {
+			extInfoBox.html(genJsonPreview(itemData));
+			extInfoBox.fadeIn(100);
+		}
+		
+		$this.siblings().removeClass('active');
+		$this.addClass('active');
+	}
+	
+	
+	function deactivateResultItem(resultRow) {
+		let $this = $(resultRow);
+		
+		$this.siblings().add($this).removeClass('active');
+		extInfoBox.html('');
+		extInfoBox.fadeOut(100);
+	}
+	
 	// ========================================================================
 	// ========================================================================
 	return {
@@ -415,31 +466,57 @@ export default (options) => {
 			
 			
 			resultBox.on('mouseover', '.search_result_row', function (event) {
-				let $this = $(this);
-				let itemData = null;
-				
-				try {
-					itemData = JSON.parse(decodeURIComponent($this.attr('data-item')));
-				} catch (e) {
-					console.warn(e.message);
-				}
-				
-				if (itemData) {
-					extInfoBox.html(genJsonPreview(itemData));
-					extInfoBox.fadeIn(100);
-				}
-				
-				$this.siblings().removeClass('active');
-				$this.addClass('active');
-				
+				activateResultItem(this);
 			});
 			
+			
 			resultBox.on('mouseout', '.search_result_row', function (event) {
-				let $this = $(this);
-				$this.siblings().removeClass('active');
+				deactivateResultItem(this);
+			});
+			
+			
+			input.on('keydown', function (event) {
+				let results = resultBox.find('.search_result_row');
+				let resultsLen = results.length;
+				let activeResult = results.filter('.active').eq(0);
+				let idx = activeResult.length ? activeResult.index() : -1;
 				
-				extInfoBox.html('');
-				extInfoBox.fadeOut(100);
+				if (event.keyCode === keyCodes.ARROW_DOWN && idx < resultsLen - 1) {
+					deactivateResultItem(results.eq(idx));
+					idx++;
+					activateResultItem(results.eq(idx));
+					resultBox[0].scrollTop = results.eq(idx)[0].offsetTop - resultBox.innerHeight() + results.eq(idx)[0].scrollHeight + 2;
+					return false;
+				}
+				
+				if (event.keyCode === keyCodes.ARROW_UP && idx > 0) {
+					deactivateResultItem(results.eq(idx));
+					idx--;
+					activateResultItem(results.eq(idx));
+					resultBox[0].scrollTop = results.eq(idx)[0].offsetTop - resultBox.innerHeight() + results.eq(idx)[0].scrollHeight + 2;
+					return false;
+				}
+				
+				if (event.keyCode === keyCodes.ESCAPE) {
+					resultBox.html('').hide();
+					return false;
+				}
+				
+				if (event.keyCode === keyCodes.TAB) {
+					resultBox.html('').hide();
+				}
+				
+				if (event.keyCode === keyCodes.ENTER) {
+					if (extHandler) {
+						extHandler(results.eq(idx));
+					}
+					return false;
+				}
+				
+				if ([keyCodes.ARROW_DOWN, keyCodes.ARROW_UP, keyCodes.ENTER, keyCodes.ESCAPE].indexOf(event.keyCode) !== -1) {
+					return false;
+				}
+				
 			});
 			
 			
@@ -478,7 +555,7 @@ export default (options) => {
 							input.attr('data-competed', '0');
 						},
 						success: function (response) {
-							console.log(response);
+							//console.log(response);
 							
 							if (response.success && response.data.result && resultHandler) {
 								//we need to check if the value is the same
