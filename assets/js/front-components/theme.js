@@ -194,7 +194,6 @@ export default class Theme {
 	}
 	
 	
-	
 	// --------------------------------------------------------------------
 	//    POPUPS 
 	// --------------------------------------------------------------------
@@ -245,6 +244,10 @@ export default class Theme {
 		form.on('submit', function (e) {
 			e.preventDefault();
 			
+			let submit = form.find('input[type=submit]');
+			let preloader = form.closest('.dms-popup-box').find('.dms_preloader');
+			let redirect = false;
+			
 			$.ajax({
 				type: "POST",
 				url: themeJsVars.ajaxurl,
@@ -255,10 +258,13 @@ export default class Theme {
 				},
 				beforeSend: function () {
 					errorBox.html('');
+					submit.prop('disabled', true);
+					preloader.css('display', 'flex');
 				},
 				success: function (response) {
 					//console.log('response>>', response);
 					if (response.success && response.data && response.data.redirect) {
+						redirect = true;
 						window.location.href = response.data.redirect;
 					} else if (response.data) {
 						errorBox.html(response.data.error_html);
@@ -269,6 +275,10 @@ export default class Theme {
 				},
 				complete: function () {
 					//console.log('ajax PROCESS  COMPLETED');
+					if (!redirect) {
+						submit.prop('disabled', false);
+						preloader.css('display', 'none');
+					}
 				}
 			});
 			

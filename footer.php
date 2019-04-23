@@ -109,6 +109,10 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 					</form>
 					<div class="error-box"></div>
 					
+					<div class="dms_preloader">
+						<img src="<?php echo get_template_directory_uri() . '/assets/images/preloader.gif' ?>" alt="">
+					</div>
+					
 					<div class="links-login">
 						<a href="#" class="js-dms-account-forgot-trigger"><?php _e( 'Забыли пароль?', 'dms' ) ?></a>
 						<a href="#" class="js-dms-account-reg-trigger"><?php _e( 'Регистрация', 'dms' ) ?></a>
@@ -141,6 +145,11 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 					
 					</form>
 					<div class="error-box"></div>
+					
+					<div class="dms_preloader">
+						<img src="<?php echo get_template_directory_uri() . '/assets/images/preloader.gif' ?>" alt="">
+					</div>
+				
 				</div>
 			</div>
 		</div>
@@ -198,6 +207,11 @@ $img_html = ! empty( $img['url'] ) ? '<img src="' . esc_url( $img['url'] ) . '" 
 					<input type="submit" class="js-dms-account-reg" value="<?php _e( 'Зарегистрироваться', 'dms' ) ?>">
 				</form>
 				<div class="error-box"></div>
+				
+				<div class="dms_preloader">
+					<img src="<?php echo get_template_directory_uri() . '/assets/images/preloader.gif' ?>" alt="">
+				</div>
+				
 			</div>
 		</div>
 	
