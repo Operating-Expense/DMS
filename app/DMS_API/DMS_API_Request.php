@@ -23,7 +23,7 @@ class DMS_API_Request {
 		$this->ch = curl_init();
 		
 		$options_defaults = [
-			CURLOPT_URL            => 'http://217.147.161.26:2660/api/',
+			CURLOPT_URL            => 'http://api.dmsolutions.com.ua:2660/api/',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_HEADER         => true,
 			CURLOPT_ENCODING       => '',
@@ -32,6 +32,7 @@ class DMS_API_Request {
 			CURLOPT_FOLLOWLOCATION => false,
 			CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST  => 'GET',
+			CURLOPT_SSL_VERIFYPEER => false,
 			//CURLOPT_POSTFIELDS     => '',
 			CURLOPT_HTTPHEADER     => [
 				'Accept-Charset: charset=utf-8',

@@ -48,7 +48,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Account/Register',
+				CURLOPT_URL           => 'http://api.dmsolutions.com.ua:2660/api/Account/Register',
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS    => "{\n\"Email\": \"{$user_email}\",\n\"Password\": \"{$user_pass}\",\n\"ConfirmPassword\": \"{$user_pass}\"\n}",
 			];
@@ -166,7 +166,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => 'http://217.147.161.26:2660/Token',
+				CURLOPT_URL           => 'http://api.dmsolutions.com.ua:2660/Token',
 				CURLOPT_CUSTOMREQUEST => 'POST',
 				CURLOPT_POSTFIELDS    => "username={$user_email}&password={$user_pass}&grant_type={$grant_type}",
 				CURLOPT_HTTPHEADER    => [
@@ -242,7 +242,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => 'http://217.147.161.26:2660/api/Users',
+				CURLOPT_URL           => 'http://api.dmsolutions.com.ua:2660/api/Users',
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => [
 					'Content-Type: application/json',
@@ -327,7 +327,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Firsts' ),
+				CURLOPT_URL           => add_query_arg( $query, 'http://api.dmsolutions.com.ua:2660/api/Firsts' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
@@ -415,7 +415,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Middles' ),
+				CURLOPT_URL           => add_query_arg( $query, 'http://api.dmsolutions.com.ua:2660/api/Middles' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
@@ -502,7 +502,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Cities' ),
+				CURLOPT_URL           => add_query_arg( $query, 'http://api.dmsolutions.com.ua:2660/api/Cities' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
@@ -589,7 +589,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Streets' ),
+				CURLOPT_URL           => add_query_arg( $query, 'http://api.dmsolutions.com.ua:2660/api/Streets' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
@@ -676,7 +676,7 @@ class DMS_API_Process {
 			$request = new DMS_API_Request();
 			
 			$options = [
-				CURLOPT_URL           => add_query_arg( $query, 'http://217.147.161.26:2660/api/Houses' ),
+				CURLOPT_URL           => add_query_arg( $query, 'http://api.dmsolutions.com.ua:2660/api/Houses' ),
 				CURLOPT_CUSTOMREQUEST => 'GET',
 				CURLOPT_HTTPHEADER    => array_replace( [
 					'Content-Type: application/json',
